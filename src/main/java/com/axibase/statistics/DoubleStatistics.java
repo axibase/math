@@ -1,6 +1,6 @@
 package com.axibase.statistics;
 
-import java.util.List;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 /**
  * This class is a simple wrapper around
@@ -9,21 +9,26 @@ import java.util.List;
  */
 public class DoubleStatistics implements Statistics {
 
-    private org.apache.commons.math3.stat.descriptive.DescriptiveStatistics ds;
+    private DescriptiveStatistics ds;
 
+    /** Construct a DoubleStatistics instance with an infinite window. */
     public DoubleStatistics() {
-        ds = new org.apache.commons.math3.stat.descriptive.DescriptiveStatistics();
+        ds = new DescriptiveStatistics();
     }
 
     /**
-     * Convert provided values to Doubles and create instance.
+     * Construct a DoubleStatistics instance with an infinite window
+     * and provided initial data.
      */
-    public DoubleStatistics(List<? extends Number> values) {
-        double[] doubleArray = new double[values.size()];
-        for (int i = 0; i < values.size(); i++) {
-            doubleArray[i] = values.get(i).doubleValue();
-        }
-        ds = new org.apache.commons.math3.stat.descriptive.DescriptiveStatistics(doubleArray);
+    public DoubleStatistics(double[] values) {
+        ds = new DescriptiveStatistics(values);
+    }
+
+    /**
+     * Construct a DoubleStatistics instance with the specified window size.
+     */
+    public DoubleStatistics(int windowSize) {
+        ds = new DescriptiveStatistics(windowSize);
     }
 
     @Override
@@ -32,17 +37,27 @@ public class DoubleStatistics implements Statistics {
     }
 
     @Override
-    public Number getMax() {
+    public void clear() {
+        ds.clear();
+    }
+
+    @Override
+    public Double getElement(int index) {
+        return ds.getElement(index);
+    }
+
+    @Override
+    public Double getMax() {
         return ds.getMax();
     }
 
     @Override
-    public Number getMean() {
+    public Double getMean() {
         return ds.getMean();
     }
 
     @Override
-    public Number getMin() {
+    public Double getMin() {
         return ds.getMin();
     }
 
@@ -52,22 +67,42 @@ public class DoubleStatistics implements Statistics {
     }
 
     @Override
-    public Number getPercentile(double p) {
+    public Double getPercentile(double p) {
         return ds.getPercentile(p);
     }
 
     @Override
-    public Number getStandardDeviation() {
+    public Double getStandardDeviation() {
         return ds.getStandardDeviation();
     }
 
     @Override
-    public Number getSum() {
+    public Double getSum() {
         return ds.getSum();
     }
 
     @Override
-    public Number getVariance() {
+    public Double getVariance() {
         return ds.getVariance();
+    }
+
+    @Override
+    public int getWindowSize() {
+        return ds.getWindowSize();
+    }
+
+    @Override
+    public void removeMostRecentValue() {
+        ds.removeMostRecentValue();
+    }
+
+    @Override
+    public Double replaceMostRecentValue(Number number) {
+        return ds.replaceMostRecentValue(number.doubleValue());
+    }
+
+    @Override
+    public void setWindowSize(int windowSize) {
+        ds.setWindowSize(windowSize);
     }
 }

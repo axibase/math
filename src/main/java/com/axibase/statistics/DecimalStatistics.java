@@ -1,35 +1,46 @@
 package com.axibase.statistics;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * Analog of org.apache.commons.math3.stat.descriptive.DescriptiveStatistics
  * but uses BigDecimals instead of doubles.
- * implementation will follow to implementation of
+ * implementation follows to the implementation of
  * org.apache.commons.math3.stat.descriptive.Statistics
- * view
- *
  */
 public class DecimalStatistics implements Statistics {
 
-    protected int windowSize = INFINITE_WINDOW;
+    private static final int INFINITE_WINDOW = -1;
+    private int windowSize = INFINITE_WINDOW;
 
     /** Store data values. */
-    protected ResizableDecimalArray values = new ResizableDecimalArray();
+    protected ResizableDecimalArray ra = new ResizableDecimalArray();
 
-    /** Number of digits after decimal point. */
-    private int precision = DEFAULT_PRECISION;
-
-    public static final int INFINITE_WINDOW = -1;
-    public static final int DEFAULT_PRECISION = 10;
 
     public DecimalStatistics() {
     }
 
-    public DecimalStatistics(List<? extends Number> values) {
+    public DecimalStatistics(BigDecimal[] values) {
         if (values != null) {
             //this.values = new ResizableDecimalArray(values);
         }
+    }
+
+
+    @Override
+    public void addValue(Number value) {
+
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public Number getElement(int index) {
+        return null;
     }
 
     @Override
@@ -73,7 +84,23 @@ public class DecimalStatistics implements Statistics {
     }
 
     @Override
-    public void addValue(Number value) {
+    public int getWindowSize() {
+        return 0;
+    }
+
+    @Override
+    public void removeMostRecentValue() {
 
     }
+
+    @Override
+    public Number replaceMostRecentValue(Number number) {
+        return null;
+    }
+
+    @Override
+    public void setWindowSize(int windowSize) {
+
+    }
+
 }

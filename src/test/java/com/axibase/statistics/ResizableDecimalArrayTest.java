@@ -31,7 +31,7 @@ public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
     @SuppressWarnings("deprecation")
     @Test
     public void testConstructors() {
-        float defaultExpansionFactor = 2.0f;
+        double defaultExpansionFactor = 2.0d;
         double defaultContractionCriteria = 2.5;
         ResizableDecimalArray.ExpansionMode defaultMode = ResizableDecimalArray.ExpansionMode.MULTIPLICATIVE;
 
@@ -68,7 +68,7 @@ public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
         }
 
         testDa = new ResizableDecimalArray(2, 3.0);
-        Assert.assertEquals(3.0f, testDa.getExpansionFactor(), 0);
+        Assert.assertEquals(3.0d, testDa.getExpansionFactor(), 0);
         Assert.assertEquals(3.5f, testDa.getContractionCriterion(), 0);
 
         testDa = new ResizableDecimalArray(2, 2.0, 3.0);
@@ -327,7 +327,7 @@ public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
         Assert.assertEquals("Number of elements should be equals to " + (iterations +1),
                 iterations +1, eDA3.getNumElements() );
 
-        Assert.assertEquals("Expansion factor should equal 3.0", 3.0f, eDA3.getExpansionFactor(), Double.MIN_VALUE);
+        Assert.assertEquals("Expansion factor should equal 3.0", 3.0d, eDA3.getExpansionFactor(), Double.MIN_VALUE);
     }
 
     @Test

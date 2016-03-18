@@ -9,7 +9,7 @@ import java.util.List;
 public class StatisticsFactory {
 
     /**
-     * Returns {@link DecimalStatistics} if valueType is "BigDecimal",
+     * Returns {@link DecimalStatistics} if valueType is BigDecimal,
      * and {@link DoubleStatistics} otherwise.
      */
     public static Statistics getDescriptiveStatistics(String valueType) {
@@ -22,10 +22,10 @@ public class StatisticsFactory {
     public static Statistics getDescriptiveStatistics(List<? extends Number> values) {
         if (values != null && !values.isEmpty()) {
             if (values.get(0) instanceof BigDecimal) {
-                return null;
-                //return new DecimalStatistics(toDecimalArray(values));
+                return new DecimalStatistics(toDecimalArray(values));
             }
-            return new DoubleStatistics(values);
+
+            return new DoubleStatistics(toDoubleArray(values));
         }
         return null;
     }
@@ -34,6 +34,14 @@ public class StatisticsFactory {
         BigDecimal[] internalArray = new BigDecimal[values.size()];
         for (int i = 0; i < values.size(); i++) {
             internalArray[i] = new BigDecimal(values.get(i).toString());
+        }
+        return internalArray;
+    }
+
+    private static double[] toDoubleArray(List<? extends Number> values) {
+        double[] internalArray = new double[values.size()];
+        for (int i = 0; i < values.size(); i++) {
+            internalArray[i] = values.get(i).doubleValue();
         }
         return internalArray;
     }

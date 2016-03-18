@@ -44,9 +44,9 @@ public class ResizableDecimalArray {
      * The expansion factor of the array.  When the array needs to be expanded,
      * the new array size will be
      * {@code internalArray.length * expansionFactor}
-     * if {@code expansionMode} is set to MULTIPLICATIVE_MODE, or
+     * if {@code expansionMode} is set to MULTIPLICATIVE, or
      * {@code internalArray.length + expansionFactor} if
-     * {@code expansionMode} is set to ADDITIVE_MODE.
+     * {@code expansionMode} is set to ADDITIVE.
      */
     private double expansionFactor = 2.0;
 
@@ -104,32 +104,6 @@ public class ResizableDecimalArray {
      */
     public ResizableDecimalArray(int initialCapacity) throws MathIllegalArgumentException {
         this(initialCapacity, DEFAULT_EXPANSION_FACTOR);
-    }
-
-    /**
-     * Creates an instance from an existing {@code double[]} with the
-     * initial capacity and numElements corresponding to the size of
-     * the supplied {@code double[]} array.
-     * If the supplied array is null, a new empty array with the default
-     * initial capacity will be created.
-     * The input array is copied, not referenced.
-     * Other properties take default values:
-     * <ul>
-     *  <li>{@code initialCapacity = 16}</li>
-     *  <li>{@code expansionMode = MULTIPLICATIVE}</li>
-     *  <li>{@code expansionFactor = 2.0}</li>
-     *  <li>{@code contractionCriterion = 2.5}</li>
-     * </ul>
-     *
-     * @param initialArray initial array
-     * @since 2.2
-     */
-    public ResizableDecimalArray(BigDecimal[] initialArray) {
-        this(DEFAULT_INITIAL_CAPACITY,
-                DEFAULT_EXPANSION_FACTOR,
-                DEFAULT_CONTRACTION_DELTA + DEFAULT_EXPANSION_FACTOR,
-                ExpansionMode.MULTIPLICATIVE,
-                initialArray);
     }
 
     /**
@@ -235,14 +209,39 @@ public class ResizableDecimalArray {
     }
 
     /**
-     * Copy constructor.  Creates a new ResizableDoubleArray that is a deep,
-     * fresh copy of the original. Needs to acquire synchronization lock
-     * on original.  Original may not be null; otherwise a {@link NullArgumentException}
-     * is thrown.
+     * Creates an instance from an existing {@code BigDecimal[]} with the
+     * initial capacity and numElements corresponding to the size of
+     * the supplied {@code BigDecimal[]} array.
+     * If the supplied array is null, a new empty array with the default
+     * initial capacity will be created.
+     * The input array is copied, not referenced.
+     * Other properties take default values:
+     * <ul>
+     *  <li>{@code initialCapacity = 16}</li>
+     *  <li>{@code expansionMode = MULTIPLICATIVE}</li>
+     *  <li>{@code expansionFactor = 2.0}</li>
+     *  <li>{@code contractionCriterion = 2.5}</li>
+     * </ul>
+     *
+     * @param initialArray initial array
+     */
+    public ResizableDecimalArray(BigDecimal[] initialArray) {
+        this(DEFAULT_INITIAL_CAPACITY,
+                DEFAULT_EXPANSION_FACTOR,
+                DEFAULT_CONTRACTION_DELTA + DEFAULT_EXPANSION_FACTOR,
+                ExpansionMode.MULTIPLICATIVE,
+                initialArray);
+    }
+
+    /**
+     * Copy constructor. Creates a new ResizableDecimalArray that is a copy of the original.
+     * But internal array stores links to the same (!) instances of BigDecimals as the original.
+     * As BigDecimals are immutable it is admissible.
+     * Needs to acquire synchronization lock on original. Original may not be null;
+     * otherwise a {@link NullArgumentException} is thrown.
      *
      * @param original array to copy
      * @exception NullArgumentException if original is null
-     * @since 2.0
      */
     public ResizableDecimalArray(ResizableDecimalArray original)
             throws NullArgumentException {
@@ -266,7 +265,6 @@ public class ResizableDecimalArray {
      * Adds several element to the end of this expandable array.
      *
      * @param values Values to be added to end of array.
-     * @since 2.2
      */
     public synchronized void addElements(BigDecimal[] values) {
         final BigDecimal[] tempArray = new BigDecimal[numElements + values.length + 1];
@@ -320,7 +318,6 @@ public class ResizableDecimalArray {
      * @param value New value to substitute for the most recently added value
      * @return the value that has been replaced in the array.
      * @throws MathIllegalStateException if the array is empty
-     * @since 2.0
      */
     public synchronized BigDecimal substituteMostRecentElement(BigDecimal value)
             throws MathIllegalStateException {
@@ -406,7 +403,6 @@ public class ResizableDecimalArray {
      *
      * @param i  the number of elements to discard from the front of the array
      * @throws MathIllegalArgumentException if i is greater than numElements.
-     * @since 2.0
      */
     public synchronized void discardFrontElements(int i)
             throws MathIllegalArgumentException {
@@ -422,7 +418,6 @@ public class ResizableDecimalArray {
      *
      * @param i  the number of elements to discard from the end of the array
      * @throws MathIllegalArgumentException if i is greater than numElements.
-     * @since 2.0
      */
     public synchronized void discardMostRecentElements(int i)
             throws MathIllegalArgumentException {
@@ -474,9 +469,9 @@ public class ResizableDecimalArray {
     /**
      * Expands the internal storage array using the expansion factor.
      * <p>
-     * if <code>expansionMode</code> is set to MULTIPLICATIVE_MODE,
+     * if <code>expansionMode</code> is set to MULTIPLICATIVE,
      * the new array size will be <code>internalArray.length * expansionFactor.</code>
-     * If <code>expansionMode</code> is set to ADDITIVE_MODE,  the length
+     * If <code>expansionMode</code> is set to ADDITIVE,  the length
      * after expansion will be <code>internalArray.length + expansionFactor</code>
      * </p>
      */
@@ -514,10 +509,10 @@ public class ResizableDecimalArray {
     /**
      * The contraction criterion defines when the internal array will contract
      * to store only the number of elements in the element array.
-     * If  the <code>expansionMode</code> is <code>MULTIPLICATIVE_MODE</code>,
+     * If  the <code>expansionMode</code> is <code>MULTIPLICATIVE</code>,
      * contraction is triggered when the ratio between storage array length
      * and <code>numElements</code> exceeds <code>contractionFactor</code>.
-     * If the <code>expansionMode</code> is <code>ADDITIVE_MODE</code>, the
+     * If the <code>expansionMode</code> is <code>ADDITIVE</code>, the
      * number of excess storage locations is compared to
      * <code>contractionFactor.</code>
      *
@@ -547,11 +542,11 @@ public class ResizableDecimalArray {
     }
 
     /**
-     * Returns a double array containing the elements of this
-     * <code>ResizableArray</code>.  This method returns a copy, not a
+     * Returns a BigDecimal array containing the elements of this
+     * <code>ResizableDecimalArray</code>.  This method returns a copy, not a
      * reference to the underlying array, so that changes made to the returned
-     *  array have no effect on this <code>ResizableArray.</code>
-     * @return the double array.
+     *  array have no effect on this <code>ResizableDecimalArray.</code>
+     * @return the BigDecimal array.
      */
     public synchronized BigDecimal[] getElements() {
         final BigDecimal[] elementArray = new BigDecimal[numElements];
@@ -563,18 +558,16 @@ public class ResizableDecimalArray {
      * The expansion factor controls the size of a new array when an array
      * needs to be expanded.  The <code>expansionMode</code>
      * determines whether the size of the array is multiplied by the
-     * <code>expansionFactor</code> (MULTIPLICATIVE_MODE) or if
-     * the expansion is additive (ADDITIVE_MODE -- <code>expansionFactor</code>
+     * <code>expansionFactor</code> (MULTIPLICATIVE) or if
+     * the expansion is additive (ADDITIVE -- <code>expansionFactor</code>
      * storage locations added).  The default <code>expansionMode</code> is
-     * MULTIPLICATIVE_MODE and the default <code>expansionFactor</code>
+     * MULTIPLICATIVE and the default <code>expansionFactor</code>
      * is 2.0.
      *
      * @return the expansion factor of this expandable double array
-     * @deprecated As of 3.1. Return type will be changed to "double" in 4.0.
      */
-    @Deprecated
-    public float getExpansionFactor() {
-        return (float) expansionFactor;
+    public double getExpansionFactor() {
+        return expansionFactor;
     }
 
     /**
@@ -584,7 +577,6 @@ public class ResizableDecimalArray {
      * elements actually stored}.
      *
      * @return the length of the internal array.
-     * @since 3.1
      */
     public int getCapacity() {
         return internalArray.length;
@@ -617,7 +609,6 @@ public class ResizableDecimalArray {
      * returns a copy of this array's addressable elements.
      *
      * @return the internal storage array used by this object.
-     * @since 3.1
      */
     protected BigDecimal[] getArrayRef() {
         return internalArray;
@@ -725,9 +716,8 @@ public class ResizableDecimalArray {
     }
 
     /**
-     * <p>Copies source to dest, copying the underlying data, so dest is
-     * a new, independent copy of source.  Does not contract before
-     * the copy.</p>
+     * <p>Copies source to dest, so that dest contains links to the same Bigdecimals as the source.
+     * It is safe because BigDecimals are immutable. Does not contract before the copy.</p>
      *
      * <p>Obtains synchronization locks on both source and dest
      * (in that order) before performing the copy.</p>
@@ -735,8 +725,8 @@ public class ResizableDecimalArray {
      * <p>Neither source nor dest may be null; otherwise a {@link NullArgumentException}
      * is thrown</p>
      *
-     * @param source ResizableDoubleArray to copy
-     * @param dest ResizableArray to replace with a copy of the source array
+     * @param source ResizableDecimalArray to copy
+     * @param dest ResizableDecimalArray to replace with a copy of the source array
      * @exception NullArgumentException if either source or dest is null
      *
      */
@@ -760,12 +750,12 @@ public class ResizableDecimalArray {
     }
 
     /**
-     * Returns a copy of the ResizableDoubleArray.  Does not contract before
+     * Returns a copy of the ResizableDecimalArray, which contains links to the same Bigdecimals as the source.
+     * It is safe because BigDecimals are immutable.  Does not contract before
      * the copy, so the returned object is an exact copy of this.
      *
-     * @return a new ResizableDoubleArray with the same data and configuration
+     * @return a new ResizableDecimalArray with the same data and configuration
      * properties as this
-     * @since 2.0
      */
     public synchronized ResizableDecimalArray copy() {
         final ResizableDecimalArray result = new ResizableDecimalArray();
@@ -774,13 +764,12 @@ public class ResizableDecimalArray {
     }
 
     /**
-     * Returns true iff object is a ResizableDoubleArray with the same properties
+     * Returns true iff object is a ResizableDecimalArray with the same properties
      * as this and an identical internal storage array.
      *
      * @param object object to be compared for equality with this
      * @return true iff object is a ResizableDoubleArray with the same data and
      * properties as this
-     * @since 2.0
      */
     @Override
     public boolean equals(Object object) {
