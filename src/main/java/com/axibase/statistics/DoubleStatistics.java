@@ -7,7 +7,7 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
  * org.apache.commons.math3.stat.descriptive.DescriptiveStatistics
  * in order to implement the Statistics interface.
  */
-public class DoubleStatistics implements Statistics {
+public class DoubleStatistics implements Statistics<Double> {
 
     private DescriptiveStatistics ds;
 
@@ -32,8 +32,8 @@ public class DoubleStatistics implements Statistics {
     }
 
     @Override
-    public void addValue(Number value) {
-        ds.addValue(value.doubleValue());
+    public void addValue(Double value) {
+        ds.addValue(value);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class DoubleStatistics implements Statistics {
     }
 
     @Override
-    public Double getMean() {
+    public double getMean() {
         return ds.getMean();
     }
 
@@ -67,12 +67,12 @@ public class DoubleStatistics implements Statistics {
     }
 
     @Override
-    public Double getPercentile(double p) {
+    public double getPercentile(double p) {
         return ds.getPercentile(p);
     }
 
     @Override
-    public Double getStandardDeviation() {
+    public double getStandardDeviation() {
         return ds.getStandardDeviation();
     }
 
@@ -82,7 +82,7 @@ public class DoubleStatistics implements Statistics {
     }
 
     @Override
-    public Double getVariance() {
+    public double getVariance() {
         return ds.getVariance();
     }
 
@@ -97,7 +97,7 @@ public class DoubleStatistics implements Statistics {
     }
 
     @Override
-    public Double replaceMostRecentValue(Number number) {
+    public Double replaceMostRecentValue(Double number) {
         return ds.replaceMostRecentValue(number.doubleValue());
     }
 

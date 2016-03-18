@@ -19,6 +19,13 @@ public class StatisticsFactory {
         return new DoubleStatistics();
     }
 
+    public static Statistics getDescriptiveStatistics(String valueType, int windowSize) {
+        if (valueType.equals("BigDecimal")) {
+            return new DecimalStatistics(windowSize);
+        }
+        return new DoubleStatistics(windowSize);
+    }
+
     public static Statistics getDescriptiveStatistics(List<? extends Number> values) {
         if (values != null && !values.isEmpty()) {
             if (values.get(0) instanceof BigDecimal) {

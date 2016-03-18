@@ -8,20 +8,20 @@ package com.axibase.statistics;
  * If windowSize is not -1 and more values are added than can be stored in the data set, new values are added in a
  * "rolling" manner, with new values replacing the "oldest" values in the data set.
  */
-public interface Statistics {
-    void addValue(Number value);
+public interface Statistics<T extends Number> {
+    void addValue(T value);
     void clear();
-    Number getElement(int index);
-    Number getMax();
-    Number getMean();
-    Number getMin();
+    T getElement(int index);
+    T getMax();
+    double getMean();
+    T getMin();
     long getN();
-    Number getPercentile(double p);
-    Number getStandardDeviation();
-    Number getSum();
-    Number getVariance();
+    double getPercentile(double p);
+    double getStandardDeviation();
+    T getSum();
+    double getVariance();
     int getWindowSize();
     void removeMostRecentValue();
-    Number replaceMostRecentValue(Number number);
+    T replaceMostRecentValue(T number);
     void setWindowSize(int windowSize);
 }
