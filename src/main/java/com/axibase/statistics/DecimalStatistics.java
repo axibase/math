@@ -7,26 +7,38 @@ import org.apache.commons.math3.util.FastMath;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 /**
- * Analog of org.apache.commons.math3.stat.descriptive.DescriptiveStatistics
+ * Analog of DescriptiveStatistics class from
+ * the org.apache.commons.math3.stat.descriptive package,
  * but uses BigDecimals instead of doubles.
- * implementation follows to the implementation of
- * org.apache.commons.math3.stat.descriptive.Statistics
+ * The code is refactoring of the open source Apache's code.
  */
-public class DecimalStatistics implements Statistics<BigDecimal> {
+public class DecimalStatistics {
 
     private static final int INFINITE_WINDOW = -1;
     private int windowSize = INFINITE_WINDOW;
 
     /** Store data values. */
-    protected ResizableDecimalArray ra = new ResizableDecimalArray();
+    private ResizableDecimalArray ra = new ResizableDecimalArray();
+
+    private MathContext mathContext = null;
 
     public DecimalStatistics() {
     }
 
+    public DecimalStatistics(MathContext mathContext) {
+        setMathContext(mathContext);
+    }
+
     public DecimalStatistics(int windowSize) {
         setWindowSize(windowSize);
+    }
+
+    public DecimalStatistics(int windowSize, MathContext mathContext) {
+        setWindowSize(windowSize);
+        setMathContext(mathContext);
     }
 
     public DecimalStatistics(BigDecimal[] values) {
@@ -35,7 +47,10 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
         }
     }
 
-    @Override
+    /** Adds value to the dataset. If the dataset is at the maximum size
+     * (i.e., the number of stored elements equals the currently configured windowSize),
+     * the first (oldest) element in the dataset is discarded to make room for the new value.
+     */
     public void addValue(BigDecimal value) {
         if (windowSize != INFINITE_WINDOW) {
             if (getN() == windowSize) {
@@ -48,21 +63,17 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
         }
     }
 
-    @Override
     public void clear() {
         ra.clear();
     }
 
-    @Override
     public BigDecimal getElement(int index) {
         return ra.getElement(index);
     }
 
-
     /**
      * If there are no elements then result will be null.
      */
-    @Override
     public BigDecimal getMax() {
         BigDecimal max;
         if (getN() == 0) {
@@ -78,18 +89,20 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
     }
 
     /**
+     * Returns the mean value of the dataset and uses the mathContext to
+     * to get a chosen precision and rounding mode by supplying an appropriate MathContext
      * If there are no elements then result will be 0.
      */
-    @Override
-    public double getMean() {
-        BigDecimal[] result = getSum().divideAndRemainder(new BigDecimal(getN()));
-        return result[0].doubleValue() + result[1].doubleValue() / getN();
+    public BigDecimal getMean(MathContext mathContext) {
+        if (getN() == 0) {
+            return null;
+        }
+        return getSum().divide(new BigDecimal(getN()), mathContext);
     }
 
     /**
      * If there are no elements then result will be null.
      */
-    @Override
     public BigDecimal getMin() {
         BigDecimal min;
         if (getN() == 0) {
@@ -104,38 +117,33 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
         return min;
     }
 
-    @Override
     public long getN() {
         return ra.getNumElements();
     }
 
-    @Override
     public double getPercentile(double p) {
         DescriptiveStatistics ds = new DescriptiveStatistics(toDoubleArray());
         return ds.getPercentile(p);
     }
 
     /**
-     * Returns the standard deviation, Double.NaN if no values have been added
-     * or 0.0 for a single value set.
      */
-    @Override
-    public double getStandardDeviation() {
-        double stdDev = Double.NaN;
-        if (getN() > 0) {
-            if (getN() > 1) {
-                stdDev = FastMath.sqrt(getVariance());
-            } else {
-                stdDev = 0.0d;
-            }
-        }
+    public BigDecimal getStandardDeviation(MathContext mathContext) {
+        BigDecimal stdDev = null;
+//        if (getN() > 0) {
+//            if (getN() > 1) {
+//                stdDev = FastMath.sqrt(getVariance(mathContext));
+//            } else {
+//                stdDev = BigDecimal.ZERO;
+//            }
+//        }
         return stdDev;
     }
 
     /**
+     * Returns exact sum of elements in the data set.
      * If there are no elements then result will be 0.
      */
-    @Override
     public BigDecimal getSum() {
         BigDecimal sum = new BigDecimal(0);
         for (int i = 0; i < getN(); i++) {
@@ -144,19 +152,22 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
         return sum;
     }
 
-    @Override
-    public double getVariance() {
-        BigDecimal[] x =  sumOfSquares().divideAndRemainder(new BigDecimal((getN() - 1)));
-        double mean = getMean();
-        return x[0].doubleValue() + (x[1].doubleValue() / (getN() - 1)) - mean * mean;
+    /**
+     * Returns the sample variance of the dataset.
+     * The sample variance is the sum of the squared differences from the Mean
+     * divided by (N -1), where N is the number of elements in the dataset.
+     * TODO estimate precision
+     */
+    public BigDecimal getVariance(MathContext mathContext) {
+        BigDecimal meanSquared = getMean(mathContext).pow(2);
+        BigDecimal meanOfSquares = sumOfSquares().divide(new BigDecimal(getN()), mathContext);
+        return meanOfSquares.subtract(meanSquared);
     }
 
-    @Override
     public int getWindowSize() {
         return this.windowSize;
     }
 
-    @Override
     public void removeMostRecentValue() {
         try {
             ra.discardMostRecentElements(1);
@@ -166,12 +177,10 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
 
     }
 
-    @Override
     public BigDecimal replaceMostRecentValue(BigDecimal number) {
         return ra.substituteMostRecentElement(number);
     }
 
-    @Override
     public void setWindowSize(int windowSize) {
         if (windowSize < 1 && windowSize != INFINITE_WINDOW) {
             throw new MathIllegalArgumentException(
@@ -188,10 +197,14 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
         }
     }
 
+    /**
+     * Returns the exact sum of squares of values in the dataset.
+     * If there are no elements then result will be 0.
+     */
     public BigDecimal sumOfSquares() {
-        BigDecimal sum = new BigDecimal(0);
+        BigDecimal sum = BigDecimal.ZERO;
         for (int i = 0; i < getN(); i++) {
-            sum = sum.add(ra.getElement(i).multiply(ra.getElement(i)));
+            sum = sum.add(ra.getElement(i).pow(2));
         }
         return sum;
     }
@@ -202,5 +215,9 @@ public class DecimalStatistics implements Statistics<BigDecimal> {
             result[i] = ra.getElement(i).doubleValue();
         }
         return result;
+    }
+
+    public void setMathContext(MathContext mathContext) {
+        this.mathContext = mathContext;
     }
 }

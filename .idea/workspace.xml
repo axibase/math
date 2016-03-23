@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e5badb0-e35c-485b-9f32-298367463968" name="Default" comment="" />
+    <list default="true" id="3e5badb0-e35c-485b-9f32-298367463968" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/BigDecExp.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/StatisticsFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/axibase/statistics/StatisticsFactory.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/axibase/statistics/DecimalStatistics.class" afterPath="$PROJECT_DIR$/target/classes/com/axibase/statistics/DecimalStatistics.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/axibase/statistics/DoubleStatistics.class" afterPath="$PROJECT_DIR$/target/classes/com/axibase/statistics/DoubleStatistics.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/axibase/statistics/ResizableDecimalArray.class" afterPath="$PROJECT_DIR$/target/classes/com/axibase/statistics/ResizableDecimalArray.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/axibase/statistics/Statistics.class" afterPath="$PROJECT_DIR$/target/classes/com/axibase/statistics/Statistics.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java" />
+    </list>
     <ignored path="DescriptiveStatistics.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,26 +41,35 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DecimalStatistics.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DecimalStatistics.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47553816">
-              <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#DecimalStatistics#2;class#DecimalStatistics#0" expanded="false" />
-                <element signature="docComment;method#getMax#0;class#DecimalStatistics#0" expanded="false" />
-                <element signature="docComment;method#getMean#0;class#DecimalStatistics#0" expanded="false" />
-                <element signature="docComment;method#getMin#0;class#DecimalStatistics#0" expanded="false" />
-                <element signature="docComment;method#getSum#0;class#DecimalStatistics#0" expanded="false" />
-                <element signature="method#removeMostRecentValue#0;class#DecimalStatistics#0" expanded="false" />
-                <element signature="method#setWindowSize#0;class#DecimalStatistics#0" expanded="false" />
+                <element signature="e#1006#1007#0" expanded="true" />
+                <element signature="e#1049#1050#0" expanded="true" />
+                <element signature="e#1097#1098#0" expanded="true" />
+                <element signature="e#1138#1139#0" expanded="true" />
+                <element signature="e#2072#2073#0" expanded="true" />
+                <element signature="e#2098#2099#0" expanded="true" />
+                <element signature="e#2145#2146#0" expanded="true" />
+                <element signature="e#2188#2189#0" expanded="true" />
+                <element signature="e#3472#3473#0" expanded="true" />
+                <element signature="e#3514#3515#0" expanded="true" />
+                <element signature="e#4944#4945#0" expanded="true" />
+                <element signature="e#4982#4983#0" expanded="true" />
+                <element signature="e#5295#5296#0" expanded="true" />
+                <element signature="e#5356#5357#0" expanded="true" />
+                <element signature="e#6641#6642#0" expanded="true" />
+                <element signature="e#6687#6688#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,10 +79,47 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
               <folding>
                 <element signature="docComment;method#DoubleStatistics#2;class#DoubleStatistics#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRoot.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.30074075">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3930#3939#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BigDecExp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/experiments/BigDecExp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#225#226#0" expanded="true" />
+                <element signature="e#258#259#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DecimalStatsIncremental.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,10 +158,13 @@
         <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/DecimalArrayAbstractTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/ResizableDecimalArrayTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/ResizableDecimalArray.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/StatisticsFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/experiments/BigDecExp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java" />
       </list>
     </option>
   </component>
@@ -113,9 +176,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1920" />
-    <option name="height" value="1204" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -144,6 +207,7 @@
     <panes>
       <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -175,10 +239,91 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="statistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DescriptiveStatistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DescriptiveStatistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DescriptiveStatistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DescriptiveStatistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DescriptiveStatistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DescriptiveStatistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="statistics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -199,7 +344,7 @@
       <recent name="com.axibase.statistics" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ResizableDecimalArrayTest">
+  <component name="RunManager" selected="Application.BigDecExp">
     <configuration default="false" name="ResizableDecimalArrayTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -214,32 +359,6 @@
       <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.ResizableDecimalArrayTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="ResizableDecimalArrayTest.testSetElementArbitraryExpansion1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.axibase.statistics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="DescriptiveStatistics" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.axibase.statistics" />
-      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.ResizableDecimalArrayTest" />
-      <option name="METHOD_NAME" value="testSetElementArbitraryExpansion1" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -328,6 +447,26 @@
       </option>
       <envs />
       <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="BigDecExp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="experiments.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="experiments.BigDecExp" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DescriptiveStatistics" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -574,18 +713,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testSetElementArbitraryExpansion1" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testSetNumberOfElements" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testCopy" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testEqualsAndHashCode" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testSetNumberOfElements" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testCopy" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testEqualsAndHashCode" />
+      <item index="4" class="java.lang.String" itemvalue="Application.BigDecExp" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testEqualsAndHashCode" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testCopy" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testSetNumberOfElements" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testSetElementArbitraryExpansion1" />
+        <item index="0" class="java.lang.String" itemvalue="Application.BigDecExp" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testEqualsAndHashCode" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testCopy" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.ResizableDecimalArrayTest.testSetNumberOfElements" />
       </list>
     </recent_temporary>
   </component>
@@ -627,10 +766,10 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ResizableDecimalArrayTest - 2016.03.18 at 11h 34m 45s.xml">
+    <history-entry file="ResizableDecimalArrayTest - 2016.03.18 at 11h 37m 42s.xml">
       <configuration name="ResizableDecimalArrayTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ResizableDecimalArrayTest - 2016.03.18 at 11h 37m 42s.xml">
+    <history-entry file="ResizableDecimalArrayTest - 2016.03.23 at 11h 29m 21s.xml">
       <configuration name="ResizableDecimalArrayTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ResizableDecimalArrayTest_testCopy - 2016.03.18 at 10h 33m 31s.xml">
@@ -659,40 +798,56 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-4" width="1920" height="1204" extended-state="7" />
-    <editor active="true" />
+    <frame x="0" y="24" width="1920" height="1176" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5161597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Panda Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19316968" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41825095" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5161597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Panda Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
+    <option name="SHOW_DETAILS" value="false" />
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
     </option>
     <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
+      <collection>
+        <UserGroup>
+          <option name="users">
+            <list>
+              <option value="extends_apache" />
+            </list>
+          </option>
+        </UserGroup>
+        <UserGroup>
+          <option name="users">
+            <list>
+              <option value="HEAD" />
+            </list>
+          </option>
+        </UserGroup>
+      </collection>
     </option>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -726,16 +881,203 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#2072#2073#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2145#2146#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#3472#3473#0" expanded="true" />
+            <element signature="e#3514#3515#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#4982#4983#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5356#5357#0" expanded="true" />
+            <element signature="e#6641#6642#0" expanded="true" />
+            <element signature="e#6687#6688#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/ResizableDecimalArrayTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="329" column="69" selection-start-line="329" selection-start-column="69" selection-end-line="329" selection-end-column="69" />
+          <folding>
+            <element signature="docComment;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#tearDown#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#692#724#0" expanded="false" />
+            <element signature="method#testSetElementArbitraryExpansion1#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testSetElementArbitraryExpansion2#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#6687#6696#0" expanded="false" />
+            <element signature="method#testAdd1000#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testAddElements#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#8366#8375#0" expanded="false" />
+            <element signature="method#testAddElementRolling#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testSetNumberOfElements#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testWithInitialCapacity#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#13075#13107#0" expanded="false" />
+            <element signature="method#testDiscard#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testSubstitute#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testGetArrayRef#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#verifyInequality#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#toBD#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/ResizableDecimalArray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="373" column="12" selection-start-line="373" selection-start-column="7" selection-end-line="373" selection-end-column="12" />
+          <folding>
+            <element signature="docComment;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;field#expansionMode#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;field#numElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;field#startIndex#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="class#ExpansionMode#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#ResizableDecimalArray#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#ResizableDecimalArray#1;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#ResizableDecimalArray#1;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#ResizableDecimalArray#2;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#ResizableDecimalArray#2;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#ResizableDecimalArray#3;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#ResizableDecimalArray#3;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#ResizableDecimalArray#4;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#ResizableDecimalArray#4;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#ResizableDecimalArray#5;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#ResizableDecimalArray#6;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#ResizableDecimalArray#6;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#addElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#addElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#addElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#addElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#addElementRolling#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#addElementRolling#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#substituteMostRecentElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#substituteMostRecentElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#checkContractExpand#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#checkContractExpand#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#clear#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#contract#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#contract#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#discardFrontElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#discardFrontElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#discardMostRecentElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#discardMostRecentElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#discardExtremeElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#discardExtremeElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#expand#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#expand#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="e#18245#18318#0" expanded="false" />
+            <element signature="docComment;method#expandTo#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#expandTo#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#getElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#getElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#getElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#getElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#getExpansionFactor#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#getCapacity#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#getNumElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#getArrayRef#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#getStartIndex#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#setElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#setElement#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#setNumElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#setNumElements#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#shouldContract#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#shouldContract#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#copy#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#copy#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#copy#1;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#copy#1;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#equals#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="docComment;method#hashCode#0;class#ResizableDecimalArray#0" expanded="false" />
+            <element signature="method#hashCode#0;class#ResizableDecimalArray#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#2072#2073#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2145#2146#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#3472#3473#0" expanded="true" />
+            <element signature="e#3514#3515#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#4982#4983#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5356#5357#0" expanded="true" />
+            <element signature="e#6641#6642#0" expanded="true" />
+            <element signature="e#6687#6688#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="docComment;method#DoubleStatistics#2;class#DoubleStatistics#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#DecimalStatistics#2;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMax#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMean#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMin#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getSum#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#removeMostRecentValue#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#setWindowSize#0;class#DecimalStatistics#0" expanded="false" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#2072#2073#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2145#2146#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#3472#3473#0" expanded="true" />
+            <element signature="e#3514#3515#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#4982#4983#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5356#5357#0" expanded="true" />
+            <element signature="e#6641#6642#0" expanded="true" />
+            <element signature="e#6687#6688#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -799,7 +1141,6 @@
           <caret line="373" column="12" selection-start-line="373" selection-start-column="7" selection-end-line="373" selection-end-column="12" />
           <folding>
             <element signature="docComment;class#ResizableDecimalArray#0" expanded="false" />
-            <element signature="docComment;field#expansionFactor#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#expansionMode#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#numElements#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#startIndex#0;class#ResizableDecimalArray#0" expanded="false" />
@@ -873,23 +1214,22 @@
           <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#DecimalStatistics#2;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMax#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMean#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMin#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getSum#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#removeMostRecentValue#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#setWindowSize#0;class#DecimalStatistics#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/StatisticsFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#2072#2073#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2145#2146#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#3472#3473#0" expanded="true" />
+            <element signature="e#3514#3515#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#4982#4983#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5356#5357#0" expanded="true" />
+            <element signature="e#6641#6642#0" expanded="true" />
+            <element signature="e#6687#6688#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -937,7 +1277,6 @@
           <caret line="710" column="0" selection-start-line="710" selection-start-column="0" selection-end-line="710" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#ResizableDecimalArray#0" expanded="false" />
-            <element signature="docComment;field#expansionFactor#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#expansionMode#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#numElements#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#startIndex#0;class#ResizableDecimalArray#0" expanded="false" />
@@ -1021,16 +1360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/StatisticsFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1047,13 +1376,22 @@
           <caret line="17" column="77" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#DecimalStatistics#2;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMax#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMean#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMin#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getSum#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#removeMostRecentValue#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#setWindowSize#0;class#DecimalStatistics#0" expanded="false" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#2072#2073#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2145#2146#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#3472#3473#0" expanded="true" />
+            <element signature="e#3514#3515#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#4982#4983#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5356#5357#0" expanded="true" />
+            <element signature="e#6641#6642#0" expanded="true" />
+            <element signature="e#6687#6688#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1064,7 +1402,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#ResizableDecimalArray#0" expanded="false" />
-            <element signature="docComment;field#expansionFactor#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#expansionMode#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#numElements#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#startIndex#0;class#ResizableDecimalArray#0" expanded="false" />
@@ -1162,40 +1499,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/ResizableDecimalArrayTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.017612524">
-          <caret line="329" column="69" selection-start-line="329" selection-start-column="69" selection-end-line="329" selection-end-column="69" />
-          <folding>
-            <element signature="docComment;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#tearDown#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="e#692#724#0" expanded="false" />
-            <element signature="method#testSetElementArbitraryExpansion1#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#testSetElementArbitraryExpansion2#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="e#6687#6696#0" expanded="false" />
-            <element signature="method#testAdd1000#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#testAddElements#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="e#8366#8375#0" expanded="false" />
-            <element signature="method#testAddElementRolling#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#testSetNumberOfElements#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#testWithInitialCapacity#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="e#13075#13107#0" expanded="false" />
-            <element signature="method#testDiscard#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#testSubstitute#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#testGetArrayRef#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#verifyInequality#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-            <element signature="method#toBD#0;class#ResizableDecimalArrayTest#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/ResizableDecimalArray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.017612524">
+        <state vertical-scroll-proportion="0.0">
           <caret line="373" column="12" selection-start-line="373" selection-start-column="7" selection-end-line="373" selection-end-column="12" />
           <folding>
             <element signature="docComment;class#ResizableDecimalArray#0" expanded="false" />
-            <element signature="docComment;field#expansionFactor#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#expansionMode#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#numElements#0;class#ResizableDecimalArray#0" expanded="false" />
             <element signature="docComment;field#startIndex#0;class#ResizableDecimalArray#0" expanded="false" />
@@ -1263,22 +1572,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/StatisticsFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/ResizableDecimalArrayTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5420744">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.017612524">
+          <caret line="329" column="69" selection-start-line="329" selection-start-column="69" selection-end-line="329" selection-end-column="69" />
           <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;method#DoubleStatistics#2;class#DoubleStatistics#0" expanded="false" />
+            <element signature="docComment;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#tearDown#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#692#724#0" expanded="false" />
+            <element signature="method#testSetElementArbitraryExpansion1#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testSetElementArbitraryExpansion2#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#6687#6696#0" expanded="false" />
+            <element signature="method#testAdd1000#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testAddElements#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#8366#8375#0" expanded="false" />
+            <element signature="method#testAddElementRolling#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testSetNumberOfElements#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testWithInitialCapacity#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="e#13075#13107#0" expanded="false" />
+            <element signature="method#testDiscard#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testSubstitute#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#testGetArrayRef#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#verifyInequality#0;class#ResizableDecimalArrayTest#0" expanded="false" />
+            <element signature="method#toBD#0;class#ResizableDecimalArrayTest#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1286,24 +1602,74 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47553816">
-          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#DecimalStatistics#2;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMax#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMean#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getMin#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="docComment;method#getSum#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#removeMostRecentValue#0;class#DecimalStatistics#0" expanded="false" />
-            <element signature="method#setWindowSize#0;class#DecimalStatistics#0" expanded="false" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#2072#2073#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2145#2146#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#3472#3473#0" expanded="true" />
+            <element signature="e#3514#3515#0" expanded="true" />
+            <element signature="e#4944#4945#0" expanded="true" />
+            <element signature="e#4982#4983#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5356#5357#0" expanded="true" />
+            <element signature="e#6641#6642#0" expanded="true" />
+            <element signature="e#6687#6688#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+          <folding>
+            <element signature="docComment;method#DoubleStatistics#2;class#DoubleStatistics#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/BigDecExp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+            <element signature="e#258#259#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30074075">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3930#3939#0" expanded="true" />
           </folding>
         </state>
       </provider>

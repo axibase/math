@@ -52,7 +52,7 @@ public class DoubleStatistics implements Statistics<Double> {
     }
 
     @Override
-    public double getMean() {
+    public Double getMean() {
         return ds.getMean();
     }
 

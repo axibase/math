@@ -13,7 +13,7 @@ public interface Statistics<T extends Number> {
     void clear();
     T getElement(int index);
     T getMax();
-    double getMean();
+    T getMean();
     T getMin();
     long getN();
     double getPercentile(double p);
