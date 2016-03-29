@@ -10,7 +10,9 @@ import java.math.RoundingMode;
 public class BigDecExp {
 
     public static void main(String[] args) {
-        getPrecAndScale();
+        // getPrecAndScale();
+        // divisionTest();
+        integerPlaces();
     }
 
     private static void getPrecAndScale() {
@@ -50,4 +52,17 @@ public class BigDecExp {
         System.out.println("Unscaled: " + number.unscaledValue());
         System.out.println("Scale: " + number.scale());
     }
+
+    private static void divisionTest() {
+        int number = 5;
+        System.out.println("" + (5 / 2));
+    }
+
+    private static void integerPlaces() {
+        BigDecimal number = new BigDecimal("1230.23450000");
+        //number = number.movePointRight(5);
+        number = number.setScale(3);
+        System.out.println(""  + (number.precision() - number.scale()));
+    }
+
 }
