@@ -12,7 +12,8 @@ public class BigDecExp {
     public static void main(String[] args) {
         // getPrecAndScale();
         // divisionTest();
-        integerPlaces();
+        // integerPlaces();
+        explorePrecision();
     }
 
     private static void getPrecAndScale() {
@@ -63,6 +64,14 @@ public class BigDecExp {
         //number = number.movePointRight(5);
         number = number.setScale(3);
         System.out.println(""  + (number.precision() - number.scale()));
+    }
+
+    private static void explorePrecision() {
+        MathContext mathContext = new MathContext(5, RoundingMode.HALF_UP);
+        BigDecimal number = new BigDecimal("12.39944");
+        BigDecimal num1 = new BigDecimal("0.0001");
+        System.out.println("Rounded: " + number.round(mathContext).toPlainString());
+        System.out.println("Rounded sum: " + number.add(num1, mathContext).toPlainString());
     }
 
 }
