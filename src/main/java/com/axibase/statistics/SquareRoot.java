@@ -25,6 +25,8 @@ import java.util.ArrayList;
  * 8. Exact sqrt (then it is possible).
  * 9. Sqrt as in jscience library.
  * http://jscience.org/api/org/jscience/mathematics/number/Real.html
+ * 10. Dutka 1971.
+ * 11. Ito 1971.
  */
 public class SquareRoot {
 

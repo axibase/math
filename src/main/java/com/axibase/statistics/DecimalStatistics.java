@@ -13,7 +13,7 @@ import java.math.MathContext;
  * Analog of DescriptiveStatistics class from
  * the org.apache.commons.math3.stat.descriptive package,
  * but uses BigDecimals instead of doubles.
- * The code is refactoring of the open source Apache's code.
+ * The code is refactoring of the Apache's code.
  */
 public class DecimalStatistics {
 
