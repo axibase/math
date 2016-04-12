@@ -1,14 +1,16 @@
 package com.axibase.statistics;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
+import java.util.Random;
 
-import static com.axibase.statistics.SquareRoot.doubleApproximationOriginal;
+import static com.axibase.statistics.SquareRoot.estimateSqrtLelieveld;
 import static com.axibase.statistics.SquareRoot.estimateSqrt;
-import static org.junit.Assert.*;
 
 /**
  * test
@@ -56,7 +58,7 @@ public class SquareRootTest {
             BigDecimal myError = decimals[i].subtract(myEstimation.multiply(myEstimation));
             System.out.println("My error:    " + myError.toPlainString());
 
-            BigDecimal fransEstimation = doubleApproximationOriginal(decimals[i]);
+            BigDecimal fransEstimation = estimateSqrtLelieveld(decimals[i]);
             BigDecimal fransDeviation = decimals[i].subtract(fransEstimation.multiply(fransEstimation));
             System.out.println("Frans error: " + fransDeviation.toPlainString());
         }
@@ -82,7 +84,7 @@ public class SquareRootTest {
                 BigDecimal myError = number.subtract(myEstimation.multiply(myEstimation)).abs();
                 myError = myError.divide(number, mathContext);
 
-                BigDecimal fransEstimation = doubleApproximationOriginal(number);
+                BigDecimal fransEstimation = estimateSqrtLelieveld(number);
                 BigDecimal fransError = number.subtract(fransEstimation.multiply(fransEstimation)).abs();
                 fransError = fransError.divide(number, mathContext);
 
@@ -101,5 +103,172 @@ public class SquareRootTest {
     }
 
 
+    @Test
+    public void testEstimateIntSqrt() throws Exception {
 
+        BigInteger number = new BigInteger("0", 2);
+        BigInteger sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("0", 2), sqrt);
+
+        number = new BigInteger("1", 2);
+        sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("1", 2), sqrt);
+
+        number = new BigInteger("10", 2);
+        sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("1", 2), sqrt);
+
+        number = new BigInteger("11", 2);
+        sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("1", 2), sqrt);
+
+        number = new BigInteger("100", 2);
+        sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("10", 2), sqrt);
+
+        number = new BigInteger("101", 2);
+        sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("10", 2), sqrt);
+
+        number = new BigInteger("1001101", 2);
+        sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("1000", 2), sqrt);
+
+        number = new BigInteger("11010101", 2);
+        sqrt = SquareRoot.estimateIntSqrt(number);
+        Assert.assertEquals(new BigInteger("1000", 2), sqrt);
+
+    }
+
+    @Test
+    public void testEstimateIntSqrtJScienceImpl() throws Exception {
+
+        BigInteger number = new BigInteger("0", 2);
+        BigInteger sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("0", 2), sqrt);
+
+        number = new BigInteger("1", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("0", 2), sqrt);
+
+        number = new BigInteger("10", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("1", 2), sqrt);
+
+        number = new BigInteger("11", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("1", 2), sqrt);
+
+        number = new BigInteger("100", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("1", 2), sqrt);
+
+        number = new BigInteger("101", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("1", 2), sqrt);
+
+        number = new BigInteger("1001101", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("100", 2), sqrt);
+
+        number = new BigInteger("1010101", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("101", 2), sqrt);
+
+        number = new BigInteger("11010101", 2);
+        sqrt = SquareRoot.estimateIntSqrtJScienceImpl(number);
+        Assert.assertEquals(new BigInteger("1101", 2), sqrt);
+
+    }
+
+    @Test
+    public void testBabylonian() throws Exception {
+
+        BigInteger number;
+        BigInteger sqrt;
+        BigInteger sqrtSquared;
+        BigInteger sqrtPlusSquared;
+
+        number = new BigInteger("-1");
+        try {
+            sqrt = SquareRoot.babylonian(number);
+            Assert.fail("ArithmeticException should be thrown by SquareRoot.babylonian(BigInteger) method for negative argument.");
+        } catch (ArithmeticException ex) {
+        }
+
+        // test numbers 0, ..., 4000
+        for (int i = 0; i < 4001; i++) {
+            number = new BigInteger(new Integer(i).toString());
+            testBabylonianIntegerNumber(number);
+        }
+
+        // do random test of big numbers with given number of digits (places)
+        for (int places = 10; places < 200; places++) {
+            for (int counter = 0; counter < 1000; counter++) {
+                number = new BigInteger(BigDecimalGenerator.generateInteger(places));
+                testBabylonianIntegerNumber(number);
+            }
+        }
+
+        number = new BigInteger("64592137654307265023476527674650237456023746501374650234765034765023476503476503476502387465304765645192364528354192364592365492836754192364519236542939");
+        sqrt = SquareRoot.babylonian(number);
+        sqrtSquared = sqrt.multiply(sqrt);
+        sqrtPlusSquared = sqrtSquared.add(sqrt.shiftLeft(1).add(BigInteger.ONE));
+        Assert.assertTrue(number.compareTo(sqrtSquared) >= 0);
+        Assert.assertTrue(number.compareTo(sqrtPlusSquared) < 0);
+    }
+
+    private static void testBabylonianIntegerNumber(BigInteger number) {
+
+        BigInteger sqrt;
+        BigInteger sqrtSquared;
+        BigInteger sqrtPlusSquared;
+        String msg1 = "SquareRoot.babylonian(BigInteger number) returns sqrt s.t.: sqrt**2 > number, number = ";
+        String msg2 = "SquareRoot.babylonian(BigInteger number) returns sqrt s.t.: (sqrt + 1)**2 <= number, number = ";
+
+
+        sqrt = SquareRoot.babylonian(number);
+
+        sqrtSquared = sqrt.multiply(sqrt);
+        Assert.assertTrue(msg1 + number, number.compareTo(sqrtSquared) >= 0);
+
+        sqrtPlusSquared = sqrtSquared.add(sqrt.shiftLeft(1).add(BigInteger.ONE));
+        Assert.assertTrue(msg2 + number, number.compareTo(sqrtPlusSquared) < 0);
+    }
+
+    @Test
+    public void testCoupledNewton() throws Exception {
+
+        String[] sqrts =   {"0", "1", "2", "3", "4", "10", "13", "101", "237", "1346750",
+                "23764501287354601287560824765018247650812476510876",
+                "24765012384756103247563847560238745682034756083247650183746580134756083476510746513764510473456334576",
+                "1.2", "3.74", "11.04506077", "0.00000000342001000000000012", "0.0000000000000000200000202000001",
+                "0.00000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000001",
+                "3624591236459342937646.762547126450124765027465012476502476504756014756014765014765014576107456137454",
+                "263525467216354736456346592843567829174563219.2634596246350489275642734659812435698254367208734663491"};
+
+        for (int i = 0; i < sqrts.length; i++) {
+            testSqureRoot(new BigDecimal(sqrts[i]));
+        }
+
+        for (int i = 0; i < 1000; i++) {
+            Random generator = new Random();
+            int integerPlaces = generator.nextInt(300);
+            int fractionalPlaces = generator.nextInt(300);
+            String sqrt = BigDecimalGenerator.generateDecimal(integerPlaces, fractionalPlaces);
+            if (!sqrt.equals("")) {
+                testSqureRoot(new BigDecimal(sqrt));
+            }
+        }
+    }
+
+    private static void testSqureRoot(BigDecimal sqrt) {
+        BigDecimal number = sqrt.multiply(sqrt);
+        int toleranceScale = number.scale() + 1;
+        BigDecimal tolerance = new BigDecimal(new BigInteger("1"), toleranceScale);
+        System.out.println(number.toPlainString());
+        System.out.println(sqrt.multiply(sqrt).toPlainString());
+        System.out.println("-----------------------------");
+        Assert.assertTrue(number.subtract(sqrt.multiply(sqrt)).abs().compareTo(tolerance) < 0);
+    }
 }

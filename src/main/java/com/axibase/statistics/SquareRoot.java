@@ -1,32 +1,39 @@
 package com.axibase.statistics;
 
 import java.math.*;
-import java.util.ArrayList;
 
 /**
  * Several algorithms of square root for BigDecimal numbers are implemented.
-
- * 1. Coupled Newton Iteration
- * (Frans Lelieveld, http://iteror.org/big/Retro/blog/sec/archive20070915_295396.html)
-
- * 2. Halley's
- * (http://www.mathpath.org/Algor/squareroot/algor.square.root.halley.htm)
+ * *1. Coupled Newton Iteration (for decimals)
+ * *(Frans Lelieveld, http://iteror.org/big/Retro/blog/sec/archive20070915_295396.html)
  *
- * 3. Babylonian method
+ * *2. Halley's
+ * *(http://www.mathpath.org/Algor/squareroot/algor.square.root.halley.htm)
+ *
+ * 3. Babylonian method (for integers and decimals)
  * (Wiki, http://www.codeproject.com/Articles/69941/Best-Square-Root-Method-Algorithm-Function-Precisi)
  *
- * 4. Reciprocal square root
- * (http://drops.dagstuhl.de/opus/volltexte/2008/1435/pdf/08021.ZimmermannPaul.ExtAbstract.1435.pdf)
- * 5. Karatsuba Square Root, this algorithm is used in GMP library
- * (https://hal.inria.fr/inria-00072854/document)
- * 6. Only subtractions (view K.P.Kohas paper in the Quant magazine)
- * (http://www.afjarvis.staff.shef.ac.uk/maths/jarvisspec02.pdf)
- * 7. Use Math.sqrt for double recursively.
- * 8. Exact sqrt (then it is possible).
- * 9. Sqrt as in jscience library.
- * http://jscience.org/api/org/jscience/mathematics/number/Real.html
- * 10. Dutka 1971.
- * 11. Ito 1971.
+ * *4. Reciprocal square root (for decimals)
+ * *(http://drops.dagstuhl.de/opus/volltexte/2008/1435/pdf/08021.ZimmermannPaul.ExtAbstract.1435.pdf)
+ *
+ * *5. Karatsuba Square Root, this algorithm is used in GMP library
+ * *(https://hal.inria.fr/inria-00072854/document)
+ *
+ * *6. Only subtractions
+ * *(http://www.afjarvis.staff.shef.ac.uk/maths/jarvisspec02.pdf)
+ *
+ * *7. Sqrt as in jscience library.
+ * *http://jscience.org/api/org/jscience/mathematics/number/Real.html
+ *
+ * *8. Dutka 1971 - can't be used because we have no initial solution of the Pell's equation.
+ *
+ * *9. Ito 1971.
+ *
+ * *10. Digit by digit calculation in base 2 and 256 (1 byte) - view
+ * *Wikipedia,
+ * *http://web.archive.org/web/20120306040058/http://medialab.freaknet.org/martin/src/sqrt/sqrt.c,
+ * *http://atoms.alife.co.uk/sqrt/SquareRoot.java,
+ * *http://www.embedded.com/electronics-blogs/programmer-s-toolbox/4219659/Integer-Square-Roots
  */
 public class SquareRoot {
 
@@ -35,15 +42,15 @@ public class SquareRoot {
     // 2. fast approximation from Wikipedia
     // 3. with Quake trick - look in Lomont fast_InvSqrt paper
     // and more in http://www.phailed.me/2014/10/0x5f400000-understanding-fast-inverse-sqrt-the-easyish-way/
+    // 4. Half of binary length.
 
     static final BigDecimal TWO = new BigDecimal("2");
     static final double SQRT_10 = 3.162277660168379332d;
 
 
     /**
-     * This method performs the fast Square Root by Coupled Newton Iteration
-     * algorithm by Arnold Schonhage, from the book "Pi, unleashed" by Jörg Arndt.
-     * //TODO Link in the book is incorrect. Try to find correct one!
+     * This method implements Coupled Newton Iteration algorithm by Arnold Schonhage,
+     * from the book "Pi, unleashed" by Jörg Arndt.
      *
      * @param number        number to get the root from
      * @param mathContext   precision and rounding mode
@@ -62,9 +69,35 @@ public class SquareRoot {
 
         // Get initial values to start iterations x -> sqrt(number), y -> 1/(2sqrt(number))
         BigDecimal x = estimateSqrt(number);                                 // an estimation of sqrt(number)
-        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), mathContext);  // ~ 1/(2x)
+        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), mathContext);  // = 1/(2x)
+
+        do {
+            BigDecimal discrepancy = number.subtract(x.multiply(x));
+            x = x.add(discrepancy.multiply(y));
+            y = y.multiply(TWO).subtract(y.multiply(x.multiply(y)));
+        } while (false);
         return x;
     }
+
+    /**
+     * Returns big decimal sqrt s.t. sqrt**2 - number < tolerance
+     */
+    public static BigDecimal coupledNewton(BigDecimal number, BigDecimal tolerance) {
+
+        // Get initial values to start iterations x -> sqrt(number), y -> 1/(2sqrt(number))
+        BigDecimal x = estimateSqrt(number);                         // an estimation of sqrt(number)
+        MathContext mathContext = new MathContext(1, RoundingMode.HALF_UP);
+        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), mathContext);       // = 1/(2x)
+        BigDecimal discrepancy;
+
+        do {
+            discrepancy = x.multiply(x).subtract(number);
+            x = x.subtract(discrepancy.multiply(y));
+            y = y.multiply(TWO).subtract(y.multiply(x.multiply(y)));
+        } while (discrepancy.abs().compareTo(tolerance) > 0);
+        return x;
+    }
+
 
     public static BigDecimal babylonian(BigDecimal number) {
         BigDecimal  x = estimateSqrt(number);
@@ -74,17 +107,65 @@ public class SquareRoot {
 
     /**
      * Calculates big integer sqrt, such that
-     * sqrt^2 <= number < (sqrt + 1) ^ 2
+     * sqrt^2 <= number < (sqrt + 1) ^ 2.
+     * Calculation uses Babylonian (= Newton-Raphson) iteration method.
+     * This method is implemented in
+     * org.jscience.mathematics.number.LargeInteger.sqrt().
      */
     public static BigInteger babylonian(BigInteger number) {
 
-        return null;
+        if (number.signum() == -1) {
+            throw new ArithmeticException("\nSquare root of a negative number: " + number);
+        }
+
+        if (number.equals(BigInteger.ZERO)) {
+            return number;
+        }
+
+        // Get rough estimation of sqrt.
+        BigInteger sqrt = estimateIntSqrt(number);
+
+        while (true) {
+            BigInteger newEstimation = sqrt.add(number.divide(sqrt)).shiftRight(1);
+            if (newEstimation.equals(sqrt) || newEstimation.subtract(sqrt).equals(BigInteger.ONE)) {
+                if (newEstimation.multiply(newEstimation).compareTo(number) <= 0) {
+                    return newEstimation;
+                }
+                return sqrt;
+            }
+            sqrt = newEstimation;
+        }
     }
 
 
+    /**
+     * Returns rough estimation of an big integer square root,
+     * as suggested in Wikipedia
+     * https://en.wikipedia.org/wiki/Methods_of_computing_square_roots
+     * for binary numbers.
+     * If binary length of number is 2n, the method returns 2**n.
+     * If binary length of number is 2n + 1, the method returns 2**(n + 1).
+     */
+    public static BigInteger estimateIntSqrt(BigInteger number) {
+        int length = number.bitLength();
+        int n = (length >> 1) + (length & 1);
+        return BigInteger.ONE.shiftLeft(n - 1);
+    }
+
+    /**
+     * Returns rough estimation of an big integer square root,
+     * as it is implemented in
+     * org.jscience.mathematics.number.LargeInteger.sqrt().
+     */
+    public static BigInteger estimateIntSqrtJScienceImpl(BigInteger number) {
+        int length = number.bitLength();
+        int n = (length >> 1) + (length & 1);
+        return number.shiftRight(n);
+    }
 
     /**
      * Returns estimation of sqrt of provided number with use of the Math.sqrt(double) function.
+     * It is my own.
      */
     protected static BigDecimal estimateSqrt(BigDecimal number) {
 
@@ -106,10 +187,10 @@ public class SquareRoot {
     }
 
     /**
-     * Frans Lelieveld, http://iteror.org/big/Retro/blog/sec/archive20070915_295396.html.
      * Returns estimation of sqrt of provided number.
+     * Frans Lelieveld, http://iteror.org/big/Retro/blog/sec/archive20070915_295396.html.
      */
-    protected static BigDecimal doubleApproximationOriginal(BigDecimal squarD) {
+    protected static BigDecimal estimateSqrtLelieveld(BigDecimal squarD) {
 
         // Initial precision is that of double numbers 2^63/2 ~ 4E18
         int BITS = 62; // 63-1 an even number of number bits
@@ -151,4 +232,5 @@ public class SquareRoot {
     protected static int estimateAccuracy(BigDecimal number, BigDecimal sqrtApproximatioin, RoundingMode rounding) {
         return 0;
     }
+
 }
