@@ -7,8 +7,11 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.List;
 import java.util.Random;
 
+import static com.axibase.statistics.SquareRoot.TWO;
 import static com.axibase.statistics.SquareRoot.estimateSqrtLelieveld;
 import static com.axibase.statistics.SquareRoot.estimateSqrt;
 
@@ -182,7 +185,39 @@ public class SquareRootTest {
     }
 
     @Test
-    public void testBabylonian() throws Exception {
+    public void testAllDec() throws Exception {
+
+        List<BigDecimal> sqrts = BigDecimalGenerator.generateList(100, 100, 10);
+
+        for (BigDecimal exactSqrt : sqrts) {
+
+            BigDecimal number = exactSqrt.multiply(exactSqrt);
+
+            MathContext mathContext = new MathContext(exactSqrt.precision() + 1, RoundingMode.HALF_UP);
+
+            //BigDecimal sqrt = SquareRoot.babylonian(number, mathContext);
+            //BigDecimal sqrtFrans = SquareRoot.bigSqrt(number, mathContext);
+            BigDecimal sqrtCoupled = SquareRoot.coupledNewton(number, mathContext);
+
+            //System.out.println(exactSqrt.toPlainString());
+            //System.out.println(sqrt.toPlainString());
+            //System.out.println(sqrtFrans.toPlainString());
+
+            //if (exactSqrt.compareTo(sqrt) != 0) {
+            //    System.out.println("sqrt error for: " + exactSqrt.toPlainString());
+            //}
+            //if (exactSqrt.compareTo(sqrtFrans) != 0) {
+            //    System.out.println("sqrtFrans error for: " + exactSqrt.toPlainString());
+            //}
+            if (exactSqrt.compareTo(sqrtCoupled) != 0) {
+                System.out.println("sqrtCoupled error for: " + exactSqrt.toPlainString());
+            }
+
+        }
+    }
+
+        @Test
+    public void testBabylonianInt() throws Exception {
 
         BigInteger number;
         BigInteger sqrt;
@@ -237,6 +272,24 @@ public class SquareRootTest {
     }
 
     @Test
+    public void testCoupledNewtonDec() throws Exception {
+        String str = "317688.513712171";
+        //String str = "0.01";
+        BigDecimal exactSqrt = new BigDecimal(str);
+        BigDecimal number = exactSqrt.multiply(exactSqrt);
+        System.out.println(str);
+        System.out.println(BigDecimal.ONE.divide(SquareRoot.TWO.multiply(exactSqrt), new MathContext(200, RoundingMode.HALF_UP)).toPlainString());
+        System.out.println("-----------------------------");
+
+        MathContext mathContext = new MathContext(exactSqrt.precision() + 1, RoundingMode.HALF_UP);
+
+        SquareRoot.coupledNewtonExploration(number, mathContext);
+        //BigDecimal sqrtFrans = SquareRoot.bigSqrt(number, mathContext);
+
+
+    }
+
+    @Test
     public void testCoupledNewton() throws Exception {
 
         String[] sqrts =   {"0", "1", "2", "3", "4", "10", "13", "101", "237", "1346750",
@@ -271,4 +324,85 @@ public class SquareRootTest {
         System.out.println("-----------------------------");
         Assert.assertTrue(number.subtract(sqrt.multiply(sqrt)).abs().compareTo(tolerance) < 0);
     }
+
+    @Test
+    public void testSpeed() {
+        List<BigDecimal> decimals = BigDecimalGenerator.generateList();
+        MathContext mathContext = new MathContext(20, RoundingMode.HALF_UP);
+
+        long startTime;
+        long endTime;
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.bigSqrt(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Frans: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.babylonian(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Babylonian: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.bigSqrt(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Frans: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.babylonian(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Babylonian: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.bigSqrt(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Frans: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.babylonian(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Babylonian: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.bigSqrt(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Frans: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.babylonian(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Babylonian: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.bigSqrt(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Frans: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
+        for (BigDecimal decimal : decimals) {
+            SquareRoot.babylonian(decimal, mathContext);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Babylonian: " + (endTime - startTime) + " ms");
+
+    }
+
 }

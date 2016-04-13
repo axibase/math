@@ -1,6 +1,7 @@
 package com.axibase.statistics;
 
 import java.math.*;
+import java.util.ArrayList;
 
 /**
  * Several algorithms of square root for BigDecimal numbers are implemented.
@@ -62,21 +63,62 @@ public class SquareRoot {
      */
     public static BigDecimal coupledNewton(BigDecimal number, MathContext mathContext) {
 
-        int precision = mathContext.getPrecision();           // the requested precision = the number of significand figures
-        if(precision == 0) {
+        if (number.compareTo(BigDecimal.ZERO) == 0) {
+            return number;
+        }
+
+        if(mathContext.getPrecision() == 0) {
             throw new IllegalArgumentException("\nMost roots won't have infinite precision.");
         }
 
-        // Get initial values to start iterations x -> sqrt(number), y -> 1/(2sqrt(number))
-        BigDecimal x = estimateSqrt(number);                                 // an estimation of sqrt(number)
-        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), mathContext);  // = 1/(2x)
+        int precision = mathContext.getPrecision() + 2;
+        int currentPrecision = 16;
+        MathContext currentContext = new MathContext(currentPrecision, RoundingMode.HALF_UP);
+        // Get initial values to start iterations
+        BigDecimal x = estimateSqrt(number);                                                     // estimate sqrt(number)
+        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), currentContext);                 // = 1/(2x)
+        BigDecimal newX;
 
-        do {
-            BigDecimal discrepancy = number.subtract(x.multiply(x));
-            x = x.add(discrepancy.multiply(y));
-            y = y.multiply(TWO).subtract(y.multiply(x.multiply(y)));
-        } while (false);
-        return x;
+        while(true) {
+            currentContext = new MathContext(currentPrecision, RoundingMode.HALF_UP);
+
+            BigDecimal discrepancy = number.subtract(x.multiply(x, currentContext), currentContext);
+            newX = x.add(discrepancy.multiply(y, currentContext), currentContext);
+            if ((currentPrecision >> 2) > precision) {
+                return x.round(mathContext);
+            } else {
+                x = newX;
+            }
+            y = y.multiply(TWO).multiply(BigDecimal.ONE.subtract(x.multiply(y, currentContext)), currentContext);
+            currentPrecision <<= 1;
+        }
+    }
+
+    public static void coupledNewtonExploration(BigDecimal number, MathContext mathContext) {
+
+        int precision = mathContext.getPrecision() + 2;
+        int currentPrecision = 14;
+        MathContext currentContext = new MathContext(currentPrecision, RoundingMode.HALF_UP);
+        // Get initial values to start iterations
+        BigDecimal x = estimateSqrt(number);                                                     // estimate sqrt(number)
+        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), currentContext);                 // = 1/(2x)
+        System.out.println(x.toPlainString());
+        System.out.println(y.toPlainString());
+        System.out.println("---------------------------------------------");
+
+        BigDecimal newX;
+
+
+        for (int i = 0; i < 6; i++) {
+            currentContext = new MathContext(currentPrecision, RoundingMode.HALF_UP);
+            BigDecimal discrepancy = number.subtract(x.multiply(x, currentContext), currentContext);
+            x = x.add(discrepancy.multiply(y, currentContext), currentContext);
+            y = y.multiply(TWO).multiply(BigDecimal.ONE.subtract(x.multiply(y, currentContext)), currentContext);
+            currentPrecision *= 2;
+            System.out.println(x.toPlainString());
+            System.out.println(y.toPlainString());
+            System.out.println("---------------------------------------------");
+        }
     }
 
     /**
@@ -84,12 +126,10 @@ public class SquareRoot {
      */
     public static BigDecimal coupledNewton(BigDecimal number, BigDecimal tolerance) {
 
-        // Get initial values to start iterations x -> sqrt(number), y -> 1/(2sqrt(number))
-        BigDecimal x = estimateSqrt(number);                         // an estimation of sqrt(number)
+        BigDecimal x = estimateSqrt(number);
         MathContext mathContext = new MathContext(1, RoundingMode.HALF_UP);
-        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), mathContext);       // = 1/(2x)
+        BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), mathContext);
         BigDecimal discrepancy;
-
         do {
             discrepancy = x.multiply(x).subtract(number);
             x = x.subtract(discrepancy.multiply(y));
@@ -99,9 +139,23 @@ public class SquareRoot {
     }
 
 
-    public static BigDecimal babylonian(BigDecimal number) {
-        BigDecimal  x = estimateSqrt(number);
-        return null;
+    /**
+     * Let 'sqrt' be exact square root of a number and 'approx'
+     * is its approximation by this method.
+     * Then round(sqrt - approx, mathContext) == 0.
+     */
+    public static BigDecimal babylonian(BigDecimal number, MathContext mathContext) {
+
+        MathContext stricterMC= new MathContext(mathContext.getPrecision() + 2, mathContext.getRoundingMode());
+
+        BigDecimal x = BigDecimal.ZERO;
+        BigDecimal newX = estimateSqrt(number).round(stricterMC);
+
+        while (x.compareTo(newX) != 0)  {
+            x = newX;
+            newX = number.divide(x, stricterMC).add(x).divide(TWO).round(stricterMC);
+        }
+        return x.round(mathContext);
     }
 
 
@@ -114,12 +168,12 @@ public class SquareRoot {
      */
     public static BigInteger babylonian(BigInteger number) {
 
-        if (number.signum() == -1) {
-            throw new ArithmeticException("\nSquare root of a negative number: " + number);
-        }
-
         if (number.equals(BigInteger.ZERO)) {
             return number;
+        }
+
+        if (number.signum() == -1) {
+            throw new ArithmeticException("\nSquare root of a negative number: " + number);
         }
 
         // Get rough estimation of sqrt.
@@ -169,9 +223,9 @@ public class SquareRoot {
      */
     protected static BigDecimal estimateSqrt(BigDecimal number) {
 
-        if (number.signum() == -1) {
-            throw new ArithmeticException("\nSquare root of a negative number: " + number);
-        }
+//        if (number.signum() == -1) {
+//            throw new ArithmeticException("\nSquare root of a negative number: " + number);
+//        }
 
         // use number of integer digits of provided big decimal as shift, and make it even
         int shift = number.precision() - number.scale();
@@ -231,6 +285,118 @@ public class SquareRoot {
 
     protected static int estimateAccuracy(BigDecimal number, BigDecimal sqrtApproximatioin, RoundingMode rounding) {
         return 0;
+    }
+
+
+    /**
+     * @author Frans Lelieveld
+     * @version Java 5, 28 September 2007
+     */
+    /**
+     * Returns the correctly rounded square root of a positive BigDecimal.
+     * The algorithm for taking the square root of a BigDecimal is most
+     * critical for the speed of your application. This method performs the fast
+     * Square Root by Coupled Newton Iteration algorithm by Timm Ahrendt,
+     * from the book "Pi, unleashed" by Jörg Arndt in a neat loop.
+     *
+     * @param squarD   number to get the root from (called "d" in the book)
+     * @param rootMC   precision and rounding mode (for the last root "x")
+     *
+     * @return the root of the argument number
+     *
+     * @throws ArithmeticException       if the argument number is negative
+     * @throws IllegalArgumentException  if rootMC has precision 0
+     */
+
+    public static BigDecimal bigSqrt(BigDecimal squarD, MathContext rootMC)
+    {
+        // Static constants - perhaps initialize in class Vladimir!
+        // BigDecimal TWO = new BigDecimal(2);
+        // double SQRT_10 = 3.162277660168379332;
+
+
+        // General number and precision checking
+        int sign = squarD.signum();
+        if(sign == -1)
+            throw new ArithmeticException("\nSquare root of a negative number: " + squarD);
+        else if(sign == 0)
+            return squarD.round(rootMC);
+
+        int prec = rootMC.getPrecision();           // the requested precision
+        if(prec == 0)
+            throw new IllegalArgumentException("\nMost roots won't have infinite precision = 0");
+
+        // Initial precision is that of double numbers 2^63/2 ~ 4E18
+        int BITS = 62;                              // 63-1 an even number of number bits
+        int nInit = 16;                             // precision seems 16 to 18 digits
+        MathContext nMC = new MathContext(18, RoundingMode.HALF_DOWN);
+
+
+        // Iteration variables, for the square root x and the reciprocal v
+        BigDecimal x = null, e = null;              // initial x:  x0 ~ sqrt()
+        BigDecimal v = null, g = null;              // initial v:  v0 = 1/(2*x)
+
+        // Estimate the square root with the foremost 62 bits of squarD
+        BigInteger bi = squarD.unscaledValue();     // bi and scale are a tandem
+        int biLen = bi.bitLength();
+        int shift = Math.max(0, biLen - BITS + (biLen%2 == 0 ? 0 : 1));   // even shift..
+        bi = bi.shiftRight(shift);                  // ..floors to 62 or 63 bit BigInteger
+
+        double root = Math.sqrt(bi.doubleValue());
+        BigDecimal halfBack = new BigDecimal(BigInteger.ONE.shiftLeft(shift/2));
+
+        int scale = squarD.scale();
+        if(scale % 2 == 1)                          // add half scales of the root to odds..
+            root *= SQRT_10;                          // 5 -> 2, -5 -> -3 need half a scale more..
+        scale = (int)Math.floor(scale/2.);          // ..where 100 -> 10 shifts the scale
+
+        // Initial x - use double root - multiply by halfBack to unshift - set new scale
+        x = new BigDecimal(root, nMC);
+        x = x.multiply(halfBack, nMC);                          // x0 ~ sqrt()
+        if(scale != 0)
+            x = x.movePointLeft(scale);
+
+        if(prec < nInit)                 // for prec 15 root x0 must surely be OK
+            return x.round(rootMC);        // return small prec roots without iterations
+
+        // Initial v - the reciprocal
+        v = BigDecimal.ONE.divide(TWO.multiply(x), nMC);        // v0 = 1/(2*x)
+
+
+        // Collect iteration precisions beforehand
+        ArrayList<Integer> nPrecs = new ArrayList<Integer>();
+
+        assert nInit > 3 : "Never ending loop!";                // assume nInit = 16 <= prec
+
+        // Let m be the exact digits precision in an earlier! loop
+        for(int m = prec+1; m > nInit; m = m/2 + (m > 100 ? 1 : 2))
+            nPrecs.add(m);
+
+
+        // The loop of "Square Root by Coupled Newton Iteration" for simpletons
+        for(int i = nPrecs.size()-1; i > -1; i--)
+        {
+            // Increase precision - next iteration supplies n exact digits
+            nMC = new MathContext(nPrecs.get(i), (i%2 == 1) ? RoundingMode.HALF_UP :
+                    RoundingMode.HALF_DOWN);
+
+            // Next x                                                 // e = d - x^2
+            e = squarD.subtract(x.multiply(x, nMC), nMC);
+            if(i != 0)
+                x = x.add(e.multiply(v, nMC));                          // x += e*v     ~ sqrt()
+            else
+            {
+                x = x.add(e.multiply(v, rootMC), rootMC);               // root x is ready!
+                break;
+            }
+
+            // Next v                                                 // g = 1 - 2*x*v
+            g = BigDecimal.ONE.subtract(TWO.multiply(x).multiply(v, nMC));
+
+            v = v.add(g.multiply(v, nMC));                            // v += g*v     ~ 1/2/sqrt()
+        }
+
+        return x;                        // return sqrt(squarD) with precision of rootMC
     }
 
 }

@@ -1,5 +1,8 @@
 package com.axibase.statistics;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -110,4 +113,24 @@ public class BigDecimalGenerator {
         System.out.println(generateDecimal(17, 17));
         System.out.println(generateDecimal(60));
     }
+
+    public static List<BigDecimal> generateList() {
+        return generateList(100, 100, 10);
+    }
+
+    public static List<BigDecimal> generateList(int integer, int fractional, int repeat) {
+        List<BigDecimal> decimals = new ArrayList<>(integer * fractional * repeat);
+        for (int before = 0; before < integer; before++) {
+            for (int after = 0; after < fractional; after++) {
+                for (int counter = 0; counter < repeat; counter++) {
+                    String str = BigDecimalGenerator.generateDecimal(before, after);
+                    if (!str.equals("")) {
+                        decimals.add(new BigDecimal(str));
+                    }
+                }
+            }
+        }
+        return decimals;
+    }
+
 }
