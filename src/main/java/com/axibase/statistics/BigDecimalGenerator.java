@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 /**
  * Generates big decimal numbers.
@@ -131,6 +132,21 @@ public class BigDecimalGenerator {
             }
         }
         return decimals;
+    }
+
+    public static List<String> generateStringsList(int integer, int fractional, int repeat) {
+        List<String> strs = new ArrayList<>(integer * fractional * repeat);
+        for (int before = 0; before < integer; before++) {
+            for (int after = 0; after < fractional; after++) {
+                for (int counter = 0; counter < repeat; counter++) {
+                    String str = BigDecimalGenerator.generateDecimal(before, after);
+                    if (!str.equals("")) {
+                        strs.add(str);
+                    }
+                }
+            }
+        }
+        return strs;
     }
 
 }

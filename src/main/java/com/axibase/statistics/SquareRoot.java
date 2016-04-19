@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * *7. Sqrt as in jscience library.
  * *http://jscience.org/api/org/jscience/mathematics/number/Real.html
  *
- * *8. Dutka 1971 - can't be used because we have no initial solution of the Pell's equation.
+ * 8. Dutka 1971 - can't be used because we have no initial solution of the Pell's equation.
  *
  * *9. Ito 1971.
  *
@@ -75,7 +75,7 @@ public class SquareRoot {
         int currentPrecision = 16;
         MathContext currentContext = new MathContext(currentPrecision, RoundingMode.HALF_UP);
         // Get initial values to start iterations
-        BigDecimal x = estimateSqrt(number);                                                     // estimate sqrt(number)
+        BigDecimal x = estimateSqrt(number);                                                   // estimate sqrt(number)
         BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), currentContext);                 // = 1/(2x)
         BigDecimal newX;
 
@@ -127,7 +127,7 @@ public class SquareRoot {
     public static BigDecimal coupledNewton(BigDecimal number, BigDecimal tolerance) {
 
         BigDecimal x = estimateSqrt(number);
-        MathContext mathContext = new MathContext(1, RoundingMode.HALF_UP);
+        MathContext mathContext = new MathContext(16, RoundingMode.HALF_UP);
         BigDecimal y = BigDecimal.ONE.divide(TWO.multiply(x), mathContext);
         BigDecimal discrepancy;
         do {
@@ -158,6 +158,19 @@ public class SquareRoot {
         return x.round(mathContext);
     }
 
+    public static BigDecimal babylonianByInteger(BigDecimal number, MathContext sqrtContext) {
+
+        int sqrtPrecision = sqrtContext.getPrecision();
+        int numberPrecition = 2 * sqrtPrecision + 3;    // may be 2x + 5 ???
+
+        ScaledInteger scaledInteger = convert(number, numberPrecition);
+
+        BigInteger intSqrt = babylonian(scaledInteger.getNumber());
+
+        BigDecimal result = new BigDecimal(intSqrt, scaledInteger.getScale() / 2);
+
+        return result.round(sqrtContext);
+    }
 
     /**
      * Calculates big integer sqrt, such that
@@ -282,12 +295,6 @@ public class SquareRoot {
         return x;
     }
 
-
-    protected static int estimateAccuracy(BigDecimal number, BigDecimal sqrtApproximatioin, RoundingMode rounding) {
-        return 0;
-    }
-
-
     /**
      * @author Frans Lelieveld
      * @version Java 5, 28 September 2007
@@ -397,6 +404,58 @@ public class SquareRoot {
         }
 
         return x;                        // return sqrt(squarD) with precision of rootMC
+    }
+
+    public static ScaledInteger convert(String str, int figures) {
+        return convert(new BigDecimal(str), figures);
+    }
+
+    public static ScaledInteger convert(BigDecimal number, int figures) {
+
+        int decimalExp = number.scale();
+
+        number = number.movePointRight(decimalExp);
+
+        assert number.scale() == 0;
+
+        int diff = figures - number.precision();
+        if (diff >= 0) {
+            number = number.movePointRight(diff);
+            decimalExp += diff;
+            if (decimalExp % 2 == 1) {
+                number = number.movePointRight(1);
+                decimalExp++;
+            }
+        } else {
+            if ((decimalExp + diff) % 2 == 1) {
+                figures++;
+                diff++;
+            }
+            MathContext context = new MathContext(figures, RoundingMode.HALF_UP);
+            number = number.round(context);
+            number = number.movePointRight(diff);
+            decimalExp += diff;
+        }
+
+        return new ScaledInteger(number.unscaledValue(), decimalExp);
+    }
+
+    static class ScaledInteger {
+        BigInteger number;
+        int scale;
+
+        public ScaledInteger(BigInteger number, int scale) {
+            this.number = number;
+            this.scale = scale;
+        }
+
+        public BigInteger getNumber() {
+            return number;
+        }
+
+        public int getScale() {
+            return scale;
+        }
     }
 
 }
