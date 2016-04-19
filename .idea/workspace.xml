@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e5badb0-e35c-485b-9f32-298367463968" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRootDev.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootDevTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/BigDecimalGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/BigDecimalGenerator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java" />
     </list>
@@ -28,31 +30,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SquareRoot.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java">
+      <file leaf-file-name="SquareRootDev.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRootDev.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.7333333">
-              <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="431" column="23" selection-start-line="431" selection-start-column="23" selection-end-line="431" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="docComment;method#coupledNewton#0;class#SquareRoot#0" expanded="false" />
-                <element signature="method#coupledNewtonExploration#0;class#SquareRoot#0" expanded="false" />
-                <element signature="method#coupledNewton#1;class#SquareRoot#0" expanded="false" />
-                <element signature="method#babylonian#0;class#SquareRoot#0" expanded="false" />
-                <element signature="method#estimateIntSqrt#0;class#SquareRoot#0" expanded="false" />
-                <element signature="method#estimateIntSqrtJScienceImpl#0;class#SquareRoot#0" expanded="false" />
-                <element signature="method#estimateSqrt#0;class#SquareRoot#0" expanded="false" />
-                <element signature="method#estimateSqrtLelieveld#0;class#SquareRoot#0" expanded="false" />
-                <element signature="docComment;method#bigSqrt#0;class#SquareRoot#0" expanded="false" />
-                <element signature="method#bigSqrt#0;class#SquareRoot#0" expanded="false" />
-                <element signature="e#15437#15446#0" expanded="true" />
-                <element signature="e#16913#16914#0" expanded="true" />
-                <element signature="e#16973#16974#0" expanded="true" />
-                <element signature="class#ScaledInteger#0;class#SquareRoot#0" expanded="false" />
-                <element signature="e#18155#18156#0" expanded="true" />
-                <element signature="e#18192#18193#0" expanded="true" />
-                <element signature="e#18225#18226#0" expanded="true" />
-                <element signature="e#18261#18262#0" expanded="true" />
+                <element signature="docComment;method#coupledNewton#0;class#SquareRootDev#0" expanded="false" />
+                <element signature="method#coupledNewton#0;class#SquareRootDev#0" expanded="false" />
+                <element signature="method#coupledNewtonExploration#0;class#SquareRootDev#0" expanded="false" />
+                <element signature="method#coupledNewton#1;class#SquareRootDev#0" expanded="false" />
+                <element signature="method#babylonian#0;class#SquareRootDev#0" expanded="false" />
+                <element signature="method#estimateSqrtLelieveld#0;class#SquareRootDev#0" expanded="false" />
+                <element signature="docComment;method#bigSqrt#0;class#SquareRootDev#0" expanded="false" />
+                <element signature="method#bigSqrt#0;class#SquareRootDev#0" expanded="false" />
+                <element signature="e#16914#16915#0" expanded="true" />
+                <element signature="e#16974#16975#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRootDevTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootDevTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="533" column="0" selection-start-line="524" selection-start-column="0" selection-end-line="533" selection-end-column="0" />
+              <folding>
+                <element signature="method#testEstimateSqrtFixed#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testEstimateSqrtRandom#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testEstimateIntSqrt#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testEstimateIntSqrtJScienceImpl#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testStrinsg#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testCoupledNewtonDec#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testCoupledNewton#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testSqureRoot#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testSpeed#0;class#SquareRootDevTest#0" expanded="false" />
+                <element signature="method#testIntegerSpeed#0;class#SquareRootDevTest#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRoot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="132" column="32" selection-start-line="132" selection-start-column="32" selection-end-line="132" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3050#3051#0" expanded="true" />
+                <element signature="e#3110#3111#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquareRootTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8692153">
+              <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DecimalStatsIncremental.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DoubleStatistics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+              <folding>
+                <element signature="e#1326#1327#0" expanded="true" />
+                <element signature="e#1361#1362#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,8 +163,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/Percentile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/BigDecimalGenerator.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRootDev.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootDevTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java" />
       </list>
     </option>
   </component>
@@ -144,7 +208,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -262,6 +325,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -311,7 +375,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="SquareRootTest.testIntegerSpeed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="SquareRootDevTest.testStrinsg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.axibase.statistics.*" />
@@ -322,59 +386,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.axibase.statistics" />
-      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.SquareRootTest" />
-      <option name="METHOD_NAME" value="testIntegerSpeed" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SquareRootTest.testConvert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.axibase.statistics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="DescriptiveStatistics" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.axibase.statistics" />
-      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.SquareRootTest" />
-      <option name="METHOD_NAME" value="testConvert" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SquareRootTest.testStrinsg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.axibase.statistics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="DescriptiveStatistics" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.axibase.statistics" />
-      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.SquareRootTest" />
+      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.SquareRootDevTest" />
       <option name="METHOD_NAME" value="testStrinsg" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -389,7 +401,33 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="SquareRootTest.fransError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="SquareRootDevTest.fransError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.axibase.statistics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="DescriptiveStatistics" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.axibase.statistics" />
+      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.SquareRootDevTest" />
+      <option name="METHOD_NAME" value="fransError" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="SquareRootTest.testBabylonian" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.axibase.statistics.*" />
@@ -401,7 +439,33 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.axibase.statistics" />
       <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.SquareRootTest" />
-      <option name="METHOD_NAME" value="fransError" />
+      <option name="METHOD_NAME" value="testBabylonian" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="SquareRootDevTest.testConvert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.axibase.statistics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="DescriptiveStatistics" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.axibase.statistics" />
+      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.SquareRootDevTest" />
+      <option name="METHOD_NAME" value="testConvert" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -659,18 +723,17 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testAllDec" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testIntegerSpeed" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testConvert" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testStrinsg" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SquareRootTest.fransError" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SquareRootDevTest.testStrinsg" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SquareRootDevTest.fransError" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testBabylonian" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SquareRootDevTest.testConvert" />
     </list>
     <recent_temporary>
-      <list size="5">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testAllDec" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SquareRootTest.fransError" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testStrinsg" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testIntegerSpeed" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testConvert" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SquareRootDevTest.testConvert" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testBabylonian" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SquareRootDevTest.fransError" />
       </list>
     </recent_temporary>
   </component>
@@ -744,39 +807,45 @@
       <option name="project" value="LOCAL" />
       <updated>1460565431518</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Current state of the package.&#10;">
+      <created>1461056864624</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1461056864624</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SquareRootTest_fransError - 2016.04.19 at 10h 46m 38s.xml">
-      <configuration name="SquareRootTest.fransError" configurationId="JUnit" />
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 36m 11s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SquareRootTest_testAllDec - 2016.04.15 at 18h 14m 14s.xml">
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 44m 22s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 44m 33s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 47m 00s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 49m 36s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 51m 09s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 52m 05s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SquareRootDevTest_testConvert - 2016.04.19 at 17h 52m 22s.xml">
+      <configuration name="SquareRootDevTest.testConvert" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SquareRootTest_testAllDec - 2016.04.19 at 19h 58m 28s.xml">
       <configuration name="SquareRootTest.testAllDec" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SquareRootTest_testAllDec - 2016.04.15 at 18h 51m 10s.xml">
+    <history-entry file="SquareRootTest_testAllDec - 2016.04.19 at 20h 00m 05s.xml">
       <configuration name="SquareRootTest.testAllDec" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SquareRootTest_testAllDec - 2016.04.15 at 21h 40m 24s.xml">
-      <configuration name="SquareRootTest.testAllDec" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SquareRootTest_testAllDec - 2016.04.19 at 09h 39m 49s.xml">
-      <configuration name="SquareRootTest.testAllDec" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SquareRootTest_testAllDec - 2016.04.19 at 10h 36m 57s.xml">
-      <configuration name="SquareRootTest.testAllDec" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SquareRootTest_testAllDec - 2016.04.19 at 11h 47m 20s.xml">
-      <configuration name="SquareRootTest.testAllDec" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SquareRootTest_testIntegerSpeed - 2016.04.15 at 18h 19m 39s.xml">
-      <configuration name="SquareRootTest.testIntegerSpeed" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SquareRootTest_testIntegerSpeed - 2016.04.15 at 18h 20m 12s.xml">
-      <configuration name="SquareRootTest.testIntegerSpeed" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SquareRootTest_testStrinsg - 2016.04.19 at 10h 40m 38s.xml">
-      <configuration name="SquareRootTest.testStrinsg" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -788,24 +857,24 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30988592" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49904943" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Panda Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19316968" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5342205" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30323192" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -845,11 +914,12 @@
     <MESSAGE value="Tests for percentile are added." />
     <MESSAGE value="Integer Babylonian and not-final version of coupled Newton methods added." />
     <MESSAGE value="My version of coupled Newton added." />
-    <option name="LAST_COMMIT_MESSAGE" value="My version of coupled Newton added." />
+    <MESSAGE value="Current state of the package.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Current state of the package.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="21" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -858,20 +928,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/BigDecExp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1068,13 +1124,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33072406">
-          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/ResizableDecimalArrayTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1174,14 +1223,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1409002">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/default-java/jre/lib/rt.jar!/java/math/BigDecimal.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1193,7 +1234,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1210,64 +1250,86 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="136" column="35" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DecimalStatsIncremental.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8767123">
-          <caret line="237" column="30" selection-start-line="237" selection-start-column="30" selection-end-line="237" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
           <folding>
-            <element signature="method#init#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testEstimateSqrtFixed#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testEstimateSqrtRandom#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testEstimateIntSqrt#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testEstimateIntSqrtJScienceImpl#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testStrinsg#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testBabylonianInt#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testBabylonianIntegerNumber#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testCoupledNewtonDec#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testCoupledNewton#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testSqureRoot#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testSpeed#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testIntegerSpeed#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testConvert#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testBabylonian#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testSqrtFrans#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testCoupledNewton#1;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#testBabylonianByInteger#0;class#SquareRootTest#0" expanded="false" />
-            <element signature="method#fransError#0;class#SquareRootTest#0" expanded="false" />
+            <element signature="e#1326#1327#0" expanded="true" />
+            <element signature="e#1361#1362#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRoot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7333333">
-          <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="32" selection-start-line="132" selection-start-column="32" selection-end-line="132" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;method#coupledNewton#0;class#SquareRoot#0" expanded="false" />
-            <element signature="method#coupledNewtonExploration#0;class#SquareRoot#0" expanded="false" />
-            <element signature="method#coupledNewton#1;class#SquareRoot#0" expanded="false" />
-            <element signature="method#babylonian#0;class#SquareRoot#0" expanded="false" />
-            <element signature="method#estimateIntSqrt#0;class#SquareRoot#0" expanded="false" />
-            <element signature="method#estimateIntSqrtJScienceImpl#0;class#SquareRoot#0" expanded="false" />
-            <element signature="method#estimateSqrt#0;class#SquareRoot#0" expanded="false" />
-            <element signature="method#estimateSqrtLelieveld#0;class#SquareRoot#0" expanded="false" />
-            <element signature="docComment;method#bigSqrt#0;class#SquareRoot#0" expanded="false" />
-            <element signature="method#bigSqrt#0;class#SquareRoot#0" expanded="false" />
-            <element signature="e#15437#15446#0" expanded="true" />
-            <element signature="e#16913#16914#0" expanded="true" />
-            <element signature="e#16973#16974#0" expanded="true" />
-            <element signature="class#ScaledInteger#0;class#SquareRoot#0" expanded="false" />
-            <element signature="e#18155#18156#0" expanded="true" />
-            <element signature="e#18192#18193#0" expanded="true" />
-            <element signature="e#18225#18226#0" expanded="true" />
-            <element signature="e#18261#18262#0" expanded="true" />
+            <element signature="e#3050#3051#0" expanded="true" />
+            <element signature="e#3110#3111#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRootDev.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="431" column="23" selection-start-line="431" selection-start-column="23" selection-end-line="431" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#coupledNewton#0;class#SquareRootDev#0" expanded="false" />
+            <element signature="method#coupledNewton#0;class#SquareRootDev#0" expanded="false" />
+            <element signature="method#coupledNewtonExploration#0;class#SquareRootDev#0" expanded="false" />
+            <element signature="method#coupledNewton#1;class#SquareRootDev#0" expanded="false" />
+            <element signature="method#babylonian#0;class#SquareRootDev#0" expanded="false" />
+            <element signature="method#estimateSqrtLelieveld#0;class#SquareRootDev#0" expanded="false" />
+            <element signature="docComment;method#bigSqrt#0;class#SquareRootDev#0" expanded="false" />
+            <element signature="method#bigSqrt#0;class#SquareRootDev#0" expanded="false" />
+            <element signature="e#16914#16915#0" expanded="true" />
+            <element signature="e#16974#16975#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootDevTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="533" column="0" selection-start-line="524" selection-start-column="0" selection-end-line="533" selection-end-column="0" />
+          <folding>
+            <element signature="method#testEstimateSqrtFixed#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testEstimateSqrtRandom#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testEstimateIntSqrt#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testEstimateIntSqrtJScienceImpl#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testStrinsg#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testCoupledNewtonDec#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testCoupledNewton#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testSqureRoot#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testSpeed#0;class#SquareRootDevTest#0" expanded="false" />
+            <element signature="method#testIntegerSpeed#0;class#SquareRootDevTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8692153">
+          <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
