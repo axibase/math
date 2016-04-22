@@ -519,6 +519,25 @@ public class SquareRootDevTest {
         Assert.assertEquals(5, result.getNumber().intValue());
         Assert.assertEquals(msg + str, -4, result.getScale());
 
+
+        BigDecimal number = new BigDecimal("1230000");
+        number.setScale(-3);
+        result = SquareRootDev.convert(number, 7);
+        Assert.assertEquals(1230000, result.getNumber().intValue());
+        Assert.assertEquals(msg + str, 0, result.getScale());
+        result = SquareRootDev.convert(number, 3);
+        Assert.assertEquals(123, result.getNumber().intValue());
+        Assert.assertEquals(msg + str, -4, result.getScale());
+        result = SquareRootDev.convert(number, 4);
+        Assert.assertEquals(12300, result.getNumber().intValue());
+        Assert.assertEquals(msg + str, -2, result.getScale());
+        result = SquareRootDev.convert(number, 8);
+        Assert.assertEquals(123000000, result.getNumber().intValue());
+        Assert.assertEquals(msg + str, 2, result.getScale());
+        result = SquareRootDev.convert(number, 9);
+        Assert.assertEquals(123000000, result.getNumber().intValue());
+        Assert.assertEquals(msg + str, 2, result.getScale());
+
     }
 
     private boolean testBabylonian(BigDecimal exactSqrt, BigDecimal number, MathContext sqrtContext) {

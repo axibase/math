@@ -6,25 +6,115 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
+ * The class has methods to calculate square roots of BigDecimal numbers
+ * and integer square roots of BigInteger numbers.
  */
 public class SquareRoot {
 
+    /**
+     * Let X be a BigDecimal number provided as the first argument of the method.
+     * Let Z be the exact value of the square root of X.
+     * The method returns rounded value of Z.
+     * The rounding strategy is specified by the second method's argument.
+     * If Z has decimal representation of finite length it is used for rounding.
+     * For example,  the number 2 has an infinite decimal representation 1.99999999...,
+     * but for rounding finite representation 2 will be used.
+     * So for the context
+     * <pre>
+     *     context = new MathContext(1, RoundingMode.DOWN);
+     * </pre>
+     * the number babylonian(new BigDecimal("4"), context) will be 2.
+     */
     public static BigDecimal babylonian(BigDecimal number, MathContext sqrtContext) {
 
-        int sqrtPrecision = sqrtContext.getPrecision();
-        int numberPrecision = 2 * sqrtPrecision + 3;    // may be 2x + 5 ???
+        int numberPrecision;
 
+        // Round number to drop excess digits.
+        if (sqrtContext.getPrecision() == 0) {
+            sqrtContext = new MathContext(0, RoundingMode.UNNECESSARY);
+        }
+        if (sqrtContext.getRoundingMode() == RoundingMode.UNNECESSARY) {
+            numberPrecision = number.stripTrailingZeros().precision();
+        } else {
+            numberPrecision = 2 * sqrtContext.getPrecision() - 1;
+        }
         BigDecimal roundedNumber = convert(number, numberPrecision);
-        //ScaledInteger scaledInteger = convert(number, numberPrecision);
 
+        // Let exact square root of the number is exactSqrt.
+        // Then:
+        // sqrt <= exactSqrt <= sqrt + 1
+        // To make correct rounding we should compare exactSqrt with sqrt, sqrt + 0.5 and sqrt + 1.
         BigInteger intSqrt = babylonian(roundedNumber.unscaledValue());
+        BigDecimal sqrt = new BigDecimal(intSqrt, roundedNumber.scale() / 2);
 
-        BigDecimal result = new BigDecimal(intSqrt, roundedNumber.scale() / 2);
+        BigDecimal sqrtHalf = new BigDecimal(intSqrt.multiply(BigInteger.TEN).add(new BigInteger("5")), (roundedNumber.scale() / 2) + 1 );
 
-        return result.round(sqrtContext);
+        BigInteger intSqrtPlus = intSqrt.add(BigInteger.ONE);
+        BigDecimal sqrtPlus = new BigDecimal(intSqrtPlus, roundedNumber.scale() / 2).round(sqrtContext);
+
+        switch (sqrtContext.getRoundingMode()) {
+
+            case UP:
+            case CEILING:
+                BigInteger squared = intSqrt.multiply(intSqrt);
+                if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
+                    return sqrt;
+                }
+                return sqrtPlus;
+
+            case DOWN:
+            case FLOOR:
+                squared = intSqrtPlus.multiply(intSqrtPlus);
+                if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
+                    return sqrtPlus;
+                }
+                return sqrt;
+
+            case HALF_UP:
+                BigDecimal square = sqrtHalf.multiply(sqrtHalf);
+                if (number.compareTo(square) < 0) {
+                    return sqrt;
+                }
+                return sqrtPlus;
+
+            case HALF_DOWN:
+                square = sqrtHalf.multiply(sqrtHalf);
+                if (number.compareTo(square) <= 0) {
+                    return sqrt;
+                }
+                return sqrtPlus;
+
+            case HALF_EVEN:
+                square = sqrtHalf.multiply(sqrtHalf);
+                switch (number.compareTo(square)) {
+                    case -1:
+                        return sqrt;
+                    case 0:
+                        if (intSqrt.getLowestSetBit() > 0) {
+                            return sqrt;
+                        }
+                        return sqrtPlus;
+                    case 1:
+                        return sqrtPlus;
+                }
+
+            case UNNECESSARY:
+                squared = intSqrt.multiply(intSqrt);
+                if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
+                    return sqrt;
+                }
+                squared = squared.add(new BigInteger("2").multiply(intSqrt)).add(BigInteger.ONE);
+                if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
+                    return sqrtPlus;
+                }
+                String msg = "The square root of the number has infinitely many digits, so finite precision and rounding mode are mandatory.";
+                throw new ArithmeticException(msg);
+
+            default:
+                msg = "Unknown rounding mode: " + sqrtContext.getRoundingMode();
+                throw new IllegalArgumentException(msg);
+        }
     }
-
-
 
     /**
      * The method returns an integer square root of a number.
@@ -57,12 +147,6 @@ public class SquareRoot {
                 }
                 return newEstimation.subtract(BigInteger.ONE);
             }
-//            if (newEstimation.equals(sqrt) || newEstimation.subtract(sqrt).equals(BigInteger.ONE)) {
-//                if (newEstimation.multiply(newEstimation).compareTo(number) <= 0) {
-//                    return newEstimation;
-//                }
-//                return sqrt;
-//            }
             sqrt = newEstimation;
         }
     }
@@ -81,79 +165,25 @@ public class SquareRoot {
         return BigInteger.ONE.shiftLeft(n - 1);
     }
 
-    public static BigDecimal convert(String str, int figures) {
+    protected static BigDecimal convert(String str, int figures) {
         return convert(new BigDecimal(str), figures);
     }
 
     /**
-     * Let X be provided big decimal number,
-     * and N be integer number.
+     * Let X be a  big decimal number provided as the first argument,
+     * and N be an integer number - the second argument.
      *
-     * The method returns big decimal number Z
-     * with its representation: Z = S * 10^(-2n).
-     *
-     * Number of digits in unscaled value S of Z equals
-     * to N or N + 1.
-     * Z is rounding of X with RoundingMode.HALF_UP
-     * and precision N (or N + 1).
+     * The method returns a big decimal number Z
+     * with special representation: Z = S * 10^(-scale).
+     * Z is rounding of X with RoundingMode.DOWN
+     * and precision N or N + 1.
+     * The precision is number of digits of unscaled value S
+     * and it is chosen equal to N or to N + 1,
+     * so that the scale is even.
      */
-    public static BigDecimal convert(BigDecimal number, int figures) {
-
-        int decimalExp = number.scale();
-
-        number = number.movePointRight(decimalExp);
-
-        assert number.scale() == 0;
-
-        int diff = figures - number.precision();
-        if (diff >= 0) {
-            number = number.movePointRight(diff);
-            decimalExp += diff;
-            if (decimalExp % 2 == 1) {
-                number = number.movePointRight(1);
-                decimalExp++;
-            }
-        } else {
-            if ((decimalExp + diff) % 2 == 1) {
-                figures++;
-                diff++;
-            }
-            MathContext context = new MathContext(figures, RoundingMode.HALF_UP);
-            number = number.round(context);
-            number = number.movePointRight(diff);
-            decimalExp += diff;
-        }
-
-        //return new ScaledInteger(number.unscaledValue(), decimalExp);
-        return new BigDecimal(number.unscaledValue(), decimalExp);
+    protected static BigDecimal convert(BigDecimal number, int figures) {
+        int scale = number.scale() + figures - number.precision();
+        scale += (scale & 1);
+        return number.setScale(scale, RoundingMode.DOWN);
     }
-
-
-    /**
-     * Container for BigDecimal.
-     */
-    static class ScaledInteger {
-        BigInteger number;
-        int scale;
-
-        public ScaledInteger(BigInteger number, int scale) {
-            this.number = number;
-            this.scale = scale;
-        }
-
-        public BigInteger getNumber() {
-            return number;
-        }
-
-        public int getScale() {
-            return scale;
-        }
-    }
-
-
-
-
-
-
-
 }

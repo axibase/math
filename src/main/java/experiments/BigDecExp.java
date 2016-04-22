@@ -1,6 +1,7 @@
 package experiments;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
@@ -13,7 +14,8 @@ public class BigDecExp {
         // getPrecAndScale();
         // divisionTest();
         // integerPlaces();
-        explorePrecision();
+        // explorePrecision();
+        checkEven();
     }
 
     private static void getPrecAndScale() {
@@ -74,4 +76,11 @@ public class BigDecExp {
         System.out.println("Rounded sum: " + number.add(num1, mathContext).toPlainString());
     }
 
+    private static void checkEven() {
+        BigInteger number = new BigInteger("123456534963549128356482935468293451923645927364566");
+        System.out.println("The number " + number + " is even: " + (number.getLowestSetBit() > 0));
+        number = new BigInteger("123456534963549128356482935468293451923645927364567");
+        System.out.println("The number " + number + " is even: " + (number.getLowestSetBit() > 0));
+
+    }
 }
