@@ -8,17 +8,34 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
- * Analog of DescriptiveStatistics class from
+ * Analog of the DescriptiveStatistics class from
  * the org.apache.commons.math3.stat.descriptive package,
  * but uses BigDecimals instead of doubles.
+ * The Apache's design and code is heavily used,
+ * but the standard deviation method is substantially different.
+ *
+ * The Apache's DescriptiveStatistics class description is valid for the StoredStatistics also,
+ * (but use the StreamStatistics class instead of Apache's SummaryStatistics):
+ * <blockquote cite="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.html">
+ * Maintains a dataset of values of a single variable and computes descriptive statistics based on stored data.
+ * The windowSize property sets a limit on the number of values that can be stored in the dataset.
+ * The default value, INFINITE_WINDOW, puts no limit on the size of the dataset.
+ * This value should be used with caution, as the backing store will grow without bound in this case.
+ * For very large datasets, SummaryStatistics, which does not store the dataset, should be used instead of this class.
+ * If windowSize is not INFINITE_WINDOW and more values are added than can be stored in the dataset,
+ * new values are added in a "rolling" manner, with new values replacing the "oldest" values in the dataset.
+ * <p>
+ * Note: this class is not threadsafe. Use SynchronizedDescriptiveStatistics if concurrent access from multiple threads is required.
+ * </>
+ * </blockquote>
  * Maintains a data set of values of a single variable and computes descriptive statistics based on stored data.
  * The windowSize property sets a limit on the number of values that can be stored in the data set.
- * The windowSize value -1 puts no limit on the size of the data set.
+ * The default value INFINITE_WINDOW puts no limit on the size of the data set.
  * This value should be used with caution, as the backing store will grow without bound in this case.
  * If windowSize is not -1 and more values are added than can be stored in the data set, new values are added in a
  * "rolling" manner, with new values replacing the "oldest" values in the data set.
  */
-public class DecimalStatistics implements Statistics {
+public class StoredStatistics implements Statistics {
 
     private static final int INFINITE_WINDOW = -1;
     private int windowSize = INFINITE_WINDOW;
@@ -30,14 +47,14 @@ public class DecimalStatistics implements Statistics {
 
     private boolean arrayIsChanged = true;
 
-    public DecimalStatistics() {
+    public StoredStatistics() {
     }
 
-    public DecimalStatistics(int windowSize) {
+    public StoredStatistics(int windowSize) {
         setWindowSize(windowSize);
     }
 
-    public DecimalStatistics(BigDecimal[] values) {
+    public StoredStatistics(BigDecimal[] values) {
         if (values != null) {
             ra = new ResizableDecimalArray(values);
         }
@@ -126,7 +143,7 @@ public class DecimalStatistics implements Statistics {
     }
 
     /**
-     * Evaluetes p-th percentile of the stored data set.
+     * Evaluates p-th percentile of the stored data set.
      * 0 <= p <= 1
      * Uses instance of {@link PercentileCalculator} for that.
      */

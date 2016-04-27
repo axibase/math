@@ -83,10 +83,18 @@ public class SquareRootTest {
                         MathContext sqrtContext = new MathContext(exactSqrt.precision(), RoundingMode.UNNECESSARY);
                         BigDecimal sqrt = SquareRoot.babylonian(number, sqrtContext);
                         BigDecimal rounded = exactSqrt.round(sqrtContext);
-                        String msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
-                                "\n precision = " + sqrtContext.getPrecision() +
-                                "\n rounding mode = " + sqrtContext.getRoundingMode();
                         if (rounded.compareTo(sqrt) != 0) {
+                            String msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
+                                    "\n precision = " + sqrtContext.getPrecision() +
+                                    "\n rounding mode = " + sqrtContext.getRoundingMode() +
+                                    "\n the result is not equal to rounding of the exact sqrt.";
+                            System.out.println(msg);
+                        }
+                        if (sqrt.precision() != sqrtContext.getPrecision()) {
+                            String msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
+                                    "\n precision = " + sqrtContext.getPrecision() +
+                                    "\n rounding mode = " + sqrtContext.getRoundingMode() +
+                                    "\n result wrong precision = " + sqrt.precision();
                             System.out.println(msg);
                         }
                         //Assert.assertTrue(msg, rounded.compareTo(sqrt) == 0);
@@ -101,9 +109,18 @@ public class SquareRootTest {
                                 sqrtContext = new MathContext(precision, roundingMode);
                                 sqrt = SquareRoot.babylonian(number, sqrtContext);
                                 rounded = exactSqrt.round(sqrtContext);
-                                msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
-                                        "\n precision = " + precision + "\n rounding mode = " + roundingMode;
                                 if (rounded.compareTo(sqrt) != 0) {
+                                    String msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
+                                            "\n precision = " + sqrtContext.getPrecision() +
+                                            "\n rounding mode = " + sqrtContext.getRoundingMode() +
+                                            "\n the result is not equal to rounding of the exact sqrt.";
+                                    System.out.println(msg);
+                                }
+                                if (sqrt.precision() != sqrtContext.getPrecision()) {
+                                    String msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
+                                            "\n precision = " + sqrtContext.getPrecision() +
+                                            "\n rounding mode = " + sqrtContext.getRoundingMode() +
+                                            "\n result wrong precision = " + sqrt.precision();
                                     System.out.println(msg);
                                 }
                                 //Assert.assertTrue(msg, rounded.compareTo(sqrt) == 0);

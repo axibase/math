@@ -7,9 +7,14 @@ import java.math.MathContext;
  * Analog of SummaryStatistics class from
  * the org.apache.commons.math3.stat.descriptive package,
  * but uses BigDecimals instead of doubles.
- * The code is refactoring of the Apache's code.
- */
-public class DecimalStatsIncremental implements Statistics {
+ *
+ * This class should be used to calculate statistics for a stream of data.
+ * To recalculate statistics for new data value add it with the {@link #addValue(BigDecimal)} method.
+ * To clear all statistics and be ready for a new stream use the {@link #clear()} method.
+ *
+ * As the data values are not stored, some statistics (percentile and select) can not be calculated.
+  */
+public class StreamStatistics implements Statistics {
 
     private static final BigDecimal TWO = new BigDecimal("2");
 
@@ -69,7 +74,7 @@ public class DecimalStatsIncremental implements Statistics {
 
     /**
      * Returns the sum of the squares of the values.
-     * null is returned if there are no values.
+     * Null is returned if there are no values.
      */
     public BigDecimal sumOfSquares() {
         if (n == 0) {
@@ -80,6 +85,7 @@ public class DecimalStatsIncremental implements Statistics {
 
     /**
      * Returns the mean of the values.
+     * Null is returned if there are no values.
      */
     public BigDecimal mean(MathContext meanContext) {
         if (n == 0) {
@@ -90,8 +96,8 @@ public class DecimalStatsIncremental implements Statistics {
 
     /**
      * Returns the sample standard deviation of the values.
-     * null is returned if there are no values,
-     * and 0 if there is the single value.
+     * Null is returned if there are no values,
+     * and 0 if there is a single value.
      */
     public BigDecimal sampleStdDev(MathContext stDevContext) {
         return VarianceCalculator.stdDev(this, true, stDevContext);
@@ -99,8 +105,8 @@ public class DecimalStatsIncremental implements Statistics {
 
     /**
      * Returns the population standard deviation of the values.
-     * null is returned if there are no values,
-     * and 0 if there is the single value.
+     * Null is returned if there are no values,
+     * and 0 if there is a single value.
      */
     public BigDecimal populationStdDev(MathContext stDevContext) {
         return VarianceCalculator.stdDev(this, false, stDevContext);
@@ -113,7 +119,7 @@ public class DecimalStatsIncremental implements Statistics {
      * the denominator).  Use {@link #populationVariance} for the non-bias-corrected
      * population variance.</p>
      *
-     * null is returned if there are no values.
+     * Null is returned if there are no values.
      */
     public BigDecimal sampleVariance(MathContext varianceContext) {
         return VarianceCalculator.variance(this, true, varianceContext);
@@ -123,7 +129,7 @@ public class DecimalStatsIncremental implements Statistics {
      * Returns the <a href="http://en.wikibooks.org/wiki/Statistics/Summary/Variance">
      * population variance</a> of the values that have been added.
      *
-     * null is returned if there are no values.
+     * Null is returned if there are no values.
      */
     public BigDecimal populationVariance(MathContext varianceContext) {
         return VarianceCalculator.variance(this, false, varianceContext);    }
@@ -141,5 +147,4 @@ public class DecimalStatsIncremental implements Statistics {
     public BigDecimal min() {
         return min;
     }
-
 }

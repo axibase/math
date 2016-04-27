@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
- * Common methods of DecimalStatistics and DecimalStatisticsIncremental.
+ * Common methods of the StoredStatistics and StreamStatistics.
  */
 public interface Statistics extends BasicStatistics {
 
