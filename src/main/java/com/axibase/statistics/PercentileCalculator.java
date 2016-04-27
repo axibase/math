@@ -1,7 +1,5 @@
 package com.axibase.statistics;
 
-import org.apache.commons.math3.util.FastMath;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 
@@ -11,7 +9,7 @@ import java.util.Arrays;
  * An argument p can be String or BigDecimal number.
  * Method select(k) returns k-th smallest element of the data array.
  */
-public class Percentile {
+public class PercentileCalculator {
 
     /** Values. */
     private final BigDecimal[] storedData;
@@ -34,9 +32,9 @@ public class Percentile {
     /** This is number of values + 1, and is used to calculate position (index) of percentile in sorted data. */
     private final BigDecimal multiplier;
 
-    public Percentile(BigDecimal[] values) {
+    public PercentileCalculator(BigDecimal[] values) {
         if (values == null) {
-            throw new NullPointerException("BigDecimal array argument of the Percentile constructor is null.");
+            throw new NullPointerException("BigDecimal array argument of the PercentileCalculator constructor is null.");
         }
         this.storedData = Arrays.copyOf(values, values.length);
         cachedPivots = new int[PIVOTS_HEAP_LENGTH];
@@ -133,11 +131,11 @@ public class Percentile {
             } else if (k < pivot) {
                 // the element is in the left partition
                 end  = pivot;
-                node = FastMath.min(2 * node + 1, cachedPivots.length);
+                node = Math.min(2 * node + 1, cachedPivots.length);
             } else {
                 // the element is in the right partition
                 begin = pivot + 1;
-                node  = FastMath.min(2 * node + 2, cachedPivots.length);
+                node  = Math.min(2 * node + 2, cachedPivots.length);
             }
         }
         Arrays.sort(storedData, begin, end);

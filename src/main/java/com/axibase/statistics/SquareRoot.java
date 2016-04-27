@@ -14,16 +14,15 @@ public class SquareRoot {
     /**
      * Let X be a BigDecimal number provided as the first argument of the method.
      * Let Z be the exact value of the square root of X.
-     * The method returns rounded value of Z.
+     * The method returns rounded value W of Z.
      * The rounding strategy is specified by the second method's argument.
-     * If Z has decimal representation of finite length it is used for rounding.
-     * For example,  the number 2 has an infinite decimal representation 1.99999999...,
-     * but for rounding finite representation 2 will be used.
-     * So for the context
-     * <pre>
-     *     context = new MathContext(1, RoundingMode.DOWN);
-     * </pre>
-     * the number babylonian(new BigDecimal("4"), context) will be 2.
+     * The unscaled value of W has required number of digits,
+     * so it has exactly sqrtContext.getPrecision() digits.
+     * If sqrtContext.getPrecision() == 0 or sqrtContext.getRoundingMode == UNNECESSARY
+     * the exact value Z will be returned or an ArithmeticException will be thrown
+     * in the case the exact value Z has infinite number of digits and can not be represented
+     * as BigDecimal number.
+     *
      */
     public static BigDecimal babylonian(BigDecimal number, MathContext sqrtContext) {
 
@@ -40,17 +39,16 @@ public class SquareRoot {
         }
         BigDecimal roundedNumber = convert(number, numberPrecision);
 
-        // Let exact square root of the number is exactSqrt.
-        // Then:
-        // sqrt <= exactSqrt <= sqrt + 1
-        // To make correct rounding we should compare exactSqrt with sqrt, sqrt + 0.5 and sqrt + 1.
         BigInteger intSqrt = babylonian(roundedNumber.unscaledValue());
-        BigDecimal sqrt = new BigDecimal(intSqrt, roundedNumber.scale() / 2);
+        int sqrtScale = roundedNumber.scale() / 2;
+        BigDecimal sqrt = new BigDecimal(intSqrt, sqrtScale);
 
-        BigDecimal sqrtHalf = new BigDecimal(intSqrt.multiply(BigInteger.TEN).add(new BigInteger("5")), (roundedNumber.scale() / 2) + 1 );
+        BigDecimal sqrtAndHalf = sqrt.add(new BigDecimal("0.5").scaleByPowerOfTen(-sqrtScale));
+        //BigDecimal sqrtAndHalf = new BigDecimal(intSqrt.multiply(BigInteger.TEN).add(new BigInteger("5")), sqtScale + 1 );
 
         BigInteger intSqrtPlus = intSqrt.add(BigInteger.ONE);
-        BigDecimal sqrtPlus = new BigDecimal(intSqrtPlus, roundedNumber.scale() / 2).round(sqrtContext);
+        // in our situation rounding can only change representation of the number but not the value
+        BigDecimal sqrtPlus = new BigDecimal(intSqrtPlus, sqrtScale).round(sqrtContext);
 
         switch (sqrtContext.getRoundingMode()) {
 
@@ -64,28 +62,29 @@ public class SquareRoot {
 
             case DOWN:
             case FLOOR:
-                squared = intSqrtPlus.multiply(intSqrtPlus);
-                if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
-                    return sqrtPlus;
-                }
+                //this case is impossible - just return sqrt
+                //squared = intSqrtPlus.multiply(intSqrtPlus);
+                //if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
+                //    return sqrtPlus;
+                //}
                 return sqrt;
 
             case HALF_UP:
-                BigDecimal square = sqrtHalf.multiply(sqrtHalf);
+                BigDecimal square = sqrtAndHalf.multiply(sqrtAndHalf);
                 if (number.compareTo(square) < 0) {
                     return sqrt;
                 }
                 return sqrtPlus;
 
             case HALF_DOWN:
-                square = sqrtHalf.multiply(sqrtHalf);
+                square = sqrtAndHalf.multiply(sqrtAndHalf);
                 if (number.compareTo(square) <= 0) {
                     return sqrt;
                 }
                 return sqrtPlus;
 
             case HALF_EVEN:
-                square = sqrtHalf.multiply(sqrtHalf);
+                square = sqrtAndHalf.multiply(sqrtAndHalf);
                 switch (number.compareTo(square)) {
                     case -1:
                         return sqrt;
@@ -103,15 +102,17 @@ public class SquareRoot {
                 if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
                     return sqrt;
                 }
-                squared = squared.add(new BigInteger("2").multiply(intSqrt)).add(BigInteger.ONE);
-                if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
-                    return sqrtPlus;
-                }
-                String msg = "The square root of the number has infinitely many digits, so finite precision and rounding mode are mandatory.";
+                // this case is impossible
+                //squared = squared.add(new BigInteger("2").multiply(intSqrt)).add(BigInteger.ONE);
+                //if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
+                //    return sqrtPlus;
+                //}
+                String msg = "The square root of the number " + number.toPlainString() +
+                        " has infinitely many digits, so finite precision and rounding mode are mandatory.";
                 throw new ArithmeticException(msg);
 
             default:
-                msg = "Unknown rounding mode: " + sqrtContext.getRoundingMode();
+                msg = "Unsupported rounding mode: " + sqrtContext.getRoundingMode();
                 throw new IllegalArgumentException(msg);
         }
     }

@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Created by mikhail on 05.04.16.
  */
-public class PercentileTest {
+public class PercentileCalculatorTest {
 
     // each of digits 0, ..., 9 is used twice
     BigDecimal[] digits = new BigDecimal[] {
@@ -40,14 +40,14 @@ public class PercentileTest {
 
     @Test
     public void testEvaluate() throws Exception {
-        Percentile percentile = new Percentile(digits);
-        BigDecimal value = percentile.evaluate("0");
+        PercentileCalculator percentileCalculator = new PercentileCalculator(digits);
+        BigDecimal value = percentileCalculator.evaluate("0");
         Assert.assertEquals(value.compareTo(new BigDecimal("0")), 0);
-        value = percentile.evaluate("1");
+        value = percentileCalculator.evaluate("1");
         Assert.assertEquals(value.compareTo(new BigDecimal("9")), 0);
-        value = percentile.evaluate("0.3");
+        value = percentileCalculator.evaluate("0.3");
         Assert.assertEquals(value.compareTo(new BigDecimal("2.3")), 0);
-        value = percentile.evaluate("0.5");
+        value = percentileCalculator.evaluate("0.5");
         Assert.assertEquals(value.compareTo(new BigDecimal("4.5")), 0);
     }
 
@@ -59,23 +59,23 @@ public class PercentileTest {
                 ONE, ONE, ONE, ONE, ONE,
                 ONE, ONE, ONE, ONE, ONE
         };
-        Percentile percentile = new Percentile(units);
-        BigDecimal value = percentile.evaluate("0.456782654356735482164591273654623");
+        PercentileCalculator percentileCalculator = new PercentileCalculator(units);
+        BigDecimal value = percentileCalculator.evaluate("0.456782654356735482164591273654623");
         Assert.assertEquals(value.compareTo(ONE), 0);
         System.out.println();
     }
 
     @Test
     public void testSelect() throws Exception {
-        Percentile percentile = new Percentile(digits);
-        BigDecimal value = percentile.select(0);
+        PercentileCalculator percentileCalculator = new PercentileCalculator(digits);
+        BigDecimal value = percentileCalculator.select(0);
         Assert.assertEquals(value.compareTo(ZERO), 0);
-        value = percentile.select(7);
+        value = percentileCalculator.select(7);
         Assert.assertEquals(value.intValue(), 3);
-        value = percentile.select(19);
+        value = percentileCalculator.select(19);
         Assert.assertEquals(value.intValue(), 9);
         try {
-            percentile.select(20);
+            percentileCalculator.select(20);
             fail("The call of select(k) with index k out of bounds should throw IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
         }

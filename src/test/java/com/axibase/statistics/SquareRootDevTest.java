@@ -598,5 +598,11 @@ public class SquareRootDevTest {
         BigDecimal rounded = exactSqrt.round(mathContext);
         BigDecimal difference = rounded.subtract(sqrt);
         System.out.println("Difference = " + difference.toPlainString());
+
+        // 4 * 10^74 + 1
+        number = new BigDecimal(new BigInteger("4"), -74).add(BigDecimal.ONE);
+        //number = new BigDecimal("400000000000000000000000000000000000000000000000000000000000000000000000001");
+        mathContext = new MathContext(1, RoundingMode.UP);
+        System.out.println(SquareRootDev.bigSqrt(number, mathContext));
     }
 }

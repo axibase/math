@@ -3,8 +3,6 @@ package com.axibase.statistics;
 import org.apache.commons.math3.exception.MathIllegalArgumentException;
 import org.apache.commons.math3.exception.MathIllegalStateException;
 import org.apache.commons.math3.exception.util.LocalizedFormats;
-import org.apache.commons.math3.util.FastMath;
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -13,9 +11,14 @@ import java.math.MathContext;
  * Analog of DescriptiveStatistics class from
  * the org.apache.commons.math3.stat.descriptive package,
  * but uses BigDecimals instead of doubles.
- * The code is refactoring of the Apache's code.
+ * Maintains a data set of values of a single variable and computes descriptive statistics based on stored data.
+ * The windowSize property sets a limit on the number of values that can be stored in the data set.
+ * The windowSize value -1 puts no limit on the size of the data set.
+ * This value should be used with caution, as the backing store will grow without bound in this case.
+ * If windowSize is not -1 and more values are added than can be stored in the data set, new values are added in a
+ * "rolling" manner, with new values replacing the "oldest" values in the data set.
  */
-public class DecimalStatistics {
+public class DecimalStatistics implements Statistics {
 
     private static final int INFINITE_WINDOW = -1;
     private int windowSize = INFINITE_WINDOW;
@@ -23,22 +26,15 @@ public class DecimalStatistics {
     /** Store data values. */
     private ResizableDecimalArray ra = new ResizableDecimalArray();
 
-    private MathContext mathContext = null;
+    private PercentileCalculator percentileCalculator = new PercentileCalculator(this.ra.getElements());
+
+    private boolean arrayIsChanged = true;
 
     public DecimalStatistics() {
     }
 
-    public DecimalStatistics(MathContext mathContext) {
-        setMathContext(mathContext);
-    }
-
     public DecimalStatistics(int windowSize) {
         setWindowSize(windowSize);
-    }
-
-    public DecimalStatistics(int windowSize, MathContext mathContext) {
-        setWindowSize(windowSize);
-        setMathContext(mathContext);
     }
 
     public DecimalStatistics(BigDecimal[] values) {
@@ -47,9 +43,9 @@ public class DecimalStatistics {
         }
     }
 
-    /** Adds value to the dataset. If the dataset is at the maximum size
-     * (i.e., the number of stored elements equals the currently configured windowSize),
-     * the first (oldest) element in the dataset is discarded to make room for the new value.
+    /** Adds value to the data set. If the data set is at the maximum size i.e.,
+     * the number of stored elements equals the currently configured windowSize,
+     * the first (oldest) element in the data set is discarded to make room for the new value.
      */
     public void addValue(BigDecimal value) {
         if (windowSize != INFINITE_WINDOW) {
@@ -61,10 +57,15 @@ public class DecimalStatistics {
         } else {
             ra.addElement(value);
         }
+        arrayIsChanged = true;
     }
 
+    /**
+     * Clear the data set.
+     */
     public void clear() {
         ra.clear();
+        arrayIsChanged = true;
     }
 
     public BigDecimal getElement(int index) {
@@ -74,7 +75,7 @@ public class DecimalStatistics {
     /**
      * If there are no elements then result will be null.
      */
-    public BigDecimal getMax() {
+    public BigDecimal max() {
         BigDecimal max;
         if (getN() == 0) {
             return null;
@@ -89,21 +90,21 @@ public class DecimalStatistics {
     }
 
     /**
-     * Returns the mean value of the dataset and uses the mathContext to
+     * Returns the mean value of the data set and uses the mathContext to
      * to get a chosen precision and rounding mode by supplying an appropriate MathContext
-     * If there are no elements then result will be 0.
+     * If there are no elements then result will be null.
      */
-    public BigDecimal getMean(MathContext mathContext) {
+    public BigDecimal mean(MathContext mathContext) {
         if (getN() == 0) {
             return null;
         }
-        return getSum().divide(new BigDecimal(getN()), mathContext);
+        return sum().divide(new BigDecimal(getN()), mathContext);
     }
 
     /**
      * If there are no elements then result will be null.
      */
-    public BigDecimal getMin() {
+    public BigDecimal min() {
         BigDecimal min;
         if (getN() == 0) {
             return null;
@@ -117,34 +118,49 @@ public class DecimalStatistics {
         return min;
     }
 
+    /**
+     * Return the number of elements in the data set.
+     */
     public long getN() {
         return ra.getNumElements();
     }
 
-    public double getPercentile(double p) {
-        DescriptiveStatistics ds = new DescriptiveStatistics(toDoubleArray());
-        return ds.getPercentile(p);
+    /**
+     * Evaluetes p-th percentile of the stored data set.
+     * 0 <= p <= 1
+     * Uses instance of {@link PercentileCalculator} for that.
+     */
+    public BigDecimal percentile(BigDecimal p) {
+        if (arrayIsChanged) {
+            percentileCalculator = new PercentileCalculator(this.ra.getElements());
+            arrayIsChanged = false;
+        }
+        return percentileCalculator.evaluate(p);
     }
 
     /**
+     * Returns the sample standard deviation of the data set.
+     * If data set is empty the method returns null, if there is a single element
+     * in the data set the method returns BigDecimal.ZERO.
      */
-    public BigDecimal getStandardDeviation(MathContext mathContext) {
-        BigDecimal stdDev = null;
-//        if (getN() > 0) {
-//            if (getN() > 1) {
-//                stdDev = FastMath.sqrt(getVariance(mathContext));
-//            } else {
-//                stdDev = BigDecimal.ZERO;
-//            }
-//        }
-        return stdDev;
+    public BigDecimal sampleStdDev(MathContext stDevContext) {
+        return VarianceCalculator.stdDev(this, true, stDevContext);
+    }
+
+    /**
+     * Returns the population standard deviation of the data set.
+     * If data set is empty the method returns null, if there is a single element
+     * in the data set the method returns BigDecimal.ZERO.
+     */
+    public BigDecimal populationStdDev(MathContext stDevContext) {
+        return VarianceCalculator.stdDev(this, false, stDevContext);
     }
 
     /**
      * Returns exact sum of elements in the data set.
      * If there are no elements then result will be 0.
      */
-    public BigDecimal getSum() {
+    public BigDecimal sum() {
         BigDecimal sum = new BigDecimal(0);
         for (int i = 0; i < getN(); i++) {
             sum = sum.add(ra.getElement(i));
@@ -153,15 +169,27 @@ public class DecimalStatistics {
     }
 
     /**
-     * Returns the sample variance of the dataset.
+     * This method returns the bias-corrected sample variance of the data set.
      * The sample variance is the sum of the squared differences from the Mean
-     * divided by (N -1), where N is the number of elements in the dataset.
-     * TODO estimate precision
+     * divided by (n -1), where n is the number of elements in the data set.
+     * If data set is empty the method returns null, if there is a single element
+     * in the data set the method returns BigDecimal.ZERO.
      */
-    public BigDecimal getVariance(MathContext mathContext) {
-        BigDecimal meanSquared = getMean(mathContext).pow(2);
-        BigDecimal meanOfSquares = sumOfSquares().divide(new BigDecimal(getN()), mathContext);
-        return meanOfSquares.subtract(meanSquared);
+    public BigDecimal sampleVariance(MathContext varianceContext) {
+        return VarianceCalculator.variance(this, true, varianceContext);
+    }
+
+    /**
+     * This method returns the population variance of the data set.
+     * The population variance is the sum of the squared differences from the Mean
+     * divided by n, where n is the number of elements in the data set.
+     * The population variance is a biased statistics, use the {@link #sampleVariance(MathContext)}
+     * to get unbiased sample variance.
+     * If data set is empty the method returns null, if there is a single element
+     * in the data set the method returns BigDecimal.ZERO.
+     */
+    public BigDecimal populationVariance(MathContext varianceContext) {
+        return VarianceCalculator.variance(this, false, varianceContext);
     }
 
     public int getWindowSize() {
@@ -171,6 +199,7 @@ public class DecimalStatistics {
     public void removeMostRecentValue() {
         try {
             ra.discardMostRecentElements(1);
+            arrayIsChanged = true;
         } catch (MathIllegalArgumentException ex) {
             throw new MathIllegalStateException(LocalizedFormats.NO_DATA);
         }
@@ -178,7 +207,9 @@ public class DecimalStatistics {
     }
 
     public BigDecimal replaceMostRecentValue(BigDecimal number) {
-        return ra.substituteMostRecentElement(number);
+        BigDecimal replaced = ra.substituteMostRecentElement(number);
+        arrayIsChanged = true;
+        return replaced;
     }
 
     public void setWindowSize(int windowSize) {
@@ -194,11 +225,12 @@ public class DecimalStatistics {
         // the current number of elements.
         if (windowSize != INFINITE_WINDOW && windowSize < ra.getNumElements()) {
             ra.discardFrontElements(ra.getNumElements() - windowSize);
+            arrayIsChanged = true;
         }
     }
 
     /**
-     * Returns the exact sum of squares of values in the dataset.
+     * Returns the exact sum of squares of values in the data set.
      * If there are no elements then result will be 0.
      */
     public BigDecimal sumOfSquares() {
@@ -209,15 +241,4 @@ public class DecimalStatistics {
         return sum;
     }
 
-    private double[] toDoubleArray() {
-        double[] result = new double[(int) getN()];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = ra.getElement(i).doubleValue();
-        }
-        return result;
-    }
-
-    public void setMathContext(MathContext mathContext) {
-        this.mathContext = mathContext;
-    }
 }
