@@ -57,7 +57,7 @@ public class SquareRootTest {
         // the total number of roots to compute equals to the product
         // of these 4 numbers multiplied by 5 if all rounding modes are tested!
         int integerPlaces = 1000;
-        int fractionalPlaces = 4000;
+        int fractionalPlaces = 7000;
         int sampleSize = 10;
         int numOfContexts = 10;
         boolean testAllRoundingModes = true;
@@ -90,15 +90,6 @@ public class SquareRootTest {
                                     "\n the result is not equal to rounding of the exact sqrt.";
                             System.out.println(msg);
                         }
-                        if (sqrt.precision() != sqrtContext.getPrecision()) {
-                            String msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
-                                    "\n precision = " + sqrtContext.getPrecision() +
-                                    "\n rounding mode = " + sqrtContext.getRoundingMode() +
-                                    "\n result wrong precision = " + sqrt.precision();
-                            System.out.println(msg);
-                        }
-                        //Assert.assertTrue(msg, rounded.compareTo(sqrt) == 0);
-
 
                         for (int contextCounter = 0; contextCounter < numOfContexts; contextCounter++) {
 
@@ -116,7 +107,7 @@ public class SquareRootTest {
                                             "\n the result is not equal to rounding of the exact sqrt.";
                                     System.out.println(msg);
                                 }
-                                if (sqrt.precision() != sqrtContext.getPrecision()) {
+                                if (exactSqrt.compareTo(BigDecimal.ZERO) != 0 && sqrt.precision() != sqrtContext.getPrecision()) {
                                     String msg = "Error for: \n exact sqrt = " + exactSqrt.toPlainString() +
                                             "\n precision = " + sqrtContext.getPrecision() +
                                             "\n rounding mode = " + sqrtContext.getRoundingMode() +

@@ -149,4 +149,36 @@ public class BigDecimalGenerator {
         return strs;
     }
 
+    public static List<String> generateUniformStr(int integer, int fractional, int length) {
+        List<String> list = new ArrayList<>(length);
+        for (int i = 0; i < length; i++) {
+            list.add(generateDecimal(integer, fractional));
+        }
+        return list;
+    }
+
+    public static BigDecimal[] toBigDecimal(List<String> numbers) {
+        BigDecimal[] decimals = new BigDecimal[numbers.size()];
+        for (int i = 0; i < numbers.size(); i++) {
+            decimals[i] = new BigDecimal(numbers.get(i));
+        }
+        return decimals;
+    }
+
+    public static AxibaseDecimal[] toAxibaseDecimal(List<String> numbers) {
+        AxibaseDecimal[] decimals = new AxibaseDecimal[numbers.size()];
+        for (int i = 0; i < numbers.size(); i++) {
+            decimals[i] = new AxibaseDecimal(numbers.get(i));
+        }
+        return decimals;
+    }
+
+    public static double[] toDouble(List<String> numbers) {
+        double[] doubles = new double[numbers.size()];
+        for (int i = 0; i < numbers.size(); i++) {
+            doubles[i] = Double.parseDouble(numbers.get(i));
+        }
+        return doubles;
+    }
+
 }

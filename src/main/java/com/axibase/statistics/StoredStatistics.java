@@ -107,8 +107,7 @@ public class StoredStatistics implements Statistics {
     }
 
     /**
-     * Returns the mean value of the data set and uses the mathContext to
-     * to get a chosen precision and rounding mode by supplying an appropriate MathContext
+     * Returns the mean value of the data set and use the provided mathContext for rounding.
      * If there are no elements then result will be null.
      */
     public BigDecimal mean(MathContext mathContext) {
