@@ -14,39 +14,94 @@ public class AxibaseDecimal implements Comparable<AxibaseDecimal> {
     }
 
     public AxibaseDecimal(String str) {
-        this.parse(str);
-    }
-
-    /**
-     * Convert string to AxibaseDecimal. Use dot character as delimiter: 23.45
-     * @param str string for conversion.
-     *            The method extracts significand and exponent from the string and produces normalized AxibaseDecimal.
-     *            So significand (a long number) is chosen so that it is not divisible by 10.
-     */
-    public void parse(String str) {
 
         char[] chars = str.toCharArray();
-        int n = chars.length;
-        int lastIndex = n - 1;
+        int lastIndex = chars.length - 1;
 
-        char[] digits = new char[n];
         int digitIndex = lastIndex;
 
         int sign = 1;
-        exponent = 0;
-        char c;
 
         for (int charIndex = lastIndex; charIndex >= 0; charIndex--) {
 
-            c = chars[charIndex];
+            char c = chars[charIndex];
+
+            if ('1' <= c && c <= '9') {
+                chars[digitIndex--] = c;
+                continue;
+            }
+
+            if (c == '0') {
+                if (digitIndex < lastIndex) {
+                    chars[digitIndex--] = c;
+                } else {
+                    exponent++;
+                }
+                continue;
+            }
+
+            if (c == '.') {
+                exponent = digitIndex - lastIndex;
+                continue;
+            }
+
+            if (c == '-') {
+                sign = -1;
+            }
+
+
+//            switch (c) {
+//                case '1':
+//                case '2':
+//                case '3':
+//                case '4':
+//                case '5':
+//                case '6':
+//                case '7':
+//                case '8':
+//                case '9':
+//                    chars[digitIndex--] = c;
+//                    break;
+//                case '0':
+//                    if (digitIndex < lastIndex) {
+//                        chars[digitIndex--] = c;
+//                    } else {
+//                        exponent++;
+//                    }
+//                    break;
+//                case '.':
+//                    exponent = digitIndex - lastIndex;
+//                    break;
+//                case '-':
+//                    sign = -1;
+//                    break;
+//                default:
+//                    throw new IllegalArgumentException();
+//            }
+        }
+
+        if (lastIndex > digitIndex) {
+            significand = sign * Long.valueOf(new String(chars, digitIndex + 1, lastIndex - digitIndex));
+        } else {
+            significand = 0L;
+            exponent = 0;
+        }
+    }
+
+    public void parse1(String str) {
+
+        char[] chars = str.toCharArray();
+        int lastIndex = chars.length - 1;
+
+        int digitIndex = lastIndex;
+
+        int sign = 1;
+
+        for (int charIndex = lastIndex; charIndex >= 0; charIndex--) {
+
+            char c = chars[charIndex];
+
             switch (c) {
-                case '0':
-                    if (digitIndex < lastIndex) {
-                        digits[digitIndex--] = c;
-                    } else {
-                        exponent++;
-                    }
-                    break;
                 case '1':
                 case '2':
                 case '3':
@@ -56,7 +111,14 @@ public class AxibaseDecimal implements Comparable<AxibaseDecimal> {
                 case '7':
                 case '8':
                 case '9':
-                    digits[digitIndex--] = c;
+                    chars[digitIndex--] = c;
+                    break;
+                case '0':
+                    if (digitIndex < lastIndex) {
+                        chars[digitIndex--] = c;
+                    } else {
+                        exponent++;
+                    }
                     break;
                 case '.':
                     exponent = digitIndex - lastIndex;
@@ -69,9 +131,147 @@ public class AxibaseDecimal implements Comparable<AxibaseDecimal> {
             }
         }
 
-        int numOfDigits = lastIndex - digitIndex;
-        if (numOfDigits > 0) {
-            significand = sign * Long.valueOf(new String(digits, digitIndex + 1, numOfDigits));
+        if (lastIndex > digitIndex) {
+            significand = sign * Long.valueOf(new String(chars, digitIndex + 1, lastIndex - digitIndex));
+        } else {
+            significand = 0L;
+            exponent = 0;
+        }
+    }
+
+//    public void parse2(String str) {
+//
+//        char[] chars = str.toCharArray();
+//        int lastIndex = chars.length - 1;
+//        char c;
+//
+//        while (lastIndex >= 0 && (c = chars[lastIndex--]) == '0') {
+//            exponent++;
+//        }
+//
+//        if ('1' <= c && c <= '9') {
+//
+//        }
+//
+//        if (c == '.') {
+//
+//        }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        int digitIndex = lastIndex;
+//        int pointIndex;
+//
+//        int sign = 1;
+//
+//        for (int charIndex = lastIndex; charIndex >= 0; charIndex--) {
+//
+//            char c = chars[charIndex];
+//
+//            switch (c) {
+//                case '1':
+//                case '2':
+//                case '3':
+//                case '4':
+//                case '5':
+//                case '6':
+//                case '7':
+//                case '8':
+//                case '9':
+//                    chars[digitIndex--] = c;
+//                    break;
+//                case '0':
+//                    if (digitIndex < lastIndex) {
+//                        chars[digitIndex--] = c;
+//                    } else {
+//                        exponent++;
+//                    }
+//                    break;
+//                case '.':
+//                    exponent = digitIndex - lastIndex;
+//                    break;
+//                case '-':
+//                    sign = -1;
+//                    break;
+//                default:
+//                    throw new IllegalArgumentException();
+//            }
+//        }
+//
+//        if (lastIndex > digitIndex) {
+//            significand = sign * Long.valueOf(new String(chars, digitIndex + 1, lastIndex - digitIndex));
+//        } else {
+//            significand = 0L;
+//            exponent = 0;
+//        }
+//    }
+
+    /**
+     * Convert string to AxibaseDecimal. Use dot character as delimiter: 23.45
+     * @param str string for conversion.
+     *            The method extracts significand and exponent from the string and produces normalized AxibaseDecimal.
+     *            So significand (a long number) is chosen so that it is not divisible by 10.
+     */
+    public void parse(String str) {
+
+        char[] chars = str.toCharArray();
+        int lastIndex = chars.length - 1;
+
+        int digitIndex = lastIndex;
+
+        int sign = 1;
+        exponent = 0;
+        char c;
+
+        for (int charIndex = lastIndex; charIndex >= 0; charIndex--) {
+
+            c = chars[charIndex];
+            switch (c) {
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    chars[digitIndex--] = c;
+                    break;
+                case '0':
+                    if (digitIndex < lastIndex) {
+                        chars[digitIndex--] = c;
+                    } else {
+                        exponent++;
+                    }
+                    break;
+                case '.':
+                    exponent = digitIndex - lastIndex;
+                    break;
+                case '-':
+                    sign = -1;
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+        }
+
+        if (lastIndex > digitIndex) {
+            significand = sign * Long.valueOf(new String(chars, digitIndex + 1, lastIndex - digitIndex));
         } else {
             significand = 0L;
             exponent = 0;
@@ -193,14 +393,14 @@ public class AxibaseDecimal implements Comparable<AxibaseDecimal> {
 
         switch (Long.signum(ySignif)) {
             case -1:
-                if (yExp > 18 || ySignif < negativeBoundaries[yExp]) {
+                if (x >= 0 || yExp > 18 || ySignif < negativeBoundaries[yExp]) {
                     return 1;
                 }
                 break;
             case 0:
                 return Long.signum(x);
             case 1:
-                if (yExp > 18 || ySignif > positiveBoundaries[yExp]) {
+                if (x <= 0 || yExp > 18 || ySignif > positiveBoundaries[yExp]) {
                     return -1;
                 }
                 break;

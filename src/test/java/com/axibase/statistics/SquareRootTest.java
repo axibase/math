@@ -29,9 +29,10 @@ public class SquareRootTest {
         }
 
         // do random test of big numbers with given number of digits (places)
+        Random generator = new Random();
         for (int places = 10; places < 501; places++) {
             for (int counter = 0; counter < 100; counter++) {
-                BigInteger number = new BigInteger(BigDecimalGenerator.generateInteger(places));
+                BigInteger number = new BigInteger(BigDecimalGenerator.generateInteger(places, generator).toString());
                 testIntNumber(number);
             }
         }
@@ -73,7 +74,7 @@ public class SquareRootTest {
                 }
                 for (int sampleCounter = 0; sampleCounter < sampleSize; sampleCounter++) {
 
-                    String str = BigDecimalGenerator.generateDecimal(before, after);
+                    String str = BigDecimalGenerator.generateDecimal(before, after, generator);
                     if (!str.equals("")) {
 
                         BigDecimal exactSqrt = new BigDecimal(str);

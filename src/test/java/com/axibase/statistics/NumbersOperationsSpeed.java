@@ -16,44 +16,53 @@ public class NumbersOperationsSpeed {
 
     public static void main(String[] args) {
         NumbersOperationsSpeed tester = new NumbersOperationsSpeed();
-        tester.testMinSpeed(0, 3, 10000000);
+        tester.testMinSpeed(7, 8, 10000000);
         //tester.testSpeed(3, 2, 10000000);
     }
 
     private void testMinSpeed(int integerDigits, int fractionalDigits, int length) {
 
         long start;
-        System.out.format("Speed test for %d numbers. Each number has %d digits before the decimal point and %d fractional digits %n",
-                length, integerDigits, fractionalDigits);
 
-        List<String> numbers = BigDecimalGenerator.generateUniformStr(integerDigits, fractionalDigits, length);
+        //List<String> numbers = BigDecimalGenerator.generateUniformStr(integerDigits, fractionalDigits, length);
+        List<String> numbers = BigDecimalGenerator.generateRandomStr(integerDigits, fractionalDigits, length);
+
+        System.out.format("Speed test for %d numbers.%n", length);
+        System.out.format("Each number has no more than %d digits before the decimal point and no more than %d fractional digits:%n",
+                integerDigits, fractionalDigits);
+        for (int i = 0; i < 5; i++) {
+            System.out.println(numbers.get(i));
+        }
+        System.out.println("...");
 
         start = System.currentTimeMillis();
         AxibaseDecimal[] axiDecimals = BigDecimalGenerator.toAxibaseDecimal(numbers);
-        System.out.println("AxibaseDecimals creation: " + (System.currentTimeMillis() - start));
+        System.out.println("AxibaseDecimals instantiation time: " + (System.currentTimeMillis() - start) + " ms.");
 
         start = System.currentTimeMillis();
         BigDecimal[] decimals = BigDecimalGenerator.toBigDecimal(numbers);
-        System.out.println("BigDecimals creation: " + (System.currentTimeMillis() - start));
+        System.out.println("BigDecimals instantiation time: " + (System.currentTimeMillis() - start) + " ms.");
 
         start = System.currentTimeMillis();
         double[] doubles = BigDecimalGenerator.toDouble(numbers);
-        System.out.println("Doubles creation: " + (System.currentTimeMillis() - start));
+        System.out.println("Doubles instantiation time: " + (System.currentTimeMillis() - start) + " ms.");
+
+        System.out.println("Minimums: ");
 
         start = System.currentTimeMillis();
         Double minDouble = min(doubles);
         doubleMinTime = System.currentTimeMillis() - start;
-        System.out.println(minDouble);
-
-        start = System.currentTimeMillis();
-        AxibaseDecimal minAxi = min(axiDecimals);
-        axiMinTime = System.currentTimeMillis() - start;
-        System.out.println(minAxi);
+        System.out.println("Doubles: " + minDouble);
 
         start = System.currentTimeMillis();
         BigDecimal minDecimal = min(decimals);
         decimalMinTime = System.currentTimeMillis() - start;
-        System.out.println(minDecimal);
+        System.out.println("BigDecimals: " + minDecimal);
+
+        start = System.currentTimeMillis();
+        AxibaseDecimal minAxi = min(axiDecimals);
+        axiMinTime = System.currentTimeMillis() - start;
+        System.out.println("AxibaseDecimals: " + minAxi);
 
         System.out.println("");
         System.out.format("BD/double: %.2f%n", (double) decimalMinTime / doubleMinTime);

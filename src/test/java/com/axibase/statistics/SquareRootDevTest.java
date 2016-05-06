@@ -200,11 +200,13 @@ public class SquareRootDevTest {
         boolean sqrtCoupledValid = true;
         boolean babylonianByIntValid = true;
 
+        Random generator = new Random();
+
         for (int before = 0; before < integerPlaces; before++) {
             for (int after = 0; after < fractionalPlaces; after++) {
                 for (int counter = 0; counter < sampleSize; counter++) {
 
-                    String str = BigDecimalGenerator.generateDecimal(before, after);
+                    String str = BigDecimalGenerator.generateDecimal(before, after, generator);
                     if (!str.equals("")) {
 
                         BigDecimal exactSqrt = new BigDecimal(str);
@@ -268,9 +270,10 @@ public class SquareRootDevTest {
         }
 
         // do random test of big numbers with given number of digits (places)
+        Random generator = new Random();
         for (int places = 10; places < 200; places++) {
             for (int counter = 0; counter < 1000; counter++) {
-                number = new BigInteger(BigDecimalGenerator.generateInteger(places));
+                number = new BigInteger(BigDecimalGenerator.generateInteger(places, generator).toString());
                 testBabylonianIntegerNumber(number);
             }
         }
@@ -338,7 +341,7 @@ public class SquareRootDevTest {
             Random generator = new Random();
             int integerPlaces = generator.nextInt(300);
             int fractionalPlaces = generator.nextInt(300);
-            String sqrt = BigDecimalGenerator.generateDecimal(integerPlaces, fractionalPlaces);
+            String sqrt = BigDecimalGenerator.generateDecimal(integerPlaces, fractionalPlaces, generator);
             if (!sqrt.equals("")) {
                 testSqureRoot(new BigDecimal(sqrt));
             }
@@ -392,10 +395,12 @@ public class SquareRootDevTest {
         int size = 100;
         int digits = 2000;
 
+        Random generator = new Random();
+
         List<BigInteger> integers = new ArrayList<>(size);
         List<BigDecimal> decimals = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            String str = BigDecimalGenerator.generateDecimal(digits, 0);
+            String str = BigDecimalGenerator.generateDecimal(digits, 0, generator);
             integers.add(new BigInteger(str));
             decimals.add(new BigDecimal(str));
         }
