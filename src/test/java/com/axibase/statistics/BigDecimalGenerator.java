@@ -207,14 +207,6 @@ public class BigDecimalGenerator {
         return decimals;
     }
 
-    public static AxibaseDecimal[] toAxibaseDecimal(List<String> numbers) {
-        AxibaseDecimal[] decimals = new AxibaseDecimal[numbers.size()];
-        for (int i = 0; i < numbers.size(); i++) {
-            decimals[i] = new AxibaseDecimal(numbers.get(i));
-        }
-        return decimals;
-    }
-
     public static double[] toDouble(List<String> numbers) {
         double[] doubles = new double[numbers.size()];
         for (int i = 0; i < numbers.size(); i++) {
