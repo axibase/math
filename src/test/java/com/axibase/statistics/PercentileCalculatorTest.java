@@ -10,7 +10,7 @@ import static java.math.BigDecimal.ONE;
 import static org.junit.Assert.*;
 
 /**
- * Created by mikhail on 05.04.16.
+ * test
  */
 public class PercentileCalculatorTest {
 
@@ -62,7 +62,7 @@ public class PercentileCalculatorTest {
         //Assert.assertEquals(value.compareTo(new BigDecimal("4.5")), 0);
 
         percentileCalculator = new PercentileCalculator(ticket_2353);
-        System.out.println("50 percentile: " + percentileCalculator.evaluate(new BigDecimal("0.5")));
+        System.out.println("50 getPercentile: " + percentileCalculator.evaluate(new BigDecimal("0.5")));
     }
 
     @Test

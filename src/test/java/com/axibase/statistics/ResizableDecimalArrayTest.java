@@ -540,16 +540,16 @@ public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
     @Test
     public void testCompute() {
         final ResizableDecimalArray a = new ResizableDecimalArray();
-        final int max = 20;
-        for (int i = 1; i <= max; i++) {
+        final int getMax = 20;
+        for (int i = 1; i <= getMax; i++) {
             a.setElement(i, new BigDecimal(i));
         }
 
         final MathArrays.Function add = new MathArrays.Function() {
             public double evaluate(BigDecimal[] a, int index, int num) {
                 double sum = 0;
-                final int max = index + num;
-                for (int i = index; i < max; i++) {
+                final int getMax = index + num;
+                for (int i = index; i < getMax; i++) {
                     sum += a[i];
                 }
                 return sum;
@@ -560,7 +560,7 @@ public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
         };
 
         final double sum = a.compute(add);
-        Assert.assertEquals(0.5 * max * (max + 1), sum, 0);
+        Assert.assertEquals(0.5 * getMax * (getMax + 1), sum, 0);
     }
     */
 

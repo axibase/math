@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 
 /**
  * Class implements statical methods to calculate variance and standard deviation of a data set.
- * Instead of the data set itself these methods use the Statistics object which
+ * Instead of the data set itself these methods use the StatisticalSummary object which
  * knows how to get basic statistics of the data set: number of elements,
  * sum of elements and sum of squares of elements.
  */
@@ -25,8 +25,8 @@ public class VarianceCalculator {
         if (engine.getN() == 1) {
             return BigDecimal.ZERO;
         }
-        BigDecimal sumOfSquares = engine.sumOfSquares();
-        BigDecimal squareOfSum = engine.sum().pow(2);
+        BigDecimal sumOfSquares = engine.getSumsq();
+        BigDecimal squareOfSum = engine.getSum().pow(2);
         BigDecimal N = BigDecimal.valueOf(engine.getN());
         BigDecimal numerator = N.multiply(sumOfSquares).subtract(squareOfSum);
         BigDecimal denominator = sample ? N.multiply(N.subtract(BigDecimal.ONE)) : N.pow(2);
@@ -58,8 +58,8 @@ public class VarianceCalculator {
         }
 
         // compute numerator and denominator of the sample variance
-        BigDecimal sumOfSquares = engine.sumOfSquares();
-        BigDecimal squareOfSum = engine.sum().pow(2);
+        BigDecimal sumOfSquares = engine.getSumsq();
+        BigDecimal squareOfSum = engine.getSum().pow(2);
         BigDecimal N = BigDecimal.valueOf(engine.getN());
         BigDecimal numerator = N.multiply(sumOfSquares).subtract(squareOfSum);
         BigDecimal denominator = sample ? N.multiply(N.subtract(BigDecimal.ONE)) : N.pow(2);

@@ -6,16 +6,18 @@ import org.apache.commons.math3.exception.util.LocalizedFormats;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 /**
+ * Maintains a dataset of values of a single variable and computes descriptive statistics based on stored data.
+ *
  * Analog of the DescriptiveStatistics class from
  * the org.apache.commons.math3.stat.descriptive package,
  * but uses BigDecimals instead of doubles.
  * The Apache's design and code is heavily used,
  * but the standard deviation method is substantially different.
  *
- * The Apache's DescriptiveStatistics class description is valid for the StoredStatistics also,
- * (but use the StreamStatistics class instead of Apache's SummaryStatistics):
+ * The Apache's DescriptiveStatistics class description is valid for this class also:
  * <blockquote cite="http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.html">
  * Maintains a dataset of values of a single variable and computes descriptive statistics based on stored data.
  * The windowSize property sets a limit on the number of values that can be stored in the dataset.
@@ -35,10 +37,13 @@ import java.math.MathContext;
  * If windowSize is not -1 and more values are added than can be stored in the data set, new values are added in a
  * "rolling" manner, with new values replacing the "oldest" values in the data set.
  */
-public class StoredStatistics implements Statistics {
+public class DescriptiveStatistics implements StatisticalSummary {
 
     private static final int INFINITE_WINDOW = -1;
     private int windowSize = INFINITE_WINDOW;
+
+    private static final MathContext DEFAULT_MATH_CONTEXT = new MathContext(16, RoundingMode.HALF_UP);
+    private MathContext mathContext = DEFAULT_MATH_CONTEXT;
 
     /** Store data values. */
     private ResizableDecimalArray ra = new ResizableDecimalArray();
@@ -47,17 +52,58 @@ public class StoredStatistics implements Statistics {
 
     private boolean arrayIsChanged = true;
 
-    public StoredStatistics() {
+    /**
+     * Creates instance with infinite data storage and default MathContext - 16 digits precision and
+     * HALF_UP rounding mode.
+     */
+    public DescriptiveStatistics() {
     }
 
-    public StoredStatistics(int windowSize) {
+    /**
+     * Creates instance with infinite data storage and provided MathContext.
+     */
+    public DescriptiveStatistics(MathContext mathContext) {
+        this.mathContext = mathContext;
+    }
+
+    /**
+     * Construct an instance with provided storage capacity (= windowSize) and default MathContext - 16 digits precision and
+     * HALF_UP rounding mode.
+     * @param windowSize
+     */
+    public DescriptiveStatistics(int windowSize) {
         setWindowSize(windowSize);
     }
 
-    public StoredStatistics(BigDecimal[] values) {
+    /**
+     * Construct an instance with provided storage capacity (= windowSize) and MathContext.
+     * @param windowSize
+     * @param
+     */
+    public DescriptiveStatistics(int windowSize, MathContext mathContext) {
+        setWindowSize(windowSize);
+        this.mathContext = mathContext;
+    }
+
+    /**
+     * Construct an instance with provided data and default MathContext.
+     * @param values
+     */
+    public DescriptiveStatistics(BigDecimal[] values) {
         if (values != null) {
             ra = new ResizableDecimalArray(values);
         }
+    }
+
+    /**
+     * Construct an instance with provided data and MathContext.
+     * @param values
+     */
+    public DescriptiveStatistics(BigDecimal[] values, MathContext mathContext) {
+        if (values != null) {
+            ra = new ResizableDecimalArray(values);
+        }
+        this.mathContext = mathContext;
     }
 
     /** Adds value to the data set. If the data set is at the maximum size i.e.,
@@ -85,6 +131,9 @@ public class StoredStatistics implements Statistics {
         arrayIsChanged = true;
     }
 
+    /**
+     * Returns the at the specified index.
+     */
     public BigDecimal getElement(int index) {
         return ra.getElement(index);
     }
@@ -92,7 +141,7 @@ public class StoredStatistics implements Statistics {
     /**
      * If there are no elements then result will be null.
      */
-    public BigDecimal max() {
+    public BigDecimal getMax() {
         BigDecimal max;
         if (getN() == 0) {
             return null;
@@ -106,21 +155,26 @@ public class StoredStatistics implements Statistics {
         return max;
     }
 
+    @Override
+    public BigDecimal getMean() {
+        return getMean(mathContext);
+    }
+
     /**
-     * Returns the mean value of the data set and use the provided mathContext for rounding.
+     * Returns the getMean value of the data set and use the provided mathContext for rounding.
      * If there are no elements then result will be null.
      */
-    public BigDecimal mean(MathContext mathContext) {
+    public BigDecimal getMean(MathContext mathContext) {
         if (getN() == 0) {
             return null;
         }
-        return sum().divide(new BigDecimal(getN()), mathContext);
+        return getSum().divide(new BigDecimal(getN()), mathContext);
     }
 
     /**
      * If there are no elements then result will be null.
      */
-    public BigDecimal min() {
+    public BigDecimal getMin() {
         BigDecimal min;
         if (getN() == 0) {
             return null;
@@ -143,10 +197,10 @@ public class StoredStatistics implements Statistics {
 
     /**
      * Evaluates p-th percentile of the stored data set.
-     * 0 <= p <= 1
+     * 0 <= p <= 100
      * Uses instance of {@link PercentileCalculator} for that.
      */
-    public BigDecimal percentile(BigDecimal p) {
+    public BigDecimal getPercentile(BigDecimal p) {
         if (arrayIsChanged) {
             percentileCalculator = new PercentileCalculator(this.ra.getElements());
             arrayIsChanged = false;
@@ -154,13 +208,23 @@ public class StoredStatistics implements Statistics {
         return percentileCalculator.evaluate(p);
     }
 
+    @Override
+    public BigDecimal getStandardDeviation() {
+        return getStandardDeviation(mathContext);
+    }
+
     /**
      * Returns the sample standard deviation of the data set.
      * If data set is empty the method returns null, if there is a single element
      * in the data set the method returns BigDecimal.ZERO.
      */
-    public BigDecimal sampleStdDev(MathContext stDevContext) {
+    public BigDecimal getStandardDeviation(MathContext stDevContext) {
         return VarianceCalculator.stdDev(this, true, stDevContext);
+    }
+
+    @Override
+    public BigDecimal getPopulationStandardDeviation() {
+        return getPopulationStandardDeviation(mathContext);
     }
 
     /**
@@ -168,7 +232,7 @@ public class StoredStatistics implements Statistics {
      * If data set is empty the method returns null, if there is a single element
      * in the data set the method returns BigDecimal.ZERO.
      */
-    public BigDecimal populationStdDev(MathContext stDevContext) {
+    public BigDecimal getPopulationStandardDeviation(MathContext stDevContext) {
         return VarianceCalculator.stdDev(this, false, stDevContext);
     }
 
@@ -176,12 +240,17 @@ public class StoredStatistics implements Statistics {
      * Returns exact sum of elements in the data set.
      * If there are no elements then result will be 0.
      */
-    public BigDecimal sum() {
+    public BigDecimal getSum() {
         BigDecimal sum = new BigDecimal(0);
         for (int i = 0; i < getN(); i++) {
             sum = sum.add(ra.getElement(i));
         }
         return sum;
+    }
+
+    @Override
+    public BigDecimal getVariance() {
+        return getVariance(mathContext);
     }
 
     /**
@@ -191,20 +260,25 @@ public class StoredStatistics implements Statistics {
      * If data set is empty the method returns null, if there is a single element
      * in the data set the method returns BigDecimal.ZERO.
      */
-    public BigDecimal sampleVariance(MathContext varianceContext) {
+    public BigDecimal getVariance(MathContext varianceContext) {
         return VarianceCalculator.variance(this, true, varianceContext);
+    }
+
+    @Override
+    public BigDecimal getPopulationVariance() {
+        return getPopulationVariance(mathContext);
     }
 
     /**
      * This method returns the population variance of the data set.
      * The population variance is the sum of the squared differences from the Mean
      * divided by n, where n is the number of elements in the data set.
-     * The population variance is a biased statistics, use the {@link #sampleVariance(MathContext)}
+     * The population variance is a biased statistics, use the {@link #getVariance(MathContext)}
      * to get unbiased sample variance.
      * If data set is empty the method returns null, if there is a single element
      * in the data set the method returns BigDecimal.ZERO.
      */
-    public BigDecimal populationVariance(MathContext varianceContext) {
+    public BigDecimal getPopulationVariance(MathContext varianceContext) {
         return VarianceCalculator.variance(this, false, varianceContext);
     }
 
@@ -249,7 +323,7 @@ public class StoredStatistics implements Statistics {
      * Returns the exact sum of squares of values in the data set.
      * If there are no elements then result will be 0.
      */
-    public BigDecimal sumOfSquares() {
+    public BigDecimal getSumsq() {
         BigDecimal sum = BigDecimal.ZERO;
         for (int i = 0; i < getN(); i++) {
             sum = sum.add(ra.getElement(i).pow(2));

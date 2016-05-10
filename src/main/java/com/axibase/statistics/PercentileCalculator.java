@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
+ * This class is used to calculate percentiles for data set of BigDecimals.
  * An instance of the class stores the copy of an array of BigDecimal values provided to the constructor.
  * Method evaluate(p) calculates the exact value of p-th percentile, 0 <= p <= 1.
  * An argument p can be String or BigDecimal number.
@@ -47,10 +48,10 @@ public class PercentileCalculator {
      * The algorithm implemented here works as follows:
      * <ol>
      * <li>Let <code>n</code> be the length of the (sorted) array and
-     * <code>0 <= p <= 1</code> be the desired percentile.</li>
+     * <code>0 <= p <= 1</code> be the desired getPercentile.</li>
      * <li>If <code> n = 1 </code> return the unique array element (regardless of
      * the value of <code>p</code>); otherwise </li>
-     * <li>Compute the estimated percentile position
+     * <li>Compute the estimated getPercentile position
      * <code> pos = p * (n + 1) </code> and the difference, <code>d</code>
      * between <code>pos</code> and <code>floor(pos)</code> (i.e. the fractional
      * part of <code>pos</code>).</li>
@@ -61,7 +62,7 @@ public class PercentileCalculator {
      * next element in the array.  Return <code>lower + d * (upper - lower)</code>
      * </li>
      * </ol>
-     * @param p the percentile value to compute, 0 <= p <= 1.
+     * @param p the getPercentile value to compute, 0 <= p <= 100.
      * @return the value of the statistic applied to the stored data.
      * If there are no data the method returns null.
      */
@@ -72,7 +73,7 @@ public class PercentileCalculator {
         if (storedData.length == 1) {
             return storedData[0];
         }
-        final BigDecimal pos = p.multiply(multiplier);
+        final BigDecimal pos = p.multiply(multiplier).movePointLeft(2);
         final BigDecimal floorPos = pos.setScale(0, BigDecimal.ROUND_DOWN);
         final int intPos = floorPos.intValue();
         final BigDecimal diff = pos.subtract(floorPos);

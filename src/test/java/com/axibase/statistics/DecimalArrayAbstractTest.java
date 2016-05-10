@@ -73,13 +73,13 @@ public class DecimalArrayAbstractTest {
                 ra.getNumElements());
         /*
         Assert.assertEquals(
-                "The max element should be 2.0",
+                "The getMax element should be 2.0",
                 BigDecimal.valueOf(2.0),
-                StatUtils.max(ra.getElements()));
+                StatUtils.getMax(ra.getElements()));
         Assert.assertEquals(
-                "The min element should be 1.0",
+                "The getMin element should be 1.0",
                 1.0,
-                StatUtils.min(ra.getElements()),
+                StatUtils.getMin(ra.getElements()),
                 Double.MIN_VALUE);
         */
 
@@ -107,11 +107,11 @@ public class DecimalArrayAbstractTest {
         da.addElement(122.0);
         da.addElement(1212.0);
 
-        Assert.assertEquals("Min should be -2.0", -2.0, StatUtils.min(da.getElements()), Double.MIN_VALUE);
+        Assert.assertEquals("Min should be -2.0", -2.0, StatUtils.getMin(da.getElements()), Double.MIN_VALUE);
         Assert.assertEquals(
                 "Max should be 1212.0",
                 1212.0,
-                StatUtils.max(da.getElements()),
+                StatUtils.getMax(da.getElements()),
                 Double.MIN_VALUE);
     }
     */

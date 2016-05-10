@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
+ * A variable length BigDecimals storage that automatically handles expanding and contracting as elements are added and removed.
  * Copy-pasted from
  * org.apache.commons.math3.util.ResizableDoubleArray
  * Deprecated methods and the <br/>

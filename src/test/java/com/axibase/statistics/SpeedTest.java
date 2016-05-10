@@ -1,7 +1,5 @@
 package com.axibase.statistics;
 
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -42,16 +40,16 @@ public class SpeedTest {
             double[] doubles = BigDecimalGenerator.toDouble(numbers);
             System.out.println("Numbers are generated.");
 
-            // measure time to construct Statistics objects
+            // measure time to construct StatisticalSummary objects
             long start = System.currentTimeMillis();
-            StoredStatistics stat1 = new StoredStatistics(decimals);
+            DescriptiveStatistics stat1 = new DescriptiveStatistics(decimals);
             long finish = System.currentTimeMillis();
             long duration = finish - start;
             long time = decimalTime.get("creation");
             decimalTime.put("creation", time + duration);
 
             start = System.currentTimeMillis();
-            DescriptiveStatistics stat2 = new DescriptiveStatistics(doubles);
+            org.apache.commons.math3.stat.descriptive.DescriptiveStatistics stat2 = new org.apache.commons.math3.stat.descriptive.DescriptiveStatistics(doubles);
             finish = System.currentTimeMillis();
             duration = finish - start;
             time = doubleTime.get("creation");
@@ -79,10 +77,10 @@ public class SpeedTest {
         printResults();
     }
 
-    private void testDecimalsSpeed(StoredStatistics stat, MathContext rounding, boolean writeResults) {
+    private void testDecimalsSpeed(DescriptiveStatistics stat, MathContext rounding, boolean writeResults) {
 
         long start = System.currentTimeMillis();
-        stat.max();
+        stat.getMax();
         long finish = System.currentTimeMillis();
         if (writeResults) {
             long duration = finish - start;
@@ -91,7 +89,7 @@ public class SpeedTest {
         }
 
         start = System.currentTimeMillis();
-        stat.min();
+        stat.getMin();
         finish = System.currentTimeMillis();
         if (writeResults) {
             long duration = finish - start;
@@ -99,7 +97,7 @@ public class SpeedTest {
             decimalTime.put("min", time + duration);
         }
         start = System.currentTimeMillis();
-        stat.mean(rounding);
+        stat.getMean(rounding);
         finish = System.currentTimeMillis();
         if (writeResults) {
             long duration = finish - start;
@@ -107,7 +105,7 @@ public class SpeedTest {
             decimalTime.put("mean", time + duration);
         }
         start = System.currentTimeMillis();
-        stat.percentile(HALF);
+        stat.getPercentile(HALF);
         finish = System.currentTimeMillis();
         if (writeResults) {
             long duration = finish - start;
@@ -115,7 +113,7 @@ public class SpeedTest {
             decimalTime.put("percentile", time + duration);
         }
         start = System.currentTimeMillis();
-        stat.sampleVariance(rounding);
+        stat.getVariance(rounding);
         finish = System.currentTimeMillis();
         if (writeResults) {
             long duration = finish - start;
@@ -123,7 +121,7 @@ public class SpeedTest {
             decimalTime.put("variance", time + duration);
         }
         start = System.currentTimeMillis();
-        stat.sampleStdDev(rounding);
+        stat.getStandardDeviation(rounding);
         finish = System.currentTimeMillis();
         if (writeResults) {
             long duration = finish - start;
@@ -131,7 +129,7 @@ public class SpeedTest {
             decimalTime.put("standardDeviation", time + duration);
         }
         start = System.currentTimeMillis();
-        stat.sum();
+        stat.getSum();
         finish = System.currentTimeMillis();
         if (writeResults) {
             long duration = finish - start;
@@ -141,7 +139,7 @@ public class SpeedTest {
     }
 
 
-    private void testDoubleSpeed(DescriptiveStatistics stat, boolean writeResults) {
+    private void testDoubleSpeed(org.apache.commons.math3.stat.descriptive.DescriptiveStatistics stat, boolean writeResults) {
 
         long start = System.currentTimeMillis();
         stat.getMax();
