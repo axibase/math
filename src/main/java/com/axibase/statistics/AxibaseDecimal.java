@@ -13,6 +13,10 @@ public class AxibaseDecimal implements Comparable<AxibaseDecimal> {
     public AxibaseDecimal() {
     }
 
+
+    /**
+     * @param str String representation of a decimal number.
+     */
     public AxibaseDecimal(String str) {
         StringBuilder digits = new StringBuilder(str);
         int dotIndex = digits.indexOf(".");
