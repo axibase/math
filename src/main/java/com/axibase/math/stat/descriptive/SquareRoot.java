@@ -44,7 +44,6 @@ public class SquareRoot {
         BigDecimal sqrt = new BigDecimal(intSqrt, sqrtScale);
 
         BigDecimal sqrtAndHalf = sqrt.add(new BigDecimal("0.5").scaleByPowerOfTen(-sqrtScale));
-        //BigDecimal sqrtAndHalf = new BigDecimal(intSqrt.multiply(BigInteger.TEN).add(new BigInteger("5")), sqtScale + 1 );
 
         BigInteger intSqrtPlus = intSqrt.add(BigInteger.ONE);
         // in our situation rounding can only change representation of the number but not the value
@@ -62,11 +61,6 @@ public class SquareRoot {
 
             case DOWN:
             case FLOOR:
-                //this case is impossible - just return sqrt
-                //squared = intSqrtPlus.multiply(intSqrtPlus);
-                //if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
-                //    return sqrtPlus;
-                //}
                 return sqrt;
 
             case HALF_UP:
@@ -102,11 +96,6 @@ public class SquareRoot {
                 if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
                     return sqrt;
                 }
-                // this case is impossible
-                //squared = squared.add(new BigInteger("2").multiply(intSqrt)).add(BigInteger.ONE);
-                //if (new BigDecimal(squared, roundedNumber.scale()).compareTo(number) == 0) {
-                //    return sqrtPlus;
-                //}
                 String msg = "The square root of the number " + number.toPlainString() +
                         " has infinitely many digits, so finite precision and rounding mode are mandatory.";
                 throw new ArithmeticException(msg);
