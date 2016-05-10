@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e5badb0-e35c-485b-9f32-298367463968" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/StoredStatisticsTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/LongExperiments.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/AxibaseDecimalTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/AxibaseDecimal.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/AxibaseDecimal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/BigDecimalGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/axibase/statistics/BigDecimalGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/experiments/LongDivision.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/LongDivision.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/NumbersOperationsSpeed.java" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/NumbersOperationsSpeed.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/PercentileCalculatorTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/PercentileCalculatorTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootDevTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootDevTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java" />
     </list>
     <ignored path="DescriptiveStatistics.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +32,30 @@
       <file leaf-file-name="NumbersOperationsSpeed.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/NumbersOperationsSpeed.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6708075">
-              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.44720498">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AxibaseDecimal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/AxibaseDecimal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AxibaseDecimalTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/AxibaseDecimalTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,10 +118,12 @@
         <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootDevTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/BigDecimalGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/LongDivision.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/NumbersOperationsSpeed.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/AxibaseDecimal.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/PercentileCalculatorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/StoredStatisticsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/experiments/LongExperiments.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/AxibaseDecimalTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/axibase/statistics/AxibaseDecimal.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/axibase/statistics/NumbersOperationsSpeed.java" />
       </list>
     </option>
   </component>
@@ -285,7 +305,7 @@
       <recent name="com.axibase.statistics" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StoredStatisticsTest.testPercentile">
+  <component name="RunManager" selected="Application.NumbersOperationsSpeed">
     <configuration default="false" name="SquareRootTest.testRandomBabylonianDec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -332,52 +352,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="LongDivision" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="experiments.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="experiments.LongDivision" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DescriptiveStatistics" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="PercentileCalculatorTest.testEvaluate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.axibase.statistics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="DescriptiveStatistics" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.axibase.statistics" />
-      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.PercentileCalculatorTest" />
-      <option name="METHOD_NAME" value="testEvaluate" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="StoredStatisticsTest.testPercentile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -391,6 +365,52 @@
       <option name="PACKAGE_NAME" value="com.axibase.statistics" />
       <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.StoredStatisticsTest" />
       <option name="METHOD_NAME" value="testPercentile" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="LongExperiments" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="experiments.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="experiments.LongExperiments" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DescriptiveStatistics" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="AxibaseDecimalTest.testConstructor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.axibase.statistics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="DescriptiveStatistics" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.axibase.statistics" />
+      <option name="MAIN_CLASS_NAME" value="com.axibase.statistics.AxibaseDecimalTest" />
+      <option name="METHOD_NAME" value="testConstructor" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -649,17 +669,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testRandomBabylonianDec" />
       <item index="1" class="java.lang.String" itemvalue="Application.NumbersOperationsSpeed" />
-      <item index="2" class="java.lang.String" itemvalue="Application.LongDivision" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.PercentileCalculatorTest.testEvaluate" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.StoredStatisticsTest.testPercentile" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.StoredStatisticsTest.testPercentile" />
+      <item index="3" class="java.lang.String" itemvalue="Application.LongExperiments" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.AxibaseDecimalTest.testConstructor" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.StoredStatisticsTest.testPercentile" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.PercentileCalculatorTest.testEvaluate" />
-        <item index="2" class="java.lang.String" itemvalue="Application.NumbersOperationsSpeed" />
-        <item index="3" class="java.lang.String" itemvalue="Application.LongDivision" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testRandomBabylonianDec" />
+        <item index="0" class="java.lang.String" itemvalue="Application.NumbersOperationsSpeed" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AxibaseDecimalTest.testConstructor" />
+        <item index="2" class="java.lang.String" itemvalue="Application.LongExperiments" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SquareRootTest.testRandomBabylonianDec" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.StoredStatisticsTest.testPercentile" />
       </list>
     </recent_temporary>
   </component>
@@ -775,33 +795,39 @@
       <option name="project" value="LOCAL" />
       <updated>1462531470809</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="To store current state.">
+      <created>1462556317528</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1462556317528</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 03m 18s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="AxibaseDecimalTest_testConstructor - 2016.05.10 at 11h 02m 27s.xml">
+      <configuration name="AxibaseDecimalTest.testConstructor" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 04m 07s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="AxibaseDecimalTest_testConstructor - 2016.05.10 at 11h 03m 23s.xml">
+      <configuration name="AxibaseDecimalTest.testConstructor" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 04m 23s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="AxibaseDecimalTest_testConstructor - 2016.05.10 at 11h 05m 01s.xml">
+      <configuration name="AxibaseDecimalTest.testConstructor" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 04m 59s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="AxibaseDecimalTest_testConstructor - 2016.05.10 at 11h 05m 50s.xml">
+      <configuration name="AxibaseDecimalTest.testConstructor" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 05m 08s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="AxibaseDecimalTest_testConstructor - 2016.05.10 at 11h 26m 10s.xml">
+      <configuration name="AxibaseDecimalTest.testConstructor" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 05m 17s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="AxibaseDecimalTest_testConstructor - 2016.05.10 at 11h 37m 50s.xml">
+      <configuration name="AxibaseDecimalTest.testConstructor" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 05m 30s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="AxibaseDecimalTest_testConstructor - 2016.05.10 at 11h 38m 13s.xml">
+      <configuration name="AxibaseDecimalTest.testConstructor" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PercentileCalculatorTest_testEvaluate - 2016.05.06 at 20h 05m 38s.xml">
-      <configuration name="PercentileCalculatorTest.testEvaluate" configurationId="JUnit" />
+    <history-entry file="SquareRootTest_testRandomBabylonianDec - 2016.05.10 at 09h 33m 49s.xml">
+      <configuration name="SquareRootTest.testRandomBabylonianDec" configurationId="JUnit" />
     </history-entry>
     <history-entry file="StoredStatisticsTest_testPercentile - 2016.05.06 at 20h 08m 32s.xml">
       <configuration name="StoredStatisticsTest.testPercentile" configurationId="JUnit" />
@@ -814,27 +840,27 @@
     <frame x="0" y="24" width="1920" height="1176" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56152344" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49902344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Panda Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19316968" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49902344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49609375" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6406844" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56178707" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298479" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Panda Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37072244" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
     </layout>
@@ -883,19 +909,12 @@
     <MESSAGE value="Code style, name refactoring." />
     <MESSAGE value="parse(String) of AxibaseDecimale is rewritten to be faster." />
     <MESSAGE value="Methods parse(String) and compareTo() of AxibaseDecimale is rewritten to be faster." />
-    <option name="LAST_COMMIT_MESSAGE" value="Methods parse(String) and compareTo() of AxibaseDecimale is rewritten to be faster." />
+    <MESSAGE value="To store current state." />
+    <option name="LAST_COMMIT_MESSAGE" value="To store current state." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/NumbersOperationsSpeed.java</url>
-          <line>192</line>
-          <properties />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="39" />
+      <option name="time" value="40" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -904,20 +923,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/Statistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/StoredStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/DoubleStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1100,13 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/BigDecExp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3737769">
-          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/SquareRootDev.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0215265">
@@ -1134,13 +1132,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8982387">
           <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/ReflectionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6516634">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1215,17 +1207,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35601267">
-          <caret line="76" column="93" selection-start-line="76" selection-start-column="93" selection-end-line="76" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/experiments/LongDivision.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1249,14 +1235,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4527163">
           <caret line="29" column="94" selection-start-line="26" selection-start-column="8" selection-end-line="29" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/AxibaseDecimal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.018108651">
-          <caret line="221" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1287,10 +1265,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/LongExperiments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20487805">
+          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+          <folding>
+            <element signature="e#139#140#0" expanded="false" />
+            <element signature="e#199#200#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/ReflectionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61569417">
+          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/BigDecExp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.96378267">
+          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/AxibaseDecimalTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/SquareRootTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="93" selection-start-line="76" selection-start-column="93" selection-end-line="76" selection-end-column="93" />
+          <folding>
+            <element signature="method#testConvert#0;class#SquareRootTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/axibase/statistics/AxibaseDecimal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/axibase/statistics/NumbersOperationsSpeed.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6708075">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.44720498">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

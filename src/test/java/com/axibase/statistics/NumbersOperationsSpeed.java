@@ -16,7 +16,7 @@ public class NumbersOperationsSpeed {
 
     public static void main(String[] args) {
         NumbersOperationsSpeed tester = new NumbersOperationsSpeed();
-        tester.testMinSpeed(7, 8, 10000000);
+        tester.testMinSpeed(8, 1, 10000000);
         //tester.testSpeed(3, 2, 10000000);
     }
 

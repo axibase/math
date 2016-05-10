@@ -14,78 +14,43 @@ public class AxibaseDecimal implements Comparable<AxibaseDecimal> {
     }
 
     public AxibaseDecimal(String str) {
-
-        char[] chars = str.toCharArray();
-        int lastIndex = chars.length - 1;
-
-        int digitIndex = lastIndex;
-
-        int sign = 1;
-
-        for (int charIndex = lastIndex; charIndex >= 0; charIndex--) {
-
-            char c = chars[charIndex];
-
-            if ('1' <= c && c <= '9') {
-                chars[digitIndex--] = c;
-                continue;
-            }
-
-            if (c == '0') {
-                if (digitIndex < lastIndex) {
-                    chars[digitIndex--] = c;
-                } else {
-                    exponent++;
-                }
-                continue;
-            }
-
-            if (c == '.') {
-                exponent = digitIndex - lastIndex;
-                continue;
-            }
-
-            if (c == '-') {
-                sign = -1;
-            }
-
-
-//            switch (c) {
-//                case '1':
-//                case '2':
-//                case '3':
-//                case '4':
-//                case '5':
-//                case '6':
-//                case '7':
-//                case '8':
-//                case '9':
-//                    chars[digitIndex--] = c;
-//                    break;
-//                case '0':
-//                    if (digitIndex < lastIndex) {
-//                        chars[digitIndex--] = c;
-//                    } else {
-//                        exponent++;
-//                    }
-//                    break;
-//                case '.':
-//                    exponent = digitIndex - lastIndex;
-//                    break;
-//                case '-':
-//                    sign = -1;
-//                    break;
-//                default:
-//                    throw new IllegalArgumentException();
-//            }
-        }
-
-        if (lastIndex > digitIndex) {
-            significand = sign * Long.valueOf(new String(chars, digitIndex + 1, lastIndex - digitIndex));
+        StringBuilder digits = new StringBuilder(str);
+        int dotIndex = digits.indexOf(".");
+        if (dotIndex >= 0) {
+            significand = Long.valueOf(digits.deleteCharAt(dotIndex).toString());
+            exponent = dotIndex - digits.length();
         } else {
-            significand = 0L;
+            significand = Long.valueOf(str);
             exponent = 0;
         }
+//        char[] chars = str.toCharArray();
+//        int dotPosition = -1;
+//        while (++dotPosition < chars.length) {
+//            if (chars[dotPosition] == '.') {
+//                break;
+//            }
+//        }
+//
+//        if (dotPosition < chars.length) {
+//            System.arraycopy(chars, 0, chars, 1, dotPosition);
+//            significand = Long.valueOf(new String(chars, 1, chars.length - 1));
+//            exponent =  dotPosition + 1 - chars.length;
+//        } else {
+//            significand = Long.valueOf(str);
+//            exponent = 0;
+//        }
+
+//        // TODO check for an AxibaseDecimalRepresentationException
+//        String[] splitted = str.split("\\.");
+//        if (splitted.length == 1) {
+//            significand = Long.parseLong(str);
+//            exponent = 0;
+//        } else {
+//            significand = Long.parseLong(splitted[0] + splitted[1]);
+//            exponent = -splitted[1].length();
+//        }
+//        //normalize();
+
     }
 
     public void parse1(String str) {
@@ -139,86 +104,50 @@ public class AxibaseDecimal implements Comparable<AxibaseDecimal> {
         }
     }
 
-//    public void parse2(String str) {
-//
-//        char[] chars = str.toCharArray();
-//        int lastIndex = chars.length - 1;
-//        char c;
-//
-//        while (lastIndex >= 0 && (c = chars[lastIndex--]) == '0') {
-//            exponent++;
-//        }
-//
-//        if ('1' <= c && c <= '9') {
-//
-//        }
-//
-//        if (c == '.') {
-//
-//        }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//        int digitIndex = lastIndex;
-//        int pointIndex;
-//
-//        int sign = 1;
-//
-//        for (int charIndex = lastIndex; charIndex >= 0; charIndex--) {
-//
-//            char c = chars[charIndex];
-//
-//            switch (c) {
-//                case '1':
-//                case '2':
-//                case '3':
-//                case '4':
-//                case '5':
-//                case '6':
-//                case '7':
-//                case '8':
-//                case '9':
-//                    chars[digitIndex--] = c;
-//                    break;
-//                case '0':
-//                    if (digitIndex < lastIndex) {
-//                        chars[digitIndex--] = c;
-//                    } else {
-//                        exponent++;
-//                    }
-//                    break;
-//                case '.':
-//                    exponent = digitIndex - lastIndex;
-//                    break;
-//                case '-':
-//                    sign = -1;
-//                    break;
-//                default:
-//                    throw new IllegalArgumentException();
-//            }
-//        }
-//
-//        if (lastIndex > digitIndex) {
-//            significand = sign * Long.valueOf(new String(chars, digitIndex + 1, lastIndex - digitIndex));
-//        } else {
-//            significand = 0L;
-//            exponent = 0;
-//        }
-//    }
+    public void parse2(String str) {
+        char[] chars = str.toCharArray();
+        int lastIndex = chars.length - 1;
+
+        int digitIndex = lastIndex;
+
+        int sign = 1;
+
+        for (int charIndex = lastIndex; charIndex >= 0; charIndex--) {
+
+            char c = chars[charIndex];
+
+            if ('1' <= c && c <= '9') {
+                chars[digitIndex--] = c;
+                continue;
+            }
+
+            if (c == '0') {
+                if (digitIndex < lastIndex) {
+                    chars[digitIndex--] = c;
+                } else {
+                    exponent++;
+                }
+                continue;
+            }
+
+            if (c == '.') {
+                exponent = digitIndex - lastIndex;
+                continue;
+            }
+
+            if (c == '-') {
+                sign = -1;
+            }
+        }
+
+        if (lastIndex > digitIndex) {
+            significand = sign * Long.valueOf(new String(chars, digitIndex + 1, lastIndex - digitIndex));
+        } else {
+            significand = 0L;
+            exponent = 0;
+        }
+    }
+
 
     /**
      * Convert string to AxibaseDecimal. Use dot character as delimiter: 23.45
