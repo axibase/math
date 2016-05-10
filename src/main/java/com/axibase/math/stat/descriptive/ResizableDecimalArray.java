@@ -1,4 +1,4 @@
-package com.axibase.statistics;
+package com.axibase.math.stat.descriptive;
 
 import org.apache.commons.math3.exception.*;
 import org.apache.commons.math3.exception.util.LocalizedFormats;

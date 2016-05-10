@@ -1,7 +1,5 @@
-package com.axibase.statistics;
+package com.axibase.math.stat.descriptive;
 
-import org.apache.commons.math3.stat.StatUtils;
-import org.apache.commons.math3.util.DoubleArray;
 import org.junit.Assert;
 import org.junit.Test;
 

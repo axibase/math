@@ -1,9 +1,8 @@
-package com.axibase.statistics;
+package com.axibase.math.stat.descriptive;
 
 import org.apache.commons.math3.distribution.IntegerDistribution;
 import org.apache.commons.math3.distribution.UniformIntegerDistribution;
 
-import org.apache.commons.math3.util.MathArrays;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

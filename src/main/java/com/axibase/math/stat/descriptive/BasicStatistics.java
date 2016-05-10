@@ -1,4 +1,4 @@
-package com.axibase.statistics;
+package com.axibase.math.stat.descriptive;
 
 import java.math.BigDecimal;
 
