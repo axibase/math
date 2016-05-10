@@ -11,8 +11,8 @@ import java.math.RoundingMode;
 /**
  * Maintains a dataset of values of a single variable and computes descriptive statistics based on stored data.
  *
- * Analog of the DescriptiveStatistics class from
- * the org.apache.commons.math3.stat.descriptive package,
+ * It is an analog of the DescriptiveStatistics class from
+ * the org.apache.commons.math4.stat.descriptive package,
  * but uses BigDecimals instead of doubles.
  * The Apache's design and code is heavily used,
  * but the standard deviation method is substantially different.
@@ -30,12 +30,6 @@ import java.math.RoundingMode;
  * Note: this class is not threadsafe. Use SynchronizedDescriptiveStatistics if concurrent access from multiple threads is required.
  * </>
  * </blockquote>
- * Maintains a data set of values of a single variable and computes descriptive statistics based on stored data.
- * The windowSize property sets a limit on the number of values that can be stored in the data set.
- * The default value INFINITE_WINDOW puts no limit on the size of the data set.
- * This value should be used with caution, as the backing store will grow without bound in this case.
- * If windowSize is not -1 and more values are added than can be stored in the data set, new values are added in a
- * "rolling" manner, with new values replacing the "oldest" values in the data set.
  */
 public class DescriptiveStatistics implements StatisticalSummary {
 
@@ -132,7 +126,7 @@ public class DescriptiveStatistics implements StatisticalSummary {
     }
 
     /**
-     * Returns the at the specified index.
+     * Returns the value at the specified index.
      */
     public BigDecimal getElement(int index) {
         return ra.getElement(index);
@@ -155,13 +149,17 @@ public class DescriptiveStatistics implements StatisticalSummary {
         return max;
     }
 
+    /**
+     * Returns the mean value of the data set and uses the default mathContext for rounding.
+     * If there are no elements then result will be null.
+     */
     @Override
     public BigDecimal getMean() {
         return getMean(mathContext);
     }
 
     /**
-     * Returns the getMean value of the data set and use the provided mathContext for rounding.
+     * Returns the mean value of the data set and uses the provided mathContext for rounding.
      * If there are no elements then result will be null.
      */
     public BigDecimal getMean(MathContext mathContext) {
@@ -172,6 +170,7 @@ public class DescriptiveStatistics implements StatisticalSummary {
     }
 
     /**
+     * Return the minimal value in the data set.
      * If there are no elements then result will be null.
      */
     public BigDecimal getMin() {
@@ -198,7 +197,6 @@ public class DescriptiveStatistics implements StatisticalSummary {
     /**
      * Evaluates p-th percentile of the stored data set.
      * 0 <= p <= 100
-     * Uses instance of {@link PercentileCalculator} for that.
      */
     public BigDecimal getPercentile(BigDecimal p) {
         if (arrayIsChanged) {

@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * For testing, generates big decimal numbers.
+ * Used for testing.
+ * Generates big decimal numbers.
  */
 public class BigDecimalGenerator {
 

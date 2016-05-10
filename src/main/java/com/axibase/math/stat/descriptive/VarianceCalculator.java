@@ -5,7 +5,7 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
- * Class lets calculate variance and standard deviation of a data set.
+ * Class has methods to calculate variance and standard deviation of a data set.
  * Instead of the data set itself these methods use the StatisticalSummary object which
  * knows how to get basic statistics of the data set: number of elements,
  * sum of elements and sum of squares of elements.

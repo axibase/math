@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 
 /**
+ * Tests.
  * This class contains test cases for the ResizableDecimalArray.
  */
 public class DecimalArrayAbstractTest {

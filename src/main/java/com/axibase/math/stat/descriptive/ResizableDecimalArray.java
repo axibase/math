@@ -11,12 +11,8 @@ import java.util.Arrays;
 
 /**
  * A variable length BigDecimals storage that automatically handles expanding and contracting as elements are added and removed.
- * Copy-pasted from
- * org.apache.commons.math3.util.ResizableDoubleArray
- * Deprecated methods and the <br/>
- * {@code public double compute(MathArrays.Function f)}
- * <br/>
- * method were removed.
+ * It is simplified version of org.apache.commons.math4.util.ResizableDoubleArray which hasn't
+ * the {@code compute(Function f)} method.
  * The array automatically handles expanding and contracting its internal storage
  * array as elements are added and removed.
  */
