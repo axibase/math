@@ -9,9 +9,8 @@ import java.math.MathContext;
  * the org.apache.commons.math3.stat.descriptive package for BigDecimal numbers.
  * It is implemented by the DescriptiveStatistics and SummaryStatistics classes.
  * As the methods of this class may return a decimal number with infinite number of digits,
- * the MathContext is used for rounding.
- * Then methods without MathContext arguments are used the implementation of this interface
- * should use its own MathContext.
+ * so the MathContext should be used for rounding.
+ * If a method hasn't a MathContext argument, then implementation will use its own MathContext.
  */
 public interface StatisticalSummary extends BasicStatistics {
 
