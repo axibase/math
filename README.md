@@ -1,6 +1,6 @@
 # Overview
 
-Drop-in replacement for Apache Commons Math Descriptive Statistics and Summary Statistics using BigDecimal instead of double.
+Drop-in replacement for Apache Commons Math Descriptive Statistics and Summary Statistics <br>using BigDecimal instead of double.
 
 See JavaDocs for implementation details.
 
