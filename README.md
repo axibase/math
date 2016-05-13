@@ -69,7 +69,7 @@ std256 = 0.642910050732863666384002069828844212260460246204216827153345125848752
 ### double
 
 ```java
-import org.apache.commons.math4.stat.descriptive;
+import org.apache.commons.math3.stat.descriptive;
 
 double[] numbers = {1.3, 0.3, 0.1};
 
@@ -130,7 +130,7 @@ BigDecimal std = stats.getStandardDeviation(rounding);
 ### double
 
 ```java
-import org.apache.commons.math4.stat.descriptive;
+import org.apache.commons.math3.stat.descriptive;
 
 // Get a SummaryStatistics instance
 SummaryStatistics stats = new SummaryStatistics();
