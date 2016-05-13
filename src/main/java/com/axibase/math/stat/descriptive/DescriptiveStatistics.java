@@ -17,10 +17,6 @@
 
 package com.axibase.math.stat.descriptive;
 
-import org.apache.commons.math3.exception.MathIllegalArgumentException;
-import org.apache.commons.math3.exception.MathIllegalStateException;
-import org.apache.commons.math3.exception.util.LocalizedFormats;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -44,7 +40,7 @@ import java.math.RoundingMode;
  * If windowSize is not INFINITE_WINDOW and more values are added than can be stored in the dataset,
  * new values are added in a "rolling" manner, with new values replacing the "oldest" values in the dataset.
  * <p>
- * Note: this class is not threadsafe. Use SynchronizedDescriptiveStatistics if concurrent access from multiple threads is required.
+ * Note: this class is not threadsafe.
  * </>
  * </blockquote>
  */
@@ -305,8 +301,8 @@ public class DescriptiveStatistics implements StatisticalSummary {
         try {
             ra.discardMostRecentElements(1);
             arrayIsChanged = true;
-        } catch (MathIllegalArgumentException ex) {
-            throw new MathIllegalStateException(LocalizedFormats.NO_DATA);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalStateException("no data");
         }
 
     }
@@ -319,8 +315,7 @@ public class DescriptiveStatistics implements StatisticalSummary {
 
     public void setWindowSize(int windowSize) {
         if (windowSize < 1 && windowSize != INFINITE_WINDOW) {
-            throw new MathIllegalArgumentException(
-                    LocalizedFormats.NOT_POSITIVE_WINDOW_SIZE, windowSize);
+            throw new IllegalArgumentException("window size must be positive (" + windowSize + ")");
         }
 
         this.windowSize = windowSize;
