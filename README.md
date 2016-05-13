@@ -82,15 +82,16 @@ double max = stats.getMax();
 double median = stats.getPercentile(50);
 double mean = stats.getMean();
 double std = stats.getStandardDeviation();
+double sum = stats.getSum();
 ```
 
 ```
-size = 
-max =
-median = 
-mean = 
-std = 
-sum =
+size = 3
+max = 1.3
+median = 0.3
+mean = 0.5666666666666667
+std = 0.6429100507328638
+sum = 1.7000000000000002
 ```
 
 ## SummaryStatistics
