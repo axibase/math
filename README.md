@@ -36,9 +36,9 @@ BigDecimal[] numbers = {new BigDecimal("1.3"), new BigDecimal("0.3"), new BigDec
 DescriptiveStatistics stats = new DescriptiveStatistics(numbers);
 
 // Compute some statistics
-BigDecimal size = stats.getN();
+long size = stats.getN();
 BigDecimal max = stats.getMax();
-BigDecimal median = stats.getPercentile(50);
+BigDecimal median = stats.getPercentile(new BigDecimal("50"));
 
 BigDecimal mean = stats.getMean();
 BigDecimal std = stats.getStandardDeviation();
@@ -46,22 +46,23 @@ BigDecimal sum = stats.getSum();
 ```
 
 ```
-size = 
-max = 
-median = 
-mean = 
-std = 
-sum =
+size = 3
+max = 1.3
+median = 0.300
+mean = 0.5666666666666667
+std = 0.6429100507328637
+sum = 1.7
 ```
 
 ```java
 // Compute standard deviation with 256 digit precision
-MathContext context = 
-BigDecimal std = stats.getStandardDeviation(context);
+MathContext context = new MathContext(256, RoundingMode.HALF_UP);
+System.out.println("std256 = " stats.getStandardDeviation(context));
 ```
 
 ```
-std-256=
+std256 = 0.6429100507328636663840020698288442122604602462042168271533451258487524279112433148600036472862405727387582388938630659235005210461543930677311557061223125970622348551846400953679001533442110739077534147619453047556859898336326044546221595799048295894202745
+
 ```
 
 
@@ -76,7 +77,7 @@ double[] numbers = {1.3, 0.3, 0.1};
 DescriptiveStatistics stats = new DescriptiveStatistics(numbers);
 
 // Compute some statistics
-double size = stats.getN();
+long size = stats.getN();
 double max = stats.getMax();
 double median = stats.getPercentile(50);
 double mean = stats.getMean();
