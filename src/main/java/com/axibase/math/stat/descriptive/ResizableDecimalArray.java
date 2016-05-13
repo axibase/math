@@ -17,12 +17,6 @@
 
 package com.axibase.math.stat.descriptive;
 
-import org.apache.commons.math3.exception.*;
-import org.apache.commons.math3.exception.util.LocalizedFormats;
-import org.apache.commons.math3.util.FastMath;
-//import org.apache.commons.math3.util.MathArrays;
-import org.apache.commons.math3.util.MathUtils;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 
@@ -114,9 +108,9 @@ public class ResizableDecimalArray {
      *  <li>{@code contractionCriterion = 2.5}</li>
      * </ul>
      * @param initialCapacity Initial size of the internal storage array.
-     * @throws MathIllegalArgumentException if {@code initialCapacity <= 0}.
+     * @throws IllegalArgumentException if {@code initialCapacity <= 0}.
      */
-    public ResizableDecimalArray(int initialCapacity) throws MathIllegalArgumentException {
+    public ResizableDecimalArray(int initialCapacity) throws IllegalArgumentException {
         this(initialCapacity, DEFAULT_EXPANSION_FACTOR);
     }
 
@@ -139,11 +133,10 @@ public class ResizableDecimalArray {
      * @param initialCapacity Initial size of the internal storage array.
      * @param expansionFactor The array will be expanded based on this
      * parameter.
-     * @throws MathIllegalArgumentException if parameters are not valid.
+     * @throws IllegalArgumentException if parameters are not valid.
      */
-    public ResizableDecimalArray(int initialCapacity,
-                                double expansionFactor)
-            throws MathIllegalArgumentException {
+    public ResizableDecimalArray(int initialCapacity, double expansionFactor)
+            throws IllegalArgumentException {
         this(initialCapacity,
                 expansionFactor,
                 DEFAULT_CONTRACTION_DELTA + expansionFactor);
@@ -166,12 +159,12 @@ public class ResizableDecimalArray {
      * @param expansionFactor The array will be expanded based on this
      * parameter.
      * @param contractionCriterion Contraction criterion.
-     * @throws MathIllegalArgumentException if the parameters are not valid.
+     * @throws IllegalArgumentException if the parameters are not valid.
      */
     public ResizableDecimalArray(int initialCapacity,
                                 double expansionFactor,
                                 double contractionCriterion)
-            throws MathIllegalArgumentException {
+            throws IllegalArgumentException {
         this(initialCapacity,
                 expansionFactor,
                 contractionCriterion,
@@ -196,17 +189,16 @@ public class ResizableDecimalArray {
      * @param contractionCriterion Contraction criteria.
      * @param expansionMode Expansion mode.
      * @param data Initial contents of the array.
-     * @throws MathIllegalArgumentException if the parameters are not valid.
+     * @throws IllegalArgumentException if the parameters are not valid.
      */
     public ResizableDecimalArray(int initialCapacity,
                                 double expansionFactor,
                                 double contractionCriterion,
                                 ExpansionMode expansionMode,
                                 BigDecimal ... data)
-            throws MathIllegalArgumentException {
+            throws IllegalArgumentException {
         if (initialCapacity <= 0) {
-            throw new NotStrictlyPositiveException(LocalizedFormats.INITIAL_CAPACITY_NOT_POSITIVE,
-                    initialCapacity);
+            throw new IllegalArgumentException();
         }
         checkContractExpand(contractionCriterion, expansionFactor);
 
@@ -252,14 +244,15 @@ public class ResizableDecimalArray {
      * But internal array stores links to the same (!) instances of BigDecimals as the original.
      * As BigDecimals are immutable it is admissible.
      * Needs to acquire synchronization lock on original. Original may not be null;
-     * otherwise a {@link NullArgumentException} is thrown.
+     * otherwise a {@link IllegalArgumentException} is thrown.
      *
      * @param original array to copy
-     * @exception NullArgumentException if original is null
+     * @exception IllegalArgumentException if original is null
      */
-    public ResizableDecimalArray(ResizableDecimalArray original)
-            throws NullArgumentException {
-        MathUtils.checkNotNull(original);
+    public ResizableDecimalArray(ResizableDecimalArray original) throws IllegalArgumentException {
+        if(original == null) {
+            throw new IllegalArgumentException();
+        }
         copy(original, this);
     }
 
@@ -331,13 +324,12 @@ public class ResizableDecimalArray {
      *
      * @param value New value to substitute for the most recently added value
      * @return the value that has been replaced in the array.
-     * @throws MathIllegalStateException if the array is empty
+     * @throws IllegalStateException if the array is empty
      */
     public synchronized BigDecimal substituteMostRecentElement(BigDecimal value)
-            throws MathIllegalStateException {
+            throws IllegalStateException {
         if (numElements < 1) {
-            throw new MathIllegalStateException(
-                    LocalizedFormats.CANNOT_SUBSTITUTE_ELEMENT_FROM_EMPTY_ARRAY);
+            throw new IllegalStateException("cannot substitute an element from an empty array");
         }
 
         final int substIndex = startIndex + (numElements - 1);
@@ -355,32 +347,28 @@ public class ResizableDecimalArray {
      *
      * @param contraction Criterion to be checked.
      * @param expansion Factor to be checked.
-     * @throws NumberIsTooSmallException if {@code contraction < expansion}.
-     * @throws NumberIsTooSmallException if {@code contraction <= 1}.
-     * @throws NumberIsTooSmallException if {@code expansion <= 1 }.
+     * @throws IllegalArgumentException if {@code contraction < expansion}.
+     * @throws IllegalArgumentException if {@code contraction <= 1}.
+     * @throws IllegalArgumentException if {@code expansion <= 1 }.
      */
     protected void checkContractExpand(double contraction,
                                        double expansion)
-            throws NumberIsTooSmallException {
-        if (contraction < expansion) {
-            final NumberIsTooSmallException e = new NumberIsTooSmallException(contraction, 1, true);
-            e.getContext().addMessage(LocalizedFormats.CONTRACTION_CRITERIA_SMALLER_THAN_EXPANSION_FACTOR,
-                    contraction, expansion);
-            throw e;
+            throws IllegalArgumentException {
+        if (contraction < expansion || contraction <= 1 || expansion <= 1) {
+            throw new IllegalArgumentException("contraction criteria " + contraction +
+                    " smaller than the expansion factor " + expansion +
+                    ".  This would lead to a never ending loop of expansion and contraction" +
+                    " as a newly expanded internal storage array would immediately satisfy the criteria for contraction.");
         }
 
         if (contraction <= 1) {
-            final NumberIsTooSmallException e = new NumberIsTooSmallException(contraction, 1, false);
-            e.getContext().addMessage(LocalizedFormats.CONTRACTION_CRITERIA_SMALLER_THAN_ONE,
-                    contraction);
-            throw e;
+            throw new IllegalArgumentException("contraction criteria smaller than one " + contraction +
+                    ".  This would lead to a never ending loop of expansion and contraction as an internal storage " +
+                    "array length equal to the number of elements would satisfy the contraction criteria.");
         }
 
         if (expansion <= 1) {
-            final NumberIsTooSmallException e = new NumberIsTooSmallException(contraction, 1, false);
-            e.getContext().addMessage(LocalizedFormats.EXPANSION_FACTOR_SMALLER_THAN_ONE,
-                    expansion);
-            throw e;
+            throw new IllegalArgumentException("expansion factor smaller than one (" + expansion + ")");
         }
     }
 
@@ -416,10 +404,9 @@ public class ResizableDecimalArray {
      * if i exceeds numElements.
      *
      * @param i  the number of elements to discard from the front of the array
-     * @throws MathIllegalArgumentException if i is greater than numElements.
+     * @throws IllegalArgumentException if i is greater than numElements.
      */
-    public synchronized void discardFrontElements(int i)
-            throws MathIllegalArgumentException {
+    public synchronized void discardFrontElements(int i) throws IllegalArgumentException {
         discardExtremeElements(i, true);
     }
 
@@ -431,10 +418,9 @@ public class ResizableDecimalArray {
      * if i exceeds numElements.
      *
      * @param i  the number of elements to discard from the end of the array
-     * @throws MathIllegalArgumentException if i is greater than numElements.
+     * @throws IllegalArgumentException if i is greater than numElements.
      */
-    public synchronized void discardMostRecentElements(int i)
-            throws MathIllegalArgumentException {
+    public synchronized void discardMostRecentElements(int i) throws IllegalArgumentException {
         discardExtremeElements(i,false);
     }
 
@@ -454,20 +440,16 @@ public class ResizableDecimalArray {
      * @param front true if elements are to be discarded from the front
      * of the array, false if elements are to be discarded from the end
      * of the array
-     * @throws MathIllegalArgumentException if i is greater than numElements.
+     * @throws IllegalArgumentException if i is greater than numElements.
      * @since 2.0
      */
-    private synchronized void discardExtremeElements(int i,
-                                                     boolean front)
-            throws MathIllegalArgumentException {
+    private synchronized void discardExtremeElements(int i, boolean front)
+            throws IllegalArgumentException {
         if (i > numElements) {
-            throw new MathIllegalArgumentException(
-                    LocalizedFormats.TOO_MANY_ELEMENTS_TO_DISCARD_FROM_ARRAY,
-                    i, numElements);
+            throw new IllegalArgumentException("cannot discard " + i + " elements from a "
+                    + numElements + " elements array");
         } else if (i < 0) {
-            throw new MathIllegalArgumentException(
-                    LocalizedFormats.CANNOT_DISCARD_NEGATIVE_NUMBER_OF_ELEMENTS,
-                    i);
+            throw new IllegalArgumentException("cannot discard a negative number of elements (" + i + ")");
         } else {
             // "Subtract" this number of discarded from numElements
             numElements -= i;
@@ -497,9 +479,9 @@ public class ResizableDecimalArray {
         // rounded up to 2 after the multiplication is performed.
         int newSize;
         if (expansionMode == ExpansionMode.MULTIPLICATIVE) {
-            newSize = (int) FastMath.ceil(internalArray.length * expansionFactor);
+            newSize = (int) Math.ceil(internalArray.length * expansionFactor);
         } else {
-            newSize = (int) (internalArray.length + FastMath.round(expansionFactor));
+            newSize = (int) (internalArray.length + Math.round(expansionFactor));
         }
         final BigDecimal[] tempArray = new BigDecimal[newSize];
 
@@ -693,15 +675,13 @@ public class ResizableDecimalArray {
      * array. This function will also expand the internal array as needed.
      *
      * @param i a new number of elements
-     * @throws MathIllegalArgumentException if <code>i</code> is negative.
+     * @throws IllegalArgumentException if <code>i</code> is negative.
      */
     public synchronized void setNumElements(int i)
-            throws MathIllegalArgumentException {
+            throws IllegalArgumentException {
         // If index is negative thrown an error.
         if (i < 0) {
-            throw new MathIllegalArgumentException(
-                    LocalizedFormats.INDEX_NOT_POSITIVE,
-                    i);
+            throw new IllegalArgumentException("index (" + i + ") is not positive");
         }
 
         // Test the new num elements, check to see if the array needs to be
@@ -736,19 +716,18 @@ public class ResizableDecimalArray {
      * <p>Obtains synchronization locks on both source and dest
      * (in that order) before performing the copy.</p>
      *
-     * <p>Neither source nor dest may be null; otherwise a {@link NullArgumentException}
+     * <p>Neither source nor dest may be null; otherwise a {@link IllegalArgumentException}
      * is thrown</p>
      *
      * @param source ResizableDecimalArray to copy
      * @param dest ResizableDecimalArray to replace with a copy of the source array
-     * @exception NullArgumentException if either source or dest is null
+     * @exception IllegalArgumentException if either source or dest is null
      *
      */
-    public static void copy(ResizableDecimalArray source,
-                            ResizableDecimalArray dest)
-            throws NullArgumentException {
-        MathUtils.checkNotNull(source);
-        MathUtils.checkNotNull(dest);
+    public static void copy(ResizableDecimalArray source, ResizableDecimalArray dest) throws IllegalArgumentException {
+        if(source == null || dest == null) {
+            throw new IllegalArgumentException("arguments should be not null");
+        }
         synchronized(source) {
             synchronized(dest) {
                 dest.contractionCriterion = source.contractionCriterion;
