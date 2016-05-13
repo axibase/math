@@ -4,6 +4,15 @@ BigDecimal implementation of [Apache Commons Math](https://commons.apache.org/pr
 
 See JavaDocs for implementation details.
 
+The following methods from Apache DescriptiveStatistics are _not_ implemented in this release:
+
+- getGeometricMean()
+- getKurtosis()
+- getQuadraticMean()
+- getSkewness()
+
+The MathContext object should be used for rounding in mean, variance, standard deviation methods since they may return an infitinite number of decimal digits.
+
 # License
 
 The project is released under version 2.0 of the [Apache License](LICENCE.md).
@@ -11,11 +20,6 @@ The project is released under version 2.0 of the [Apache License](LICENCE.md).
 # Examples
 
 ## DescriptiveStatistics
-The interface of the Axibase DescriptiveStatistics is the same as Apache's,
-but uses BigDecimal instead of double. As a result the MathContext object should 
-be used in some methods for rounding. <br>
-The Apache DescriptiveStatistics implements more statistics than the Axibase 
-DescriptiveStatistics.
 
 ### BigDecimal
 
@@ -24,7 +28,7 @@ import axibase.math.stat.descriptive;
 
 BigDecimal[] numbers = {new BigDecimal("0.01"), new BigDecimal("0.2"), new BigDecimal("-1.3")};
 
-// Get a DescriptiveStatistics instance
+// Get a DescriptiveStatistics instance with the default precision of 16 digits
 DescriptiveStatistics stats = new DescriptiveStatistics(numbers);
 
 // Compute some statistics
@@ -32,13 +36,20 @@ BigDecimal size = stats.getN();
 BigDecimal max = stats.getMax();
 BigDecimal median = stats.getPercentile(50);
 
-// Some of statistics can have infinite number of digits. 
-// So we should use MathContext to round them.
-// Let round result to 16 digits.
-MathContext rounding = new MathContext(16, RoundingMode.HALF_UP);
-BigDecimal mean = stats.getMean(rounding);
-BigDecimal std = stats.getStandardDeviation(rounding);
+BigDecimal mean = stats.getMean();
+BigDecimal std = stats.getStandardDeviation();
+BigDecimal sum = stats.getSum();
 ```
+
+```
+size = 
+max = 
+median = 
+mean = 
+std = 
+sum =
+```
+
 ### double
 
 ```java
@@ -57,9 +68,20 @@ double mean = stats.getMean();
 double std = stats.getStandardDeviation();
 ```
 
+```
+size = 
+max =
+median = 
+mean = 
+std = 
+sum =
+```
+
 ## SummaryStatistics
-The Axibase SummaryStatistics has the same interface as the Apache SummaryStatistics
+
+BigDecimal SummaryStatistics has the same interface as the Apache SummaryStatistics
 and is used to calculate statistics for a stream of numeric data.
+
 ### BigDecimal
 
 ```java
