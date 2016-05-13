@@ -58,7 +58,8 @@ double std = stats.getStandardDeviation();
 ```
 
 ## SummaryStatistics
-
+The Axibase SummaryStatistics has the same interface as the Apache SummaryStatistics
+and is used to calculate statistics for a stream of numeric data.
 ### BigDecimal
 
 ```java
@@ -108,5 +109,4 @@ double size = stats.getN();
 double max = stats.getMax();
 double mean = stats.getMean();
 double std = stats.getStandardDeviation();
-//double median = stats.getMedian(); <-- NOT AVAILABLE
 ```
