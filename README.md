@@ -14,6 +14,25 @@ The project is released under version 2.0 of the [Apache License](LICENCE.md).
 
 ### BigDecimal
 
+```java
+// Let we have a BigDecimal array.
+BigDecimal[] numbers = {new BigDecimal("0.01"), new BigDecimal("0.2"), new BigDecimal("-1.3")};
+
+// Get a DescriptiveStatistics instance which stores the numbers.
+DescriptiveStatistics stats = new DescriptiveStatistics(numbers);
+
+// Compute some statistics
+BigDecimal cardinality = stats.getN();
+BigDecimal max = stats.getMax();
+BigDecimal median = stats.getPercentile(50);
+
+// Some of statistics can have infinite number of digits. So we should use MathContext to round them.
+// Let round result to 16 digits.
+MathContext rounding = new MathContext(16, RoundingMode.HALF_UP);
+BigDecimal mean = stats.getMean(rounding);
+BigDecimal std = stats.getStandardDeviation();
+```
+
 
 ### double
 
