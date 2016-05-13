@@ -6,7 +6,7 @@ See JavaDocs for implementation details.
 
 # License
 
-The project is released under version 2.0 of the [Apache License](./LICENCE.md).
+The project is released under version 2.0 of the [Apache License](LICENCE.md).
 
 # Examples
 
