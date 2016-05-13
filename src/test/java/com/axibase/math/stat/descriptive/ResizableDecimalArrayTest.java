@@ -17,15 +17,13 @@
 
 package com.axibase.math.stat.descriptive;
 
-import org.apache.commons.math3.distribution.IntegerDistribution;
-import org.apache.commons.math3.distribution.UniformIntegerDistribution;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 /**
  * test
@@ -307,8 +305,8 @@ public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
         ResizableDecimalArray eDA2 = new ResizableDecimalArray(2);
         Assert.assertEquals("Initial number of elements should be 0", 0, eDA2.getNumElements());
 
-        final IntegerDistribution randomData = new UniformIntegerDistribution(100, 1000);
-        final int iterations = randomData.sample();
+        Random generator = new Random();
+        final int iterations = 100 + generator.nextInt(500);
 
         for( int i = 0; i < iterations; i++) {
             eDA2.addElement( new BigDecimal(i) );
@@ -329,8 +327,8 @@ public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
         ResizableDecimalArray eDA3 = new ResizableDecimalArray(3, 3.0, 3.5);
         Assert.assertEquals("Initial number of elements should be 0", 0, eDA3.getNumElements() );
 
-        final IntegerDistribution randomData = new UniformIntegerDistribution(100, 3000);
-        final int iterations = randomData.sample();
+        Random generator = new Random();
+        final int iterations = 100 + generator.nextInt(3000);
 
         for( int i = 0; i < iterations; i++) {
             eDA3.addElement( new BigDecimal(i) );

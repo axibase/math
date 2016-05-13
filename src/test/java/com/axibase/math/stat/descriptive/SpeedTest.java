@@ -66,7 +66,7 @@ public class SpeedTest {
             decimalTime.put("creation", time + duration);
 
             start = System.currentTimeMillis();
-            org.apache.commons.math3.stat.descriptive.DescriptiveStatistics stat2 = new org.apache.commons.math3.stat.descriptive.DescriptiveStatistics(doubles);
+            // org.apache.commons.math3.stat.descriptive.DescriptiveStatistics stat2 = new org.apache.commons.math3.stat.descriptive.DescriptiveStatistics(doubles);
             finish = System.currentTimeMillis();
             duration = finish - start;
             time = doubleTime.get("creation");
@@ -84,10 +84,10 @@ public class SpeedTest {
             if ((i & 1) == 1) {
                 System.out.println("Decimals first.");
                 testDecimalsSpeed(stat1, rounding, true);
-                testDoubleSpeed(stat2, true);
+                //testDoubleSpeed(stat2, true);
             } else {
                 System.out.println("Doubles first.");
-                testDoubleSpeed(stat2, true);
+                //testDoubleSpeed(stat2, true);
                 testDecimalsSpeed(stat1, rounding, true);
             }
         }
@@ -156,6 +156,7 @@ public class SpeedTest {
     }
 
 
+/*
     private void testDoubleSpeed(org.apache.commons.math3.stat.descriptive.DescriptiveStatistics stat, boolean writeResults) {
 
         long start = System.currentTimeMillis();
@@ -216,6 +217,7 @@ public class SpeedTest {
             doubleTime.put("sum", time + duration);
         }
     }
+*/
 
     private void clear() {
         decimalTime = new HashMap<>(7);
