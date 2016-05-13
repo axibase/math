@@ -11,7 +11,11 @@ The following methods from Apache DescriptiveStatistics are _not_ implemented in
 - getQuadraticMean()
 - getSkewness()
 
-The MathContext object should be used for rounding in mean, variance, standard deviation methods since they may return an infitinite number of decimal digits.
+The MathContext object should be used for rounding for the following methods since they may return an infitinite number of decimal digits:
+
+- getMean()
+- getVariance()
+- getStandardDeviation()
 
 # License
 
@@ -26,7 +30,7 @@ The project is released under version 2.0 of the [Apache License](LICENCE.md).
 ```java
 import axibase.math.stat.descriptive;
 
-BigDecimal[] numbers = {new BigDecimal("0.01"), new BigDecimal("0.2"), new BigDecimal("-1.3")};
+BigDecimal[] numbers = {new BigDecimal("1.3"), new BigDecimal("0.3"), new BigDecimal("0.1")};
 
 // Get a DescriptiveStatistics instance with the default precision of 16 digits
 DescriptiveStatistics stats = new DescriptiveStatistics(numbers);
@@ -50,12 +54,23 @@ std =
 sum =
 ```
 
+```java
+// Compute standard deviation with 256 digit precision
+MathContext context = 
+BigDecimal std = stats.getStandardDeviation(context);
+```
+
+```
+std-256=
+```
+
+
 ### double
 
 ```java
 import org.apache.commons.math4.stat.descriptive;
 
-double[] numbers = {0.01, 0.2, -1.3};
+double[] numbers = {1.3, 0.3, 0.1};
 
 // Get a DescriptiveStatistics instance
 DescriptiveStatistics stats = new DescriptiveStatistics(numbers);
