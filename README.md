@@ -22,10 +22,9 @@ DescriptiveStatistics.
 ```java
 import axibase.math.stat.descriptive;
 
-// Let we have a BigDecimal array.
 BigDecimal[] numbers = {new BigDecimal("0.01"), new BigDecimal("0.2"), new BigDecimal("-1.3")};
 
-// Get a DescriptiveStatistics instance.
+// Get a DescriptiveStatistics instance
 DescriptiveStatistics stats = new DescriptiveStatistics(numbers);
 
 // Compute some statistics
@@ -33,7 +32,8 @@ BigDecimal size = stats.getN();
 BigDecimal max = stats.getMax();
 BigDecimal median = stats.getPercentile(50);
 
-// Some of statistics can have infinite number of digits. So we should use MathContext to round them.
+// Some of statistics can have infinite number of digits. 
+// So we should use MathContext to round them.
 // Let round result to 16 digits.
 MathContext rounding = new MathContext(16, RoundingMode.HALF_UP);
 BigDecimal mean = stats.getMean(rounding);
@@ -42,9 +42,8 @@ BigDecimal std = stats.getStandardDeviation(rounding);
 ### double
 
 ```java
-import org.apache.commons.math3.stat.descriptive;
+import org.apache.commons.math4.stat.descriptive;
 
-// Let we have a double array.
 double[] numbers = {0.01, 0.2, -1.3};
 
 // Get a DescriptiveStatistics instance
@@ -62,6 +61,52 @@ double std = stats.getStandardDeviation();
 
 ### BigDecimal
 
+```java
+import axibase.math.stat.descriptive;
+
+// Get a SummaryStatistics instance
+SummaryStatistics stats = new SummaryStatistics();
+
+// Read data from an input stream,
+// adding values and updating sums, counters, etc.
+while (line != null) {
+        line = in.readLine();
+        stats.addValue(Double.parseDouble(line.trim()));
+}
+in.close();
+
+// Compute some statistics
+BigDecimal size = stats.getN();
+BigDecimal max = stats.getMax();
+
+// Some of statistics can have infinite number of digits. 
+// So we should use MathContext to round them.
+// Let round result to 16 digits.
+MathContext rounding = new MathContext(16, RoundingMode.HALF_UP);
+BigDecimal mean = stats.getMean(rounding);
+BigDecimal std = stats.getStandardDeviation(rounding);
+```
+
 ### double
 
+```java
+import org.apache.commons.math4.stat.descriptive;
 
+// Get a SummaryStatistics instance
+SummaryStatistics stats = new SummaryStatistics();
+
+// Read data from an input stream,
+// adding values and updating sums, counters, etc.
+while (line != null) {
+        line = in.readLine();
+        stats.addValue(Double.parseDouble(line.trim()));
+}
+in.close();
+
+// Compute the statistics
+double size = stats.getN();
+double max = stats.getMax();
+double mean = stats.getMean();
+double std = stats.getStandardDeviation();
+//double median = stats.getMedian(); <-- NOT AVAILABLE
+```
