@@ -1,6 +1,6 @@
 # Overview
 
-Drop-in replacement for Apache Commons Math Descriptive Statistics and Summary Statistics <br>using BigDecimal instead of double.
+BigDecimal implementation of [Apache Commons Math](https://commons.apache.org/proper/commons-math/userguide/stat.html) Descriptive Statistics and Summary Statistics.
 
 See JavaDocs for implementation details.
 
