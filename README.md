@@ -116,7 +116,7 @@ while (line != null) {
 in.close();
 
 // Compute some statistics
-BigDecimal size = stats.getN();
+long size = stats.getN();
 BigDecimal max = stats.getMax();
 
 // Some of statistics can have infinite number of digits. 
@@ -144,7 +144,7 @@ while (line != null) {
 in.close();
 
 // Compute the statistics
-double size = stats.getN();
+long size = stats.getN();
 double max = stats.getMax();
 double mean = stats.getMean();
 double std = stats.getStandardDeviation();
