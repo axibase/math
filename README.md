@@ -8,16 +8,16 @@ See JavaDocs for implementation details.
 
 The following methods from Apache DescriptiveStatistics are _not_ implemented in this release:
 
-- getGeometricMean()
-- getKurtosis()
-- getQuadraticMean()
-- getSkewness()
+- `getGeometricMean()`
+- `getKurtosis()`
+- `getQuadraticMean()`
+- `getSkewness()`
 
 The MathContext object should be used for rounding for the following methods since they may return an infitinite number of fractional digits:
 
-- getMean()
-- getVariance()
-- getStandardDeviation()
+- `getMean()`
+- `getVariance()`
+- `getStandardDeviation()`
 
 ## License
 
