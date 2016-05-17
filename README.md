@@ -27,7 +27,7 @@ The project is released under version 2.0 of the [Apache License](LICENCE.md).
 
 ### DescriptiveStatistics
 
-* Axibase BigDecimal DescriptiveStatistics
+#### Axibase BigDecimal DescriptiveStatistics
 
 ```java
 import com.axibase.math.stat.descriptive;
@@ -47,7 +47,7 @@ BigDecimal std = stats.getStandardDeviation();
 BigDecimal sum = stats.getSum();
 ```
 
-```
+```properties
 size = 3
 max = 1.3
 median = 0.300
@@ -62,12 +62,14 @@ MathContext context = new MathContext(256, RoundingMode.HALF_UP);
 System.out.println("std256 = " stats.getStandardDeviation(context));
 ```
 
-```
-std256 = 0.6429100507328636663840020698288442122604602462042168271533451258487524279112433148600036472862405727387582388938630659235005210461543930677311557061223125970622348551846400953679001533442110739077534147619453047556859898336326044546221595799048295894202745
+```properties
+std256 = 0.642910050732863666384002069828844212260460246204216827153345125848752427911243
+31486000364728624057273875823889386306592350052104615439306773115570612231259706223485518
+46400953679001533442110739077534147619453047556859898336326044546221595799048295894202745
 
 ```
 
-* Apache Math double DescriptiveStatistics
+#### Apache Math double DescriptiveStatistics
 
 ```java
 import org.apache.commons.math3.stat.descriptive;
@@ -86,7 +88,7 @@ double std = stats.getStandardDeviation();
 double sum = stats.getSum();
 ```
 
-```
+```properties
 size = 3
 max = 1.3
 median = 0.3
@@ -98,9 +100,9 @@ sum = 1.7000000000000002
 ### SummaryStatistics
 
 BigDecimal SummaryStatistics has the same interface as the Apache SummaryStatistics
-and is used to calculate statistics for a stream of numeric data.
+and is used to calculate statistics for a stream of numeric data, without storing input values.
 
-* Axibase BigDecimal SummaryStatistics
+#### Axibase BigDecimal SummaryStatistics
 
 ```java
 import com.axibase.math.stat.descriptive;
@@ -114,22 +116,18 @@ SummaryStatistics stats = new SummaryStatistics();
 for (String v : numbers) {
         //no precision loss
         BigDecimal bd = new BigDecimal(v);
+        //update statistics
         stats.addValue(bd);
 }
 
-// Compute some statistics
+// Get current statistics
 long size = stats.getN();
 BigDecimal max = stats.getMax();
-
-// Some of statistics can have infinite number of digits. 
-// So we should use MathContext to round them.
-// Let round result to 16 digits.
-MathContext rounding = new MathContext(16, RoundingMode.HALF_UP);
-BigDecimal mean = stats.getMean(rounding);
-BigDecimal std = stats.getStandardDeviation(rounding);
+BigDecimal mean = stats.getMean();
+BigDecimal std = stats.getStandardDeviation();
 ```
 
-* Apache Math double SummaryStatistics
+#### Apache Math double SummaryStatistics
 
 ```java
 import org.apache.commons.math3.stat.descriptive;
@@ -143,10 +141,11 @@ SummaryStatistics stats = new SummaryStatistics();
 for (String v : numbers) {
         //possible precision loss
         double dbl = Double.parseDouble(v);
+        //update statistics
         stats.addValue(dbl);
 }
 
-// Compute the statistics
+// Get current statistics
 long size = stats.getN();
 double max = stats.getMax();
 double mean = stats.getMean();
