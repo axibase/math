@@ -293,6 +293,10 @@ public class DescriptiveStatistics implements StatisticalSummary {
         return VarianceCalculator.variance(this, false, varianceContext);
     }
 
+    public BigDecimal[] getValues() {
+        return ra.getElements();
+    }
+
     public int getWindowSize() {
         return this.windowSize;
     }
