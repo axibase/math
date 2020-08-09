@@ -30,18 +30,6 @@ import java.util.Random;
  */
 public class ResizableDecimalArrayTest extends DecimalArrayAbstractTest{
 
-    @After
-    public void tearDown() throws Exception {
-        da = null;
-        ra = null;
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        da = new ResizableDecimalArray();
-        ra = new ResizableDecimalArray();
-    }
-
     @SuppressWarnings("deprecation")
     @Test
     public void testConstructors() {

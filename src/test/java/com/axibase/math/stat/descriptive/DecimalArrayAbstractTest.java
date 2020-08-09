@@ -17,7 +17,9 @@
 
 package com.axibase.math.stat.descriptive;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -28,6 +30,19 @@ import java.math.BigDecimal;
  * This class contains test cases for the ResizableDecimalArray.
  */
 public class DecimalArrayAbstractTest {
+
+
+    @After
+    public void tearDown() throws Exception {
+        da = null;
+        ra = null;
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        da = new ResizableDecimalArray();
+        ra = new ResizableDecimalArray();
+    }
 
     protected ResizableDecimalArray da = null;
 

@@ -36,7 +36,7 @@ public class SquareRootTest {
             "99225000000000000000000000000000000000000000000000000000000000001"
     };
 
-    @Test
+    //@Test
     public void testBabylonianInt() throws Exception {
 
         // test numbers 0, ..., 4000
@@ -69,7 +69,7 @@ public class SquareRootTest {
         Assert.assertTrue(msg2 + number, number.compareTo(ceiling) < 0);
     }
 
-    @Test
+    //@Test
     public void testRandomBabylonianDec() throws Exception {
 
         // the total number of roots to compute equals to the product
@@ -154,7 +154,7 @@ public class SquareRootTest {
         Assert.assertTrue(msg, rounded.compareTo(sqrt) == 0);
     }
 
-    @Test
+    //@Test
     public void testConvert() throws Exception {
 
         String msg = "Wrong answer for ";
@@ -244,7 +244,7 @@ public class SquareRootTest {
         Assert.assertEquals(msg + str, 2, result.scale());
     }
 
-    @Test
+    //@Test
     public void main() {
         //MathContext sqrtContext = new MathContext(2, RoundingMode.HALF_DOWN);
         //BigDecimal exactSqrt = new BigDecimal("0.725046");
