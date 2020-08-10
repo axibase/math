@@ -93,4 +93,12 @@
         </dependency>
     </dependencies>
 
+    <developers>
+        <developer>
+            <id>axibase</id>
+            <organization>Axibase</organization>
+            <email>noreply@axibase.com</email>
+        </developer>
+    </developers>
+
 </project>
