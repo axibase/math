@@ -85,7 +85,7 @@ public class DescriptiveStatistics implements StatisticalSummary {
     /**
      * Construct an instance with provided storage capacity (= windowSize) and MathContext.
      * @param windowSize
-     * @param
+     * @param mathContext
      */
     public DescriptiveStatistics(int windowSize, MathContext mathContext) {
         setWindowSize(windowSize);
