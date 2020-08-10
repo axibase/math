@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.axibase</groupId>
     <artifactId>math</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 
     <name>Axibase BigDecimal Statistics</name>
     <description>BigDecimal implementation of Apache Commons Math Descriptive Statistics and Summary Statistics.</description>
